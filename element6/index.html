@@ -1,0 +1,1032 @@
+<html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<head>
+    <title>FHWA RDE Data Visualization Examples</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/uswds.min.css">
+    <link rel="stylesheet" href="../css/styleguide.css">
+    <link rel="stylesheet" href="../css/overrides.css">
+
+    <!-- custom css -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap_used.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom CSS file for changing the defaults (moved this after jquery styles to override)-->
+
+
+    <!--    <link href="css/dashstyle.css" rel="stylesheet">-->
+
+</head>
+
+<body>
+    <header class="usa-site-header" role="banner">
+        <div class="usa-disclaimer">
+            <div class="usa-disclaimer-official">
+                <img src="../img/favicons/favicon-40.png" alt="U.S. flag">
+                <p>An official website of the United States Government</p>
+            </div>
+        </div>
+        <div class="site-navbar">
+            <a class="menu-btn" href="#">Menu</a>
+            <div class="site-logo" id="logo">
+                <em>
+          <a href="/" accesskey="1" title="Home" aria-label="Home">Research Data Environment: Visualization</a>
+        </em>
+            </div>
+        </div>
+      </div>
+
+      <nav class="site-nav-secondary">
+        <ul>
+          <li class="home-notcurrent">
+            <a href="/">
+                <svg id="homeicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><g display="none"><path display="inline" d="M75.186,68.916c0,0-6.082,0.422-12.528,0.781c-2.398-2.686-2.07-9.439-1.767-12.604   c2.509-2.766,4.729-6.279,6.044-10.264c0.136,0.223,0.29,0.414,0.494,0.523c2.248,1.238,1.689-3.824,1.797-5.959   c0.111-2.137,1.688-4.947,0-4.947c-0.456,0-0.79,0.068-1.047,0.164c-0.311-12.205-3.23-21.717-17.954-21.717   c-15.678,0-17.782,9.639-17.973,21.963c-0.247-0.213-0.685-0.41-1.479-0.41c-1.688,0-0.114,2.811,0,4.947   c0.112,2.135-0.448,7.197,1.799,5.959c0.33-0.184,0.557-0.543,0.711-1.004c1.202,4.068,3.329,7.666,5.796,10.512   c0.312,3.045,0.721,10.061-1.726,12.82c-6.478-0.354-12.541-0.766-12.541-0.766c-5.961,0-10.795,4.832-10.795,10.793v5.396h71.965   v-5.396C85.982,73.748,81.146,68.916,75.186,68.916z"></path></g><g display="none"><polygon display="inline" points="52.996,40.028 52.996,24.036 47.006,24.036 47.006,40.028 14.064,40.028 26.045,75.964    73.957,75.964 85.936,40.028  "></polygon></g><g display="none"><path display="inline" d="M20.015,14.018v71.965h59.971V14.018H20.015z M35.008,75.988h-5.995v-6h5.995V75.988z M35.008,63.994   h-5.995v-5.998h5.995V63.994z M35.008,51.998h-5.995v-5.996h5.995V51.998z M47.001,75.988h-5.994v-6h5.994V75.988z M47.001,63.994   h-5.994v-5.998h5.994V63.994z M47.001,51.998h-5.994v-5.996h5.994V51.998z M58.997,75.988h-5.995v-6h5.995V75.988z M58.997,63.994   h-5.995v-5.998h5.995V63.994z M58.997,51.998h-5.995v-5.996h5.995V51.998z M70.991,75.988h-5.999v-6h5.999V75.988z M70.991,63.994   h-5.999v-5.998h5.999V63.994z M70.991,51.998h-5.999v-5.996h5.999V51.998z M73.99,36.008H26.016V24.014H73.99V36.008z"></path></g><g><polygon points="50,17.02 14.018,47.074 20.1,47.074 20.1,82.984 44.002,82.984 44.002,64.994 55.996,64.994 55.996,82.984    80.07,82.984 80.07,47.074 85.982,47.074  "></polygon><polygon points="77.986,17.016 65.992,17.016 65.992,25.037 77.986,35.008  "></polygon></g></svg>
+            </a>
+          </li> 
+          <li>
+            <a href="/element1/">1. INTEGRATION</a>
+          </li>
+          <li>
+            <a href="/element2/">2. COMMUNICATION</a>
+          </li>
+          <li>
+            <a href="/element3/">3. WEATHER</a>
+          </li>
+          <li>
+            <a href="/element4/">4. INTERVENTIONS</a>
+          </li>
+          <li>
+            <a href="/element5/">5. EXPLORE THE RDE</a>
+          </li>
+          <li>
+            <a href="." class="usa-current">6. BREADTH OF DATA</a>
+          </li>
+        </ul>
+      </nav>
+  </header>
+
+  <aside class="sidenav-mobile">
+    <a class="sliding-panel-close" href="#">
+      <img src="../img/close.svg" alt="close">
+    </a>
+    <nav>
+      <ul class="usa-sidenav-list">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/element1/">1. INTEGRATION</a>
+        </li>
+        <li>
+          <a href="/element2/">2. COMMUNICATION</a>
+        </li>
+        <li>
+          <a href="/element3/">3. WEATHER</a>
+        </li>
+        <li>
+          <a href="/element4/">4. INTERVENTIONS</a>
+        </li>
+        <li>
+          <a href="/element5/">5. EXPLORE THE RDE</a>
+        </li>
+        <li>
+          <a class="usa-current" href="/element6/">6. BREADTH OF DATA</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+<!-- CONTENT GOES HERE -->
+
+
+<!-- Main Content Section -->
+<div class="main-content">
+  <!-- Styleguide-content Section -->
+  <div class="styleguide-content usa-content" id="dashboard-wrapper">
+
+
+    <!-- Banner section -->
+    <header>
+    </header>
+
+
+    <!-- CONTENT GOES HERE -->
+
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <!-- Styleguide-content Section -->
+        <div class="styleg
+                    uide-content usa-content" id="dashboard-wrapper">
+
+
+            <!-- Banner section -->
+            <header>
+
+            </header>
+
+
+
+            <div class="container" id="whole">
+
+
+                <h3>Basic Safety Message (BSM) Data set<span class="instruct" >(click the button
+       at the top right corner of each file section to expand view and explore the data along the
+        timeline)</span>
+        </h3>
+
+           
+                <div class="row">
+                    <div class="col-md-7 dcchart column clearfix">
+
+
+
+
+                        <div class="filebox clearfix" id="BsmP1">
+
+
+                            <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+
+
+                            <h3>BsmP1 (Primary Basic Safety Message File)
+                    </h3>
+
+
+                            <div class="toptext clearfix">
+
+
+                                <div class="nochart" name="RxDevice">
+                                    RxDevice: <span class="descriptor">ID of the device that <U>logs</U> a BSM</span>
+                                </div>
+
+                                <div class="nochart" name="Latitude">
+                                    Latitude: <span class="descriptor">in 1/10th integer microdegrees</span>
+                                </div>
+
+                                <div class="nochart" name="FileId">
+                                    FileId: <span class="descriptor">Reference number to locate data source</span>
+                                </div>
+
+                                <div class="nochart" name="DSecond">
+                                    DSeconds: <span class="descriptor">Time in milliseconds</span>
+                                </div>
+
+                                <div class="nochart" name="TxDevice">
+                                    TxDevice: <span class="descriptor">ID (number) of the device that <u>transmits</u> a BSM</span>
+                                </div>
+
+
+                                <div class="nochart" name="Longitude">
+                                    Longitude: <span class="descriptor">in 1/10th integer microdegrees</span>
+                                </div>
+
+
+
+                                <div class="nochart" name="MsgCount">
+                                    MsgCount: <span class="descriptor">Sequence number within stream of messages with the same DSRCMsgId and from the same sender</span>
+                                </div>
+
+                                <div class="nochart" name="GenTime">
+                                    GenTime:
+                                    <span class="descriptor">a more secure form of Epoch time</span>
+                                </div>
+
+
+                            </div>
+                            <!--end toptext-->
+
+
+                            <div class="chartcol clearfix" id="BsmPfield" style="width: 100%; float: right; clear: both;">
+                            </div>
+                             <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">full time span &asymp; 16min</div>
+
+                        </div>
+                        
+                        <!--                end bsmP-->
+
+
+
+
+                        <div class="filebox clearfix" id="BSM_Trip_Summary_File">
+
+
+                             <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+
+
+                            <h3>BSM_Trip_Summary_File<br>
+                </h3>
+
+                            <div class="toptext clearfix">
+                                <div class="nochart" name="DeviceID">
+                                    DeviceID
+                                </div>
+                                <div class="nochart" id="StartDate" name="StartDate">
+                                    StartDate
+                                </div>
+                                <div class="nochart" id="StartTime" name="StartTime">
+                                    StartTime
+                                </div>
+
+                                <div class="nochart" id="EpochStartTime" name="EpochStartTime">
+                                    EpochStartTime
+                                </div>
+                                <div class="nochart" name="TripID">
+                                    TripID
+                                </div>
+                                <div class="nochart" id="EndDate" name="EndDate">
+                                    EndDate
+                                </div>
+                                <div class="nochart" id="EndTime" name="EndTime">
+                                    EndTime
+                                </div>
+
+                                <div class="nochart" id="EpochEndTime" name="EpochEndTime">
+                                    EpochEndTime
+                                </div>
+
+                                <div class="nochart" name="AverageSpeed">
+                                    AverageSpeed (m/s)
+                                </div>
+
+
+                                <div class="nochart" name="MaximumSpeed" style="float:left">
+                                    MaximumSpeed (m/s)
+                                </div>
+
+
+                            </div>
+
+                            <div class="chartcol" id="tripSumfield">
+                                <!--                    svg goes here-->
+                            </div>
+       <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 35min</div>
+
+                            <span class="lil_legend"><span class="bull">&bull;</span> Total Distance
+                            <span class="bull over25">&bull;</span> DistanceOver25MPH<span class="bull over55">&bull;</span>DistanceOver55MPH</span>
+
+                        </div>
+                        <!--     end trip summary-->
+
+                        <div class="filebox clearfix" id="PosAccurByte1Events">
+
+
+                             <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+                            
+                            
+                            <h3>Positional Accuracy Event<br/><span class="instruct" style="padding-left:0; display: inline-block; width:85%">(accuracy of
+                a vehicle's estimated position with respect to the semi-major
+                axis) within one standard deviation, (0–12.7m), of the vehicle's true position)</span></h3>
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+
+
+                            <h4>PosAccurByte1Events<span class=
+                "instruct" >(accuracy of a vehicle's
+                estimated position with respect to the semi-major
+                axis)</span></h4>
+
+                            <div class="chartcol" id="posAccByteField1">
+                                <!--                    svg goes here-->
+                            </div>
+                            
+                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px">full time span &asymp; 17min</div>
+                            <h4>PosAccurByte2Events<span class=
+                "instruct" >(positional accuracy with
+                respect to the semi-minor axis)</span></h4>
+                            <div class="chartcol" id="posAccByteField2"></div>
+                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">full time span &asymp; 17min</div>
+                            <h4>PosAccurByte3Events<span class=
+                "instruct" >(positional determination
+                with respect to each given axis relative to true
+                north)</span></h4>
+                            <div class="chartcol" id="posAccByteField3"></div>
+                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">full time span &asymp; 17min</div>
+                            <h4>PosAccurByte4Events<span class=
+                "instruct" >(accuracy of the positional
+                determination with respect to each given axis)</span></h4>
+                            <div class="chartcol" id="posAccByteField4"></div>
+                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">full time span &asymp; 17min</div>
+                        </div>
+                        <!--                end posAccuracy-->
+
+                        <div class="filebox clearfix" id="BsmMd" style="align-self: flex-end;">
+
+                            <h3>BsmMd</h3>
+
+
+                            <div class="toptext nochart">
+                                The file contains device IDs, certification IDs, and offsets; these elements are a part of the security and communication layer that is required for the V2V/V2I network. As a part of the security layer, the BsmMD file contains a set of randomly generated device IDs that mask the true ID of a transmitting antenna (“TxRandom”).
+
+                            </div>
+
+                            <div class="toptext nochart">
+                            </div>
+
+                        </div>
+                        
+                   
+
+                    </div>
+                    <!--end column 1-->
+
+                    <div class="col-md-5 dcchart column clearfix">
+
+                        <div class="filebox clearfix" id="BrakeByte1Events">
+
+                          <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+
+                            <h3>BrakeByte1Events
+               
+
+                <span class="instruct"></span></h3>
+
+
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+                            Value <span class="instruct">(encoded as a binary value containing multiple
+                components)</span>
+                            
+                              <div class="explain_img" style="margin-left: -.5%; margin-top: 1em;">
+                            
+                            <img src="images/bb1explain.png" alt= "brake byte binary conversion diagram"/>
+                            </div>
+
+                            <div class="svgholder">
+
+                                <div class="explain_img clearfix" style="width: 35%; float: left">
+
+
+                                </div>
+
+                                <div class="chartcol" id="bb1field">
+                                    <!--                    svg goes here-->
+                                </div>
+                                
+                                  <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 12hrs</div>
+
+                                <span class="lil_legend">
+                    <span class="bull unavailable">&bull;</span> unavailable <span class="bull off">&bull;</span>available but off<span class="bull on ">&bull;</span>on but not engaged
+                                <br/><span class="bull engaged">&bull;</span>on and engaged</span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="filebox clearfix" id="BrakeByte2Events">
+
+
+
+                            <h3>BrakeByte2Events</h3>
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    RxDevice
+
+                                    <div class="valtext valentry">
+                                        <text><span class="instruct">sample entry: </span>26</text>
+                                    </div>
+
+                                    TxDevice
+                                    <div class="valtext valentry">
+                                        <text><span class="instruct">sample entry: </span>26</text>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="nochart">
+                                    FileId
+                                    <div class="valtext valentry">
+                                        <text><span class="instruct">sample entry: </span>4297380</text>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="nochart">
+                                    StartTime
+                                    <div class="valtext valentry">
+                                        <text><span class="instruct">sample entry: </span>292802197444039</text>
+                                    </div>
+
+
+                                </div>
+                                <div class="nochart">
+                                    Endtime
+                                    <div class="valtext valentry">
+                                        <text><span class="instruct">sample entry: </span>292802198144024</text>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            Value <span class="instruct">(encoded as a binary value containing multiple
+                components)</span>
+
+                            <div class="toptext nochart" style="margin-top:1em; padding-left: 4em">
+                                This file is sparsely populated as it concerns infrequent braking events
+                                <br/>
+                            </div>
+                            <div>
+
+
+
+
+                                <div class="emptyvalrow">ABS:<span class="lil_legend">
+                                
+                  <span class="bull off">&bull;</span> off<span class="bull on ">&bull;</span> on<span class="bull engaged">&bull;</span> engaged</span>
+                                    <br/>
+
+                                </div>
+
+                                <div class="emptyvalrow">SCU:
+                                    <span class="lil_legend">
+                    <span class="bull unavailable">&bull;</span> unavailable <span class="bull off">&bull;</span>off<span class="bull on ">&bull;</span>on
+                                    </span>
+                                    <br/>
+                                </div>
+
+                                <div class="emptyvalrow">
+                                    BB: <span class="lil_legend">
+                    <span class="bull unavailable">&bull;</span> unavailable <span class="bull off">&bull;</span>off<span class="bull on ">&bull;</span>on
+                                    </span>
+                                    <br/>
+                                </div>
+
+                                <div class="emptyvalrow"> AuxB: <span class="lil_legend">
+                    <span class="bull unavailable">&bull;</span> unavailable <span class="bull off">&bull;</span>off<span class="bull on ">&bull;</span>on
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+                        <div class="filebox clearfix" id="Throttle">
+
+
+                          <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+
+                            <h3>ThrottlePositionEvents<span class=
+                "instruct"><br/>(relative position of the
+                throttle over a given trip)</span></h3>
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="chartcol" id="throttlefield">
+                                <!--                    svg goes here-->
+                            </div>
+                                <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">full time span &asymp; 20sec</div>
+
+                        </div>
+
+                        <div class="filebox clearfix" id="TransStateEvents">
+
+
+                            <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+                            
+                            
+                            <h3>TransStateEvents<br/><span class=
+                "instruct" >(current state of the
+                vehicle's transmission)</span></h3>
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+
+
+                            <div class="chartcol" id="transfield">
+                                <!--                    svg goes here-->
+                            </div>
+                            
+                                   <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 12hrs</div>
+
+                            <span class="lil_legend">
+                    <span class="bull neutral">&bull;
+            </span> Neutral
+                            <span class="bull park">&bull;
+            </span>Park
+                            <span class="bull forward">&bull;
+            </span>Forward
+                            <span class="bull reverse">&bull;
+            </span>Reverse
+                            <br/>
+                            <span class="instruct">
+             * Reserved for future </span>
+                            <span class="bull unavailable">&bull;</span>Unavailable
+
+
+                            </span>
+
+
+
+                        </div>
+
+                        <div class="filebox clearfix" id="SteerAngleEvents">
+
+
+                        <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+                            
+                            
+                            <h3>Steer Angle Events<span class="instruct" >(angle of the steering wheel)</span></h3>
+
+
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+
+
+                            <div class="chartcol" id="steerfield">
+                                <!--                    svg goes here-->
+                            </div>
+                                 <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">full time span &asymp; 33min</div>
+
+                        </div>
+
+
+
+
+                        <div class="filebox clearfix" id="ExteriorLightsEvents">
+
+
+                              <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+                            
+                            
+                            
+                            <h3>ExteriorLightsEvents<br/><span class="instruct"
+                >(state of all the vehicles exterior
+                lights)</span></h3>
+
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+                            
+                            
+
+                            Value <span class="instruct">(encoded as a binary value containing multiple
+                components)</span>
+                            
+
+
+                            <div class="explain_img" >
+                            
+                            <img src="images/exteriorlights.png" alt= "exterior light binary conversion diagram"/>
+                            </div>
+
+                            <div class="chartcol" id="">
+
+                                <div class="chartcol" id="lightsfield">
+                                    <!--                    svg goes here-->
+                                </div>
+                                
+                                     <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 24hrs</div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="filebox clearfix clearfix" id="WiperStatusFrontEvents">
+
+
+                             <div class="expandHolder">
+
+                                <div class="expandToggle">
+
+                                    <div class="tr"></div>
+                                    <div class="br"></div>
+
+
+                                </div>
+                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+
+                            </div>
+                            
+                            
+                            <h3>WiperStatusFrontEvents<span class="instruct"
+                ><br/>(intended as proxy for
+                weather)</span></h3>
+
+
+
+
+                            <div class="toptext clearfix">
+                                <div class="nochart">
+                                    <div name="RxDevice">
+                                        RxDevice
+                                    </div>
+
+                                    <div name="TxDevice">
+                                        TxDevice
+                                    </div>
+                                </div>
+
+                                <div class="nochart" name="FileId">FileId
+
+                                </div>
+
+
+                                <div class="nochart" name="StartTime">
+                                    StartTime:
+
+                                </div>
+                                <div class="nochart" name="Endtime">
+                                    Endtime:
+
+                                </div>
+                            </div>
+
+
+                            <div class="chartcol" id="Value">
+                                <div class="chartcol" id="wipersfield">
+                                    <!--                    svg goes here-->
+                                </div> 
+                                
+                                  <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 8.5hrs</div>
+                                
+                                
+                                
+                                <span class="lil_legend">
+                                   <span class="bull unavailable">&bull;</span>Unavailable
+                                <span class="bull off">&bull;
+            </span>Off
+
+                                <span class="bull intermittent">&bull;
+            </span>Intermittent
+                                <span class="bull low">&bull;
+            </span>Low
+                                <span class="bull high">&bull;
+            </span>High
+                                <br/>
+                                <span class="bull washer">&bull;
+            </span>Washer in use
+                                <span class="bull automatic">&bull;
+            </span>Automatic Present
+                                <br/>
+                                <!--
+                                <span class="instruct">
+             * Reserved for future use</span>
+-->
+
+
+                                </span>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--  end column 2-->
+
+                </div>
+                <!--end row1-->
+
+                <!--end row2-->
+
+                <!--end row3-->
+                
+
+            </div>
+            <!-- /container -->
+
+    <!-- RETURN TO TOP LINK -->
+    <div class="usa-footer-return-to-top">
+      <button class="usa-button" onClick="returnToTop()">Back to Top &uarr;</button>
+    </div>
+
+
+
+        </div>
+        <!-- END Styleguide-content Section -->
+    </div>
+    <!-- END Main Content Section -->
+</div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- FOOTER BEGINS HERE -->
+    <footer class="usa-footer usa-footer-slim" role="contentinfo">
+
+        <div class="usa-footer-primary-section">
+            <div class="usa-grid-full">
+                <nav class="usa-footer-nav usa-width-two-thirds">
+                    <ul class="usa-unstyled-list">
+                        <li class="usa-width-one-whole usa-footer-primary-content">
+                            <a class="usa-footer-primary-link" href="http://www.fhwa.dot.gov/">Federal Highway Administration</a>
+                        </li>
+
+                        <li class="usa-width-one-half usa-footer-primary-content">
+                            <a class="usa-footer-primary-link" href="https://www.its-rde.net/home">Research Data Environment (RDE)</a>
+                        </li>
+                        <li class="usa-width-one-half usa-footer-primary-content">
+                            <a class="usa-footer-primary-link" href="https://wxde.fhwa.dot.gov/">Weather Data Environment (WxDE)</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="usa-width-one-third">
+                    <div class="usa-footer-primary-content usa-footer-contact_info">
+                      <p>(202) 366-4000</p>
+                    </div>
+                    <div class="usa-footer-primary-content usa-footer-contact_info">
+                      <a href="mailto:Web.Master@dot.gov">Contact Webmaster</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="usa-footer-secondary_section">
+            <div class="usa-grid">
+                <div class="usa-footer-logo">
+                    <img class="usa-footer-slim-logo-img" src="../img/dot.png" alt="Logo image">
+                    <h3 class="usa-footer-slim-logo-heading">US Federal Highway Administration</h3>
+                </div>
+            </div>
+        </div>
+        <div class="usa-disclaimer">
+            <div class="usa-disclaimer-official footer">
+                <p>Created in 2016 by <a href="http://www.kittelson.com/">Kittelson &amp; Associates</a>, <a href="https://itre.ncsu.edu/">ITRE</a>, and <a href="http://www.rti.org">RTI International</a>.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER ENDS HERE -->
+
+
+<!-- VENDOR JAVASCRIPT -->
+<script src="../js/website.js"></script>
+<script src="../js/jquery-1.11.1/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="../js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<script language="javascript" src="../js/d3_v3/d3.min.js" type="text/javascript"></script>
+
+<!-- CUSTOM JAVASCRIPT -->
+<script src='js/custom.js' type='text/javascript'></script>
+<script src='js/index.js' type='text/javascript'></script>
+<script src='js/BsmP1.js' type='text/javascript'></script>
+<script src='js/bb1.js' type='text/javascript'></script>
+<script src='js/summaryDistance.js' type='text/javascript'></script>
+<script src='js/steerAngle.js' type='text/javascript'></script>
+<script src='js/Throttle_fromPosAcc.js' type='text/javascript'></script>
+<script src='js/transstate.js' type='text/javascript'></script>
+<script src='js/extLights.js' type='text/javascript'></script>
+<script src='js/wipers_from_transstate.js' type='text/javascript'></script>
+<script src="js/barChart.js"></script>
+<script src='js/PosAcc.js' type='text/javascript'></script>
+
+</body>
+</html>

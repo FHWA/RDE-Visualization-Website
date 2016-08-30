@@ -1,0 +1,202 @@
+#reset-all-container {
+  text-align: center;
+}
+
+body {
+  background-color: #ffffff; 
+}
+
+.dc-chart g.row text {
+  fill: black;
+}
+
+.chart-container {
+  position: relative;
+  text-align: center;
+}
+
+/* allow room for top fixed elements; don't also pad the sidebar
+ * here, as it will be below everything on the mobile view */
+.chart-row:first-of-type {
+  padding-top: 162px;
+}
+
+@media (min-width: 550px) {
+  .chart-row:first-of-type, #sidebar {
+    padding-top: 60px;
+  }
+}
+
+/*.chart-title {
+  display: block;
+  font-size: 2rem;
+  padding-top: 1rem;
+}*/
+
+
+
+.display-container {
+  font-size: 0.8em;
+  color: black;
+/*  z-index: 1113; */
+  position: relative;
+  padding-top:5px;
+  padding-left:10px;
+}
+
+/*@media (min-width: 550px) {
+  .display-container {
+    font-size: 0.9em;
+  }
+}*/
+
+/*.number-display {
+  z-index: 1112;
+  position: relative;
+}*/
+
+#chart-filters {
+  padding: 0 0 0 10px;
+/*  max-height: 50px;*/
+/*  overflow: hidden;*/
+  font-size: 0.8em;
+}
+
+.chart-filter {
+  clear:left;
+}
+
+/*@media (min-width: 550px) {
+  #chart-filters {
+    max-height: 50px;
+  }
+}
+
+#floating-header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 162px;
+  z-index: 1001;
+  background-color: rgba(228, 226, 224, 0.9);
+}
+
+@media (min-width: 550px) {
+  #floating-header {
+    height: 60px;
+  }
+}*/
+
+.dataTables_wrapper {
+  padding: 0px 20px 10px 20px;
+  overflow: scroll;
+}
+
+#data-table-chart tr td{
+  border-bottom: none;
+}
+
+#data-table-chart_length select {
+  width:100px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: left;
+    text-align: right;
+    padding-top:25px;
+    padding-left:25px;
+}
+
+#data-table-chart_filter {
+  float:right;
+}
+
+.dashboard-grid {
+  padding:0;
+/*  max-width: 940px;*/
+}
+
+#data-table-chart_wrapper{
+  font-size:0.9em;
+}
+
+#data-table-chart_filter label {
+  margin-top:0;
+}
+
+#data-table-chart_info {
+  padding-top:35px;
+}
+
+#data-table-chart_wrapper {
+  padding-left:0;
+  padding-right:10px;
+}
+
+
+.dashboard-chart-reset {
+  text-decoration: unset;
+  background-color:#fad980;
+  color:black;
+  z-index: 9998;
+}
+
+.map-reset-button {
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  font-size: 15px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 9998;
+  color:black;
+}
+
+a.map-reset-button {
+  color: black;
+}
+
+.dashboard-all-charts-reset {
+  background-color: #fdb81e;
+  color:black;
+}
+
+table thead th {
+    background-color: #ffffff;
+}
+
+#sticky {
+    background-color:#fdb81e; /*#dce4ef*/
+    color: black;
+    font-weight:bold;
+    z-index: 9999;
+}
+
+.easy-button-container {
+  background-color:white;
+  opacity:0.8;
+}
+
+#location-map-chart {
+  width: 100%;
+  height: 400px;
+  z-index: 0;
+}
+
+#location-map-chart > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > button {
+  line-height:0;
+  margin-right:0;
+  padding-left:12px;
+}
+
+#location-map-chart > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > button:nth-child(2) {
+  padding-right:20px;
+  margin-bottom:10px;
+}
+
+#location-map-chart > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > button:nth-child(2) > span > span {
+  line-height: 0;
+  padding-left:0;
+  margin-left:-5px;
+}
+
+

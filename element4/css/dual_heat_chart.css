@@ -1,0 +1,36 @@
+#heat-chart-tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 2px;
+  border: 0px;
+  pointer-events: none;
+  background-color: rgba(33, 33, 33, 0.85);
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+#heat-chart-tooltip .tooltip-header {
+  font-size: 1.7rem;
+}
+
+#heat-chart-tooltip .tooltip-body {
+  font-size: 1.4rem;
+  padding: 0px 5px 5px 5px;
+}
+
+.dual-heat-chart .bar {
+  border-left: 0.5px solid white;
+  border-right: 0.5px solid white;
+}
+
+.heat-chart-legend .heat-chart-legend-text {
+  padding: 0px 5px 0px 5px;
+}
+
+.heat-chart-label {
+  font-weight: bolder;
+}
+
+.heat-chart-label-sum {
+  font-style: italic;
+}

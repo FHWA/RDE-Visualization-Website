@@ -1,0 +1,3 @@
+# Ignore the unneeded files in each directory (don't want to delete these yet
+# in case we end up needing some of them)
+backup/

@@ -1,0 +1,43 @@
+.usa-font-lead {
+    max-width: 90rem;
+}
+
+.usa-content p:not(.usa-font-lead) {
+    max-width: 90rem;
+}
+
+.simple-instruction {
+    border-left: 2px solid #205493;
+    padding-left: 1rem;
+/*    background-image: url(../img/arrow-right.png);
+    background-repeat: no-repeat;*/
+}
+
+#homeicon {
+    float:left;
+    padding-top:10px;
+    width: 25px;
+}
+
+.site-nav-secondary ul li.home-current, 
+.site-nav-secondary ul li.home-notcurrent {
+    padding-right: 1.2rem;
+}
+
+li.home-notcurrent a svg {
+    fill:#e31c3d;
+}
+
+li.home-current a svg {
+    fill:#0071bc;
+}
+
+#homeicon {
+    width: 25px;
+}
+
+/* Yellow footer using standards color */
+
+.usa-footer-primary-section {
+    background-color: #fdb81e;
+}

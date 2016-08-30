@@ -1,0 +1,363 @@
+<html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<head>
+  <title>FHWA RDE Data Visualization Examples</title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="../css/uswds.min.css">
+  <link rel="stylesheet" href="../css/styleguide.css">
+  <link rel="stylesheet" href="../css/overrides.css">
+
+
+
+  <!-- Dashboard Specific CSS -->
+  <!-- dc.js -->
+  <link rel="stylesheet" href="../js/dcjs/dc.min.css" />
+
+  <!-- dc-addons + dependencies -->
+  <link rel="stylesheet" href="../js/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="../js/leaflet.markercluster/MarkerCluster.css" />
+  <link rel="stylesheet" href="../js/leaflet.markercluster/MarkerCluster.Default.css" />
+
+  <!-- datatables -->
+  <link rel="stylesheet" href="../js/datatables/css/jquery.dataTables.min.css" />
+
+  <!-- other vendor css -->
+  <link rel="stylesheet" href="../js/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../js/Leaflet.EasyButton/easy-button.css" />
+
+  <!-- custom css -->
+  <link rel="stylesheet" href="css/element5.css" />
+  <!-- END Dashboard Specific CSS -->
+
+
+</head>
+
+<body>
+  <header class="usa-site-header" role="banner">
+    <div class="usa-disclaimer">
+      <div class="usa-disclaimer-official">
+      <img src="../img/favicons/favicon-40.png" alt="U.S. flag">
+        <p>An official website of the United States Government</p>
+      </div>
+    </div>
+    <div class="site-navbar">
+      <a class="menu-btn" href="#">Menu</a>
+      <div class="site-logo" id="logo">
+        <em>
+          <a href="/" accesskey="1" title="Home" aria-label="Home">Research Data Environment: Visualization</a>
+        </em>
+        </div>
+      </div>
+
+      <nav class="site-nav-secondary">
+        <ul>
+          <li class="home-notcurrent">
+            <a href="/">
+                <svg id="homeicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><g display="none"><path display="inline" d="M75.186,68.916c0,0-6.082,0.422-12.528,0.781c-2.398-2.686-2.07-9.439-1.767-12.604   c2.509-2.766,4.729-6.279,6.044-10.264c0.136,0.223,0.29,0.414,0.494,0.523c2.248,1.238,1.689-3.824,1.797-5.959   c0.111-2.137,1.688-4.947,0-4.947c-0.456,0-0.79,0.068-1.047,0.164c-0.311-12.205-3.23-21.717-17.954-21.717   c-15.678,0-17.782,9.639-17.973,21.963c-0.247-0.213-0.685-0.41-1.479-0.41c-1.688,0-0.114,2.811,0,4.947   c0.112,2.135-0.448,7.197,1.799,5.959c0.33-0.184,0.557-0.543,0.711-1.004c1.202,4.068,3.329,7.666,5.796,10.512   c0.312,3.045,0.721,10.061-1.726,12.82c-6.478-0.354-12.541-0.766-12.541-0.766c-5.961,0-10.795,4.832-10.795,10.793v5.396h71.965   v-5.396C85.982,73.748,81.146,68.916,75.186,68.916z"></path></g><g display="none"><polygon display="inline" points="52.996,40.028 52.996,24.036 47.006,24.036 47.006,40.028 14.064,40.028 26.045,75.964    73.957,75.964 85.936,40.028  "></polygon></g><g display="none"><path display="inline" d="M20.015,14.018v71.965h59.971V14.018H20.015z M35.008,75.988h-5.995v-6h5.995V75.988z M35.008,63.994   h-5.995v-5.998h5.995V63.994z M35.008,51.998h-5.995v-5.996h5.995V51.998z M47.001,75.988h-5.994v-6h5.994V75.988z M47.001,63.994   h-5.994v-5.998h5.994V63.994z M47.001,51.998h-5.994v-5.996h5.994V51.998z M58.997,75.988h-5.995v-6h5.995V75.988z M58.997,63.994   h-5.995v-5.998h5.995V63.994z M58.997,51.998h-5.995v-5.996h5.995V51.998z M70.991,75.988h-5.999v-6h5.999V75.988z M70.991,63.994   h-5.999v-5.998h5.999V63.994z M70.991,51.998h-5.999v-5.996h5.999V51.998z M73.99,36.008H26.016V24.014H73.99V36.008z"></path></g><g><polygon points="50,17.02 14.018,47.074 20.1,47.074 20.1,82.984 44.002,82.984 44.002,64.994 55.996,64.994 55.996,82.984    80.07,82.984 80.07,47.074 85.982,47.074  "></polygon><polygon points="77.986,17.016 65.992,17.016 65.992,25.037 77.986,35.008  "></polygon></g></svg>
+            </a> <!-- class="usa-current" -->
+          </li> 
+          <li>
+            <a href="/element1/">1. INTEGRATION</a>
+          </li>
+          <li>
+            <a href="/element2/">2. COMMUNICATION</a>
+          </li>
+          <li>
+            <a href="/element3/">3. WEATHER</a>
+          </li>
+          <li>
+            <a href="/element4/">4. INTERVENTIONS</a>
+          </li>
+          <li>
+            <a href="." class="usa-current">5. EXPLORE THE RDE</a>
+          </li>
+          <li>
+            <a href="/element6/">6. BREADTH OF DATA</a>
+          </li>
+        </ul>
+      </nav>
+  </header>
+
+  <aside class="sidenav-mobile">
+    <a class="sliding-panel-close" href="#">
+      <img src="../img/close.svg" alt="close">
+    </a>
+    <nav>
+      <ul class="usa-sidenav-list">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/element1/">1. INTEGRATION</a>
+        </li>
+        <li>
+          <a href="/element2/">2. COMMUNICATION</a>
+        </li>
+        <li>
+          <a href="/element3/">3. WEATHER</a>
+        </li>
+        <li>
+          <a href="/element4/">4. INTERVENTIONS</a>
+        </li>
+        <li>
+          <a class="usa-current" href="/element5/">5. EXPLORE THE RDE</a>
+        </li>
+        <li>
+          <a href="/element6/">6. BREADTH OF DATA</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+<!-- CONTENT GOES HERE -->
+
+
+<!-- Main Content Section -->
+<div class="main-content">
+  <!-- Styleguide-content Section -->
+  <div class="styleguide-content usa-content" id="dashboard-wrapper">
+
+
+    <!-- Banner section -->
+    <header>
+      <p class="site-subheading">RDE DATA VISUALIZATION</p>
+      <h1 id="getting-started">Exploring The RDE</h1>
+    </header>
+      <h3>A wealth of transportation data at your fingertips</h3>
+
+      <p>
+        The <a href='http://www.its-rde.net' target='_blank'>Research Data Exchange</a> contains a wide variety of data sets covering many cities across the United States.  Each data set is associated with a parent data environment and has been tagged by data type, frequency, facility, and location.  Without the ability to browse data sets by each of these characteristics, the task of finding the right data set can be daunting.
+      </p>
+
+      <p>
+        This visualization allows users to explore the full list of data sets by simply clicking on characteristics of interest.  For each chart, clicking on a value filters all other charts on that value.  This powerful, dynamic drill-down capability enables users to quickly identify data sets of interest and jump straight into research.
+      </p>
+
+      <div class="usa-grid dashboard-grid">
+        <div class="usa-width-one-half">
+          <h4 class="usa-heading">Example</h4>
+          <p>
+            Try clicking on the bar labeled 'basic safety message (bsm)' on the chart labeled 'Number of Data Sets by Data Type'. All other charts will automatically filter to display only data sets with Basic Safety Message (BSM) data. Multiple filters can be applied at once; clicking the 'arterial' bar in the chart labeled 'Number of Data Sets by Facility' further narrows the selection to only data sets containing BSM data recorded on arterials.
+          </p>
+        </div>
+        <div class="usa-width-one-half usa-alert usa-alert-info">
+          <div class="usa-alert-body">
+            <h3 class="usa-alert-heading">Using the Dashboard</h3>
+            <p class="usa-alert-text">
+              Hover over any characteristic to see how many data sets matching the current set of filters have that characteristic. Filters can be reset by clicking the 'Clear Filter' link that appears on a chart when a filter is applied or clicking on the characteristic that was selected to apply the filter.
+            </p>
+          </div>
+        </div>
+      </div>
+    <!-- END Banner section -->
+
+
+    <!-- Begin Dashboard information bar -->
+    <h2 class="chart-title">RDE Dashboard</h2>
+      <div class="usa-grid dashboard-grid" id="sticky">
+        <div id="chart-filters" class="usa-width-one-third">
+          <div class="usa-width-one-whole">
+          Filters:
+          </div>
+        </div>
+        <div class="usa-width-one-third"> 
+          <div id="dataset-count-display" class="display-container"></div><br />
+          <div id="dataset-size-display" class="display-container"></div>
+        </div>
+        <div id="reset-all-container" class="usa-width-one-third"> 
+            <button id="reset-all-btn" class="usa-button">Reset Dashboard</button>
+        </div>
+      </div>
+    <!-- END Dashboard information bar -->
+
+
+    <!-- Begin Map at Top -->
+    <div class="usa-grid dashboard-grid">
+      <div id="location-map" class="usa-width-one-whole">
+        <h4 id="location-map-title" class="chart-title usa-heading">Data Set Locations</h4>
+        <div id="location-map-chart">
+        <a class="reset usa-label dashboard-chart-reset map-reset-button" href="javascript:resetChart('locationChart');">Clear Filter</a>
+        </div>
+      </div>
+    </div>
+    <!-- END Map at Top -->
+
+
+    <!-- Begin Charts: Data Sets by Environment and Data Sets by Data Types -->
+    <div class="usa-grid dashboard-grid">
+      <div id="environment" class="usa-width-one-half">
+        <h5 id="environment-title" class="chart-title usa-heading">Number of Data Sets by Data Environment</h5>
+        <div id="environment-chart">
+          <a class="reset usa-label dashboard-chart-reset" href="javascript:resetChart('environmentChart');">Clear Filter</a>
+        </div>
+      </div>
+      <div id="data-type" class="usa-width-one-half">
+        <h5 id="data-type-title" class="chart-title usa-heading">Number of Data Sets by Data Type</h5>
+        <div id="data-type-chart">
+          <a class="reset usa-label dashboard-chart-reset" href="javascript:resetChart('dataTypeChart');">Clear Filter</a>
+        </div>
+      </div>
+    </div>
+    <!-- END Charts: Data Sets by Environment and Data Sets by Data Types -->
+
+
+    <!-- Begin Charts: Data Sets by Facility and Data Sets by Data Frequency -->
+    <div class="usa-grid dashboard-grid">
+      <div id="facility" class="usa-width-one-half">
+        <h5 id="facility-title" class="chart-title usa-heading">Number of Data Sets by Facility</h5>
+        <div id="facility-chart">
+          <a class="reset usa-label dashboard-chart-reset" href="javascript:resetChart('facilityChart');">Clear Filter</a>
+        </div>
+      </div>
+      <div id="frequency" class="usa-width-one-half">
+        <h5 id="frequency-title" class="chart-title usa-heading">Number of Data Sets by Data Frequency</h5>
+        <div id="frequency-chart">
+          <a class="reset usa-label dashboard-chart-reset" href="javascript:resetChart('frequencyChart');">Clear Filter</a>
+        </div>
+      </div>
+    </div>
+    <!-- END Charts: Data Sets by Facility and Data Sets by Data Frequency -->
+
+
+    <!-- Begin Charts: Active Data Sets Over Time -->
+    <div class="usa-grid dashboard-grid">
+      <div id="active-over-time" class="usa-width-one-whole">
+        <h5 id="active-over-time-title" class="chart-title usa-heading">Number of Active Data Sets Over Time</h5>
+        <div id="active-over-time-chart">
+          <a class="reset usa-label dashboard-chart-reset" href="javascript:resetChart('activeOverTimeChart');">Clear Filter</a>
+        </div>
+      </div>
+    </div>
+    <!-- END Charts: Active Data Sets Over Time -->
+
+
+    <!-- Begin Datatable -->
+    <div class="usa-grid dashboard-grid">
+      <div id="data-table" class="usa-width-one-whole">
+        <h5 id="data-table-title" class="chart-title usa-heading">Data Table</h5>
+        <table id="data-table-chart" class="usa-table-borderless compact nowrap">
+          <thead>
+            <tr>
+              <th scope="col">Dataset</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Location</th>
+              <th scope="col">Size</th>
+              <th scope="col">Data Environment</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- END Datatable -->
+
+
+    <!-- Begin Download Instructions and Notes -->
+    <h3>Notes</h3>
+
+    <p>Data sets can have more than one Data Type, Facility, or Data Frequency tag.  Therefore, each data set can be represented more than once in those charts.</p>
+    <p>The 'Number of Active Data Sets Over Time' chart displays the following: for each time point, count the number of data sets where the time point is between that data set's start date and end data (hence, 'Active Data Sets').</p>               
+
+    <h3>Download Instructions</h3>
+    <p>Download instructions go here.</p> 
+    <!-- END Download Instructions and Notes -->
+
+    <!-- RETURN TO TOP LINK -->
+    <div class="usa-footer-return-to-top">
+      <button class="usa-button" onClick="returnToTop()">Back to Top &uarr;</button>
+    </div>
+
+  </div>
+  <!-- END Styleguide-content Section -->
+</div>
+<!-- END Main Content Section -->
+
+
+
+
+
+
+
+
+<!-- FOOTER BEGINS HERE -->
+  <footer class="usa-footer usa-footer-slim" role="contentinfo">
+
+    <div class="usa-footer-primary-section">
+      <div class="usa-grid-full">
+        <nav class="usa-footer-nav usa-width-two-thirds">
+          <ul class="usa-unstyled-list">
+            <li class="usa-width-one-whole usa-footer-primary-content">
+              <a class="usa-footer-primary-link" href="http://www.fhwa.dot.gov/">Federal Highway Administration</a>
+            </li>
+
+            <li class="usa-width-one-half usa-footer-primary-content">
+              <a class="usa-footer-primary-link" href="https://www.its-rde.net/home">Research Data Environment (RDE)</a>
+            </li>
+            <li class="usa-width-one-half usa-footer-primary-content">
+              <a class="usa-footer-primary-link" href="https://wxde.fhwa.dot.gov/">Weather Data Environment (WxDE)</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="usa-width-one-third">
+          <div class="usa-footer-primary-content usa-footer-contact_info">
+            <p>(202) 366-4000</p>
+          </div>
+          <div class="usa-footer-primary-content usa-footer-contact_info">
+            <a href="mailto:Web.Master@dot.gov">Contact Webmaster</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="usa-footer-secondary_section">
+      <div class="usa-grid">
+        <div class="usa-footer-logo">
+          <img class="usa-footer-slim-logo-img" src="../img/dot.png" alt="Logo image">
+          <h3 class="usa-footer-slim-logo-heading">US Federal Highway Administration</h3>
+        </div>
+      </div>
+    </div>
+    <div class="usa-disclaimer">
+      <div class="usa-disclaimer-official footer">
+        <p>Created in 2016 by <a href="http://www.kittelson.com/">Kittelson &amp; Associates</a>, <a href="https://itre.ncsu.edu/">ITRE</a>, and <a href="http://www.rti.org">RTI International</a>.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- FOOTER ENDS HERE -->
+
+<!--   <script src="../js/uswds.min.js"></script> -->
+
+
+  <!-- Dashboard specific JavaScript -->
+
+    <!-- dc.js -->
+    <script src="../js/crossfilter2/crossfilter.min.js"></script>
+    <script src="../js/d3_v3/d3.min.js"></script>
+    <script src="../js/dcjs/dc.min.js"></script>
+
+    <!-- dc-addons + dependencies -->
+    <script src="../js/leaflet/leaflet.js"></script>
+    <script src="../js/dc-addons/dc-leaflet.min.js"></script>
+
+    <!-- other vendor -->
+    <script src="../js/lodash/lodash.min.js"></script>
+    <script src="../js/interval-tree/lysenko-interval-tree.js"></script>
+    <script src="../js/Leaflet.EasyButton/easy-button.js"></script>
+
+    <!-- datatables + dependencies -->
+    <script src="../js/jquery/jquery.min.js"></script>
+    <script src="../js/jquery.sticky/jquery.sticky.js"></script>
+    <script src="../js/datatables/js/jquery.dataTables.min.js"></script>
+
+    <!-- custom js -->
+    <script src="js/fhwa5.js"></script>
+    <script src="../js/website.js"></script>
+
+  <!-- END Dashboard specific JavaScript -->
+
+</body>
+</html>

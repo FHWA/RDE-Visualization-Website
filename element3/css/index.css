@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body, html, #loading-bg {
+  height: 100%;
+  width: 100%;
+}
+
+.loading {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+#loading-bg {
+  background: rgba(100, 100, 100, 0.5);
+  opacity: 1;
+  z-index: 2002;
+  cursor: wait;
+  position: absolute;
+  max-height: 900px;
+}
+
+#loading-spinner {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  z-index: 2003;
+  left: calc(50% - 100px);
+  top: calc(50% - 100px);
+  pointer-events: none;
+}
+
+.leaflet-map {
+  display: block;
+  width: 100%;
+  max-height: 900px;
+  height: 100%;
+}
+
+.legend {
+  text-align: left;
+  line-height: 18px;
+  color: #555;
+}
+
+.legend i:not(.icon) {
+  width: 50px;
+  height: 18px;
+  float: left;
+}
+
+.leaflet-bottom.leaflet-right {
+  margin-bottom: 20px;
+}
+
+.info {
+  padding: 6px 8px;
+  font: 12px/18px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-bottom: 60px !important;
+}
+
+/* Fix easy buttons getting messed up because of 
+ * US Web Design button css */
+.easy-button-button {
+  padding: 2px 6px 3px 6px;
+  margin: 0px;
+}
+
+/* Attempting to make timecontrol look better while still using
+ * US Web Design select css */
+.leaflet-bar-timecontrol * {
+  width: 114px;
+  border: none;
+  background-color:transparent;
+  font-size: inherit;
+  line-height: inherit;
+  height: inherit;
+  padding: 0px;
+}
+
+/* Attempting to make layer select not look terrible by removing
+ * US Web Design checkbox css */
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  background: none;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  display: inline-block;
+  margin: 2px 2.89502px 3px;
+  position: relative;
+  opacity: 1;
+  height: 12px;
+  width: 12px;
+}
+
+/* Fix line-height inside timecontrol bar */
+.ion-play:before, .ion-pause:before, .ion-skip-backward:before, .ion-skip-forward:before, .ion-ios-speedometer-outline:before,
+.ion-ios-speedometer:before {
+  line-height: inherit;
+}
+
+/* Fix labels inside layer select */
+label {
+  margin-top: 0px;
+  max-width: none;
+}
