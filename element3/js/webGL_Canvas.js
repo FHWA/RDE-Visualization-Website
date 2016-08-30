@@ -26,7 +26,7 @@ function latlonToPoint(latlon) {
 //Initialize the GL Canvas
 function initGL(canvas) {
   try {
-    gl = canvas.getContext("experimental-webgl");
+    gl = canvas.getContext("web-gl") || canvas.getContext("experimental-webgl");
     gl.viewportWidth = canvas.width;
     gl.viewportHeight = canvas.height;
 
@@ -35,9 +35,7 @@ function initGL(canvas) {
       gl.viewportWidth = canvas.width;
       gl.viewportHeight = canvas.height;
     };
-  } catch (e) {
-  }
-  if (!gl) {
+  } catch (e) { //In case there are any other errors replace the map with video
     noWebGLErrorCatcher();
   }
 }

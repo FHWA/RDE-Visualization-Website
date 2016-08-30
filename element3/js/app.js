@@ -17,6 +17,9 @@ var weatherDataChosen = 'No Overlay';
 
 var App = (function () {
   function App() {
+    //Check if webGL is enabled
+    this.checkWebGL();
+
     //App variables
     var _this = this;
     this.coeff = 1000 * 60 * 10;
@@ -330,6 +333,23 @@ var App = (function () {
           _this.road_temperature.removeLayer(_this.tempMarkers[vehicleName+'|'+tstamp]);
         }
       });      
+    }
+  };
+
+  //Function that checks if webGL is enabled
+  App.prototype.checkWebGL = function () {
+    //Check that webGL is enabled before loading data
+    var testCanvas = document.createElement("canvas");
+    var testGL;
+    try {
+      testGl = testCanvas.getContext("webgl") || testCanvas.getContext("experimental-webgl");
+    }
+    catch (x) {
+      testGl = null;
+    }
+
+    if (testGl == null){
+      noWebGLErrorCatcher();
     }
   };
 
