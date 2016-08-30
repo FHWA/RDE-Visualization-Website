@@ -17,6 +17,9 @@ var weatherDataChosen = 'No Overlay';
 
 var App = (function () {
   function App() {
+    //Check if webGL is enabled
+    this.checkWebGL();
+
     //App variables
     var _this = this;
     this.coeff = 1000 * 60 * 10;
@@ -331,6 +334,17 @@ var App = (function () {
         }
       });      
     }
+  };
+
+  //Function that checks if webGL is enabled
+  App.prototype.checkWebGL = function () {
+    //Check that webGL is enabled before loading data
+    var testCanvas = document.createElement("canvas");
+    var testGL;
+    try {
+      testGl = testCanvas.getContext("webgl") || testCanvas.getContext("experimental-webgl");
+    }
+    catch (x) {}
   };
 
   //Function that calls all the data loading functions 
