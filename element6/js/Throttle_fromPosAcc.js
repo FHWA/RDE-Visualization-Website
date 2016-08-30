@@ -27,7 +27,7 @@ d3.csv('csv/culled/ThrottlePositionEvents_04_11_13.csv', function (throttleSolo)
     leftColumn: false,
   });
     
-           var thisdiv = d3.select("#Throttle");
-        addentries(throttleSolo, thisdiv);   
+  var thisdiv = d3.select("#Throttle");
+  addentries(throttleSolo, thisdiv);   
   throttle.draw();
 });
