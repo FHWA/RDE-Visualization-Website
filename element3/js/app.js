@@ -344,7 +344,13 @@ var App = (function () {
     try {
       testGl = testCanvas.getContext("webgl") || testCanvas.getContext("experimental-webgl");
     }
-    catch (x) {}
+    catch (x) {
+      testGl = null;
+    }
+
+    if (testGl == null){
+      noWebGLErrorCatcher();
+    }
   };
 
   //Function that calls all the data loading functions 

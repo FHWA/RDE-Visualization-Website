@@ -35,13 +35,8 @@ function initGL(canvas) {
       gl.viewportWidth = canvas.width;
       gl.viewportHeight = canvas.height;
     };
-  } catch (e) {
-    if (e instanceof TypeError) {
-      noWebGLErrorCatcher();
-    }
-    else {
-      throw e;
-    }
+  } catch (e) { //In case there are any other errors replace the map with video
+    noWebGLErrorCatcher();
   }
 }
 
