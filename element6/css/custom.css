@@ -1211,7 +1211,10 @@ path.domain{
     text-align: right;
     position: absolute;
     top: 0;
-    
-    
-    
+}
+
+.expand_text {
+    style: display: block; 
+    text-align: right; 
+    line-height: 1.1em
 }
