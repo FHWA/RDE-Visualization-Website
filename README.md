@@ -1,5 +1,5 @@
 # RDE Visualization Website
-This repository contains code and other assets to render a website containing prototype visualizations of selected data sets in the [Federal Highway Administration](https://www.fhwa.dot.gov/) (FHWA)'s [Research Data Environment](https://www.its-rde.net/) (RDE).  These visualizations are designed to give researchers and data aficionados ideas for projects using the data on the RDE; they also strive to provide concrete examples of how large, complex data sets can be distilled into useful products.
+This repository contains code and other assets to render a website displaying prototype visualizations of selected data sets in the [Federal Highway Administration](https://www.fhwa.dot.gov/) (FHWA)'s [Research Data Environment](https://www.its-rde.net/) (RDE).  These visualizations are designed to give researchers and data aficionados ideas for projects using the data on the RDE; they also strive to provide concrete examples of how large, complex data sets can be distilled into useful products.
 
 ## Running the Site
 
