@@ -11,6 +11,7 @@ d3.csv("csv/culled/bsm_steerangle.csv", function (error, data) {
     }
 
     var items = data;
+	console.log(items);
     
     var thisdiv=d3.select("#SteerAngleEvents");
     addentries(items, thisdiv);
@@ -26,6 +27,7 @@ d3.csv("csv/culled/bsm_steerangle.csv", function (error, data) {
     items.sort(function (a, b) {
         return a.StartTime - b.StartTime;
     });
+	console.log(items);
 
  // items =items.filter(function(d){return d.RxDevice =="87"})
   
@@ -41,7 +43,7 @@ d3.csv("csv/culled/bsm_steerangle.csv", function (error, data) {
         
         //test with smaller data set to see if rendering is the problem
     items = items.values;
-
+	console.log(items);
         
           //get rid to not draw unneseccary elements
         items.filter(function (d) {
@@ -158,7 +160,7 @@ d3.csv("csv/culled/bsm_steerangle.csv", function (error, data) {
     var contextxaxis = context.append("g")
                 .attr("class", "x axis");
     
-    
+    console.log(items);
     
        var rects = steerchart.append("g")
         .attr("class", "rectsg")
@@ -332,6 +334,11 @@ d3.csv("csv/culled/bsm_steerangle.csv", function (error, data) {
                         return "timelinerect"
                     }
                 });
+				
+
+
+$(".timelinerect[width='0']").remove();
+
 
 
              mybrush.call(steerbrush)

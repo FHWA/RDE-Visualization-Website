@@ -1,5 +1,7 @@
 d3.csv('csv/culled/ThrottlePositionEvents_04_11_13.csv', function (throttleSolo) {
   items = []
+    
+	
   throttleSolo.forEach(function (d) {
     var temp = {}
     var format = d3.time.format("%Y-%m-%d");
@@ -14,6 +16,7 @@ d3.csv('csv/culled/ThrottlePositionEvents_04_11_13.csv', function (throttleSolo)
 
     temp.Value = +d.Value;   
     items.push(temp);
+
   });
   items.sort(function(a, b) { return a.StartTime - b.StartTime; }); 
 

@@ -1,5 +1,5 @@
 d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
-    //console.log(data);
+    console.log(data);
 
     function bb1() {
         var barPadding = 25;
@@ -7,6 +7,21 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
         var color = d3.scale.ordinal();
         var encoded;
         var firstTransition = true;
+        
+        
+        
+        
+        items.sort(function (a, b) {
+            return a.StartTime - b.StartTime;
+        });
+
+        //nest by vehicle to cull
+        items = d3.nest().key(function (d) {
+            return d.RxDevice;
+        }).entries(items);
+
+        
+          items = items[0].values;
 
 
   var thisdiv=d3.select("#BrakeByte1Events");
@@ -30,7 +45,7 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             //d.thisisiatest = byteString(binary);
             //console.log(d.thisisiatest);
             
-           // console.log(newd);
+            console.log(newd);
 
             var status;
 
@@ -72,27 +87,10 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             .range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#d0743c', '#ff8c00', '#ff8c00', '#ff8c00', '#ff8c00']);
 
 
-        items.sort(function (a, b) {
-            return a.StartTime - b.StartTime;
-        });
-        
-         items = items.filter(function(d) {return d.RxDevice =="10"});
-       // console.log(items);
-
-        //nest by vehicle to cull
-        items = d3.nest().key(function (d) {
-            return d.RxDevice;
-        }).entries(items);
-          
-        
-       // console.log(items);
-
         // use only data values from one vehilce
         // items = items[0];
 
-       vehicle = items[0].values;
-        //vehicle = items.filter(function(d) {return d.RxDevice =="10"})
-       // console.log(vehicle);
+      
 
         //colors not used right now- just fore keying
 
@@ -117,18 +115,18 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             });
         });
         
-         // console.log(rows);
+          console.log(rows);
 
         var timeBegin = d3.min(vehicle, function (d) {
             return d.StartTime;
         });
 
         
-       // console.log(timeBegin);
+        console.log(timeBegin);
         var timeEnd = d3.max(vehicle, function (d) {
             return d.StartTime;
         });
-        // console.log(timeEnd);
+         console.log(timeEnd);
 
         var width = $("#bb1field").width();
         var height = 280;
@@ -161,7 +159,6 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             .scale(x)
             .orient("bottom")
             .tickSize((h / color.domain().length) - barPadding)
-			.ticks(7)
 
         //for brush
         var xAxis2 = d3.svg.axis()
@@ -466,13 +463,11 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             newheight = 280;
             w = newwidth - m[1] - m[3];
             h = newheight - m[0] - m[2];
-				 xAxis.ticks(7)  
-
 
             renderingbits(newwidth, newheight);
             bb1_brush(newwidth, newheight);
-            bb1brush.extent([timeBegin, timeEnd]); 
-		
+            bb1brush.extent([timeBegin, timeEnd]);   
+
             window.setTimeout(function () {
                 parentColumn.toggleClass("expanded");
                 window.setTimeout(function () {
@@ -491,7 +486,6 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
                 newheight = 450;
                 w = newwidth - m[1] - m[3];
                 h = newheight - m[0] - m[2];
-				 xAxis.ticks(10) 
                 renderingbits(newwidth, newheight);
                 bb1_brush(newwidth, newheight);
                 bb1brush.extent([timeBegin, timeEnd]);

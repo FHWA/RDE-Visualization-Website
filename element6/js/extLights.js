@@ -13,23 +13,33 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function (error, lightsdata) {
             var thisdiv=d3.select("#ExteriorLightsEvents");
     addentries(items, thisdiv);
         
+        
+       // console.log(items);
+        
 
-        items.filter(function (d) {
-            return d.RxDevice == "87"
+       var filtered = items.filter(function (d) {
+            return d.RxDevice == 87
         });
         
+          filtered.sort(function (a, b) {
+            return a.StartTime - b.Endtime;
+        });
+        
+        
+       // console.log(filtered);
         
 //var exampleval= (items[2]);
 
         
-        items.forEach(function (d) {
+        filtered.forEach(function (d) {
 
             formatStartEndTimes(d);
+		});
+		
+		//console.log(filtered);
+		
+		 filtered.forEach(function (d) {
 
-           
-
-
-           
             var binary = (+d.Value).toString(2);
             
     
@@ -37,35 +47,35 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function (error, lightsdata) {
 //            console.log(addzeros);
 //             console.log(addzeros.slice(-8));
               var newd= (addzeros.slice(-8));
-//            console.log(typeof newd);
+          //console.log(newd);
 //            
 
 
-            d.parkingLightsOn = newd[0];
-            d.fogLightOn = newd[1];
-            d.daytimeRunningLightsOn = newd[2];
-            d.automaticLghtControlOn = newd[3];
-            d.righTurnSignalOn = newd[4];
-            d.leftTurnSiganlOn = newd[5];
-            d.highBeamHeadLightsOn = newd[6];
-            d.lowBeamHeadLightsOn = newd[7];
+            d.ParkingLightsOn = newd[0];
+            d.FogLightOn = newd[1];
+            d.DaytimeRunningLightsOn = newd[2];
+            d.AutomaticLightControlOn = newd[3];
+            d.RightTurnSignalOn = newd[4];
+            d.LeftTurnSignalOn = newd[5];
+            d.HighBeamHeadlightsOn = newd[6];
+            d.LowBeamHeadlightsOn = newd[7];
 
-d.hazardSignalOn= "";
-d.allLightsOff= "";
+d.HazardSignalOn= "";
+d.AllLightsOff= "";
             
             
             if (newd[4] == "1" && newd[5] == "1") {
-                d.hazardSignalOn = "1";
-                d.righTurnSignalOn = "0";
-                d.leftTurnSiganlOn = "0";
+                d.HazardSignalOn = "1";
+                d.RightTurnSignalOn = "0";
+                d.LeftTurnSignalOn = "0";
             }
             else {
-                d.hazardSignalOn = "0";
+                d.HazardSignalOn = "0";
             }
             if (newd == "00000000") {
-                d.allLightsOff = "1"
+                d.AllLightsOff = "1"
             } else {
-                d.allLightsOff = "0"
+                d.AllLightsOff = "0"
             };
 
 
@@ -77,38 +87,36 @@ d.allLightsOff= "";
 
         color.domain(encoded);
 
-
-        items.sort(function (a, b) {
-            return a.StartTime - b.Endtime;
-        });
+  // console.log(filtered);
+      
 
         //
         var lightrows = color.domain().map(function (name) {
             return {
                 name: name,
-                value: items.map(function (d) {
+                value: filtered.map(function (d) {
                     return d;
                 })
             };
         })
 
-       // console.log(lightrows);
+     // console.log(lightrows);
 
 
-        lightrows.forEach(function (d) {
+   /*     lightrows.forEach(function (d) {
             var row = d;
             lightrows.sort(function (a, b) {
                 return a.StartTime - b.StartTime;
             });
         });
-
+*/
   
         //this is slightly diff than brake version
-        var timeBegin = d3.min(items, function (d) {
+        var timeBegin = d3.min(filtered, function (d) {
             return d.StartTime;
         });
 
-        var timeEnd = d3.max(items, function (d) {
+        var timeEnd = d3.max(filtered, function (d) {
             return d.Endtime;
         });
 
