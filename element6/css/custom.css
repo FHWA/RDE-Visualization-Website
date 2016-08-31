@@ -270,7 +270,7 @@ display: inline;
     background: #fff;
     color: #346363;
 }
-h3.headerInViz {
+h3.h3InViz {
     margin-top: 1em;
     font-weight: 400;
     font-size: 1.45em;
@@ -280,10 +280,10 @@ h3.headerInViz {
     border-bottom: 2px solid #fff;
     margin-bottom: 1em;
 }
-h3.headerInViz span {
+h3.h3InViz span {
     text-transform: none;
 }
-h4 {
+h4.h4InViz {
     margin-top: 1em;
     padding-bottom: .4em;
     display: inline-block;
@@ -597,10 +597,10 @@ col-xs-4 {} .col-xs-4 {
 #PosAccurByte1Events .y.axis text {
     display: block;
 }
-#PosAccurByte1Events h4 {
+#PosAccurByte1Events h4.h4InViz {
     margin-top: 1.73em;
 }
-#PosAccurByte1Events h4:first-of-type {
+#PosAccurByte1Events h4.h4InViz:first-of-type {
     margin-top: "";
 }
 #Throttle .x.axis text {
