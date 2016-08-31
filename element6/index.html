@@ -107,7 +107,7 @@
         <!-- BEGINNING OF VISUALIZATION ELEMENT -->
 
         <div class="container" id="whole">
-                <h3>Basic Safety Message (BSM) Data set
+                <h3 class="headerInViz">Basic Safety Message (BSM) Data set
                     <span class="instruct" >(click the button at the top right corner of each file section to expand view and explore the data along thetimeline)</span>
                 </h3>
 
@@ -122,7 +122,7 @@
                                 </div>
                                 <span class="expand_text">click to resize</span> <span class="instruct"></span>
                             </div>
-                            <h3>BsmP1 (Primary Basic Safety Message File)</h3>
+                            <h3 class="headerInViz">BsmP1 (Primary Basic Safety Message File)</h3>
                             <div class="toptext clearfix">
                                 <div class="nochart" name="RxDevice">
                                     RxDevice: <span class="descriptor">ID of the device that <U>logs</U> a BSM</span>
@@ -150,9 +150,9 @@
                                     <span class="descriptor">a more secure form of Epoch time</span>
                                 </div>
                             </div> <!--end toptext-->
-                            <div class="chartcol clearfix" id="BsmPfield" style="width: 100%; float: right; clear: both;">
+                            <div class="chartcol clearfix" id="BsmPfield">
                             </div>
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">full time span &asymp; 16min
+                            <div class="time_span_text">full time span &asymp; 16min
                             </div>
                         </div> <!-- end bsmP-->
                         <div class="filebox clearfix" id="BSM_Trip_Summary_File">
@@ -161,11 +161,11 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> 
+                                <span class="expand_text">click to resize</span> 
                                 <span class="instruct"></span>
                             </div>
 
-                            <h3>BSM_Trip_Summary_File<br /></h3>
+                            <h3 class="headerInViz">BSM_Trip_Summary_File<br /></h3>
 
                             <div class="toptext clearfix">
                                 <div class="nochart" name="DeviceID">
@@ -195,14 +195,14 @@
                                 <div class="nochart" name="AverageSpeed">
                                     AverageSpeed (m/s)
                                 </div>
-                                <div class="nochart" name="MaximumSpeed" style="float:left">
+                                <div class="nochart float_left" name="MaximumSpeed">
                                     MaximumSpeed (m/s)
                                 </div>
                             </div>
                             <div class="chartcol" id="tripSumfield">
                                 <!--                    svg goes here-->
                             </div>
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 35min
+                            <div class="time_span_text">full time span &asymp; 35min
                             </div>
                             <span class="lil_legend">
                                 <span class="bull">&bull;</span> Total Distance 
@@ -217,12 +217,12 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+                                <span class="expand_text">click to resize</span> <span class="instruct"></span>
                             </div>
                             
                             
-                            <h3>Positional Accuracy Event<br/>
-                                <span class="instruct" style="padding-left:0; display: inline-block; width:85%">
+                            <h3 class="headerInViz">Positional Accuracy Event<br/>
+                                <span class="instruct paeInstruct">
                                     (accuracy of a vehicle's estimated position with respect to the semi-major axis) within one standard deviation, (0–12.7m), of the vehicle's true position)
                                 </span>
                             </h3>
@@ -258,7 +258,7 @@
                                 <!-- svg goes here-->
                             </div>
                             
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px">
+                            <div class="time_span_text2">
                                 full time span &asymp; 17min
                             </div>
 
@@ -271,7 +271,7 @@
                             <div class="chartcol" id="posAccByteField2">
                             </div>
 
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">
+                            <div class="time_span_text2">
                                 full time span &asymp; 17min
                             </div>
 
@@ -284,7 +284,7 @@
                             <div class="chartcol" id="posAccByteField3">
                             </div>
 
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">
+                            <div class="time_span_text2">
                                 full time span &asymp; 17min
                             </div>
 
@@ -297,13 +297,13 @@
                             <div class="chartcol" id="posAccByteField4">
                             </div>
 
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-3px">
+                            <div class="time_span_text2">
                                 full time span &asymp; 17min
                             </div>
                         </div> <!-- end posAccuracy-->
 
-                        <div class="filebox clearfix" id="BsmMd" style="align-self: flex-end;">
-                            <h3>BsmMd</h3>
+                        <div class="filebox clearfix" id="BsmMd">
+                            <h3 class="headerInViz">BsmMd</h3>
                             <div class="toptext nochart">
                                 The file contains device IDs, certification IDs, and offsets; these elements are a part of the security and communication layer that is required for the V2V/V2I network. As a part of the security layer, the BsmMD file contains a set of randomly generated device IDs that mask the true ID of a transmitting antenna (“TxRandom”).
                             </div>
@@ -320,14 +320,14 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">
+                                <span class="expand_text">
                                     click to resize
                                 </span>
                                 <span class="instruct">
                                 </span>
                             </div>
 
-                            <h3>BrakeByte1Events
+                            <h3 class="headerInViz">BrakeByte1Events
                                 <span class="instruct"></span>
                             </h3>
 
@@ -356,19 +356,19 @@
 
                             Value <span class="instruct">(encoded as a binary value containing multiple components)</span>
                             
-                            <div class="explain_img" style="margin-left: -.5%; margin-top: 1em;">
+                            <div class="explain_img extra1">
                                 <img src="images/bb1explain.png" alt= "brake byte binary conversion diagram"/>
                             </div>
 
                             <div class="svgholder">
-                                <div class="explain_img clearfix" style="width: 35%; float: left">
+                                <div class="explain_img clearfix extra2">
                                 </div>
 
                                 <div class="chartcol" id="bb1field">
                                     <!-- svg goes here-->
                                 </div>
                                 
-                                <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">
+                                <div class="time_span_text">
                                     full time span &asymp; 12hrs
                                 </div>
 
@@ -382,7 +382,7 @@
                         </div>
 
                         <div class="filebox clearfix" id="BrakeByte2Events">
-                            <h3>BrakeByte2Events</h3>
+                            <h3 class="headerInViz">BrakeByte2Events</h3>
                             <div class="toptext clearfix">
                                 <div class="nochart">
                                     RxDevice
@@ -429,7 +429,7 @@
 
                             Value <span class="instruct">(encoded as a binary value containing multiple components)</span>
 
-                            <div class="toptext nochart" style="margin-top:1em; padding-left: 4em">
+                            <div class="toptext nochart" id="bb2">
                                 This file is sparsely populated as it concerns infrequent braking events
                                 <br/>
                             </div>
@@ -478,11 +478,11 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> 
+                                <span class="expand_text">click to resize</span> 
                                 <span class="instruct"></span>
                             </div>
 
-                            <h3>ThrottlePositionEvents
+                            <h3 class="headerInViz">ThrottlePositionEvents
                                 <span class="instruct"><br/>(relative position of the throttle over a given trip)
                                 </span>
                             </h3>
@@ -513,7 +513,7 @@
                             <div class="chartcol" id="throttlefield">
                                 <!--  svg goes here-->
                             </div>
-                                <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">
+                                <div class="time_span_text">
                                     full time span &asymp; 20sec
                                 </div>
 
@@ -525,12 +525,12 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> 
+                                <span class="expand_text">click to resize</span> 
                                 <span class="instruct"></span>
                             </div>
                             
                             
-                            <h3>TransStateEvents<br/>
+                            <h3 class="headerInViz">TransStateEvents<br/>
                                 <span class="instruct" >(current state of the vehicle's transmission)</span>
                             </h3>
 
@@ -565,7 +565,7 @@
                                 <!--  svg goes here-->
                             </div>
                             
-                            <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">
+                            <div class="time_span_text">
                                 full time span &asymp; 12hrs
                             </div>
 
@@ -586,11 +586,11 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+                                <span class="expand_text">click to resize</span> <span class="instruct"></span>
                             </div>
                             
                             
-                            <h3>Steer Angle Events
+                            <h3 class="headerInViz">Steer Angle Events
                                 <span class="instruct" >(angle of the steering wheel)</span>
                             </h3>
                             <div class="toptext clearfix">
@@ -623,7 +623,7 @@
                             <div class="chartcol" id="steerfield">
                                 <!--                    svg goes here-->
                             </div>
-                                 <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-8px; float: right; width:90%">full time span &asymp; 33min</div>
+                                 <div class="time_span_text">full time span &asymp; 33min</div>
                         </div>
 
                         <div class="filebox clearfix" id="ExteriorLightsEvents">
@@ -632,12 +632,12 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+                                <span class="expand_text">click to resize</span> <span class="instruct"></span>
                             </div>
                             
                             
                             
-                            <h3>ExteriorLightsEvents<br/>
+                            <h3 class="headerInViz">ExteriorLightsEvents<br/>
                                 <span class="instruct">(state of all the vehicles exterior lights)
                                 </span>
                             </h3>
@@ -679,7 +679,7 @@
                                 <div class="chartcol" id="lightsfield">
                                     <!--                    svg goes here-->
                                 </div>
-                                     <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 24hrs</div>
+                                     <div class="time_span_text">full time span &asymp; 24hrs</div>
                             </div>
                         </div>
 
@@ -689,11 +689,11 @@
                                     <div class="tr"></div>
                                     <div class="br"></div>
                                 </div>
-                                <span style="display: block; text-align: right; line-height: 1.1em">click to resize</span> <span class="instruct"></span>
+                                <span class="expand_text">click to resize</span> <span class="instruct"></span>
                             </div>
                             
                             
-                            <h3>WiperStatusFrontEvents
+                            <h3 class="headerInViz">WiperStatusFrontEvents
                                 <span class="instruct"><br/>(intended as proxy for weather)</span>
                             </h3>
 
@@ -725,7 +725,7 @@
                                     <!-- svg goes here-->
                                 </div> 
                                 
-                                  <div style="position:relative; margin:auto; text-align: center; font-size:.85em; margin-top:-12px; float: right; width:90%">full time span &asymp; 8.5hrs</div>
+                                  <div class="time_span_text">full time span &asymp; 8.5hrs</div>
                                 
                                 
                                 
