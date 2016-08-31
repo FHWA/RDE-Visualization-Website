@@ -35,12 +35,14 @@ var margin = { top: 50, right: 0, bottom: 0, left:50},
     distance = ['0 m', '50 m', '100 m', '150 m', '200 m', '250 m', '300 m', '350 m', '400 m', '450 m', '500 m']
     dataset = 'data/heat.csv';
 
+  console.log(width)
+  console.log(width+margin.left)
 var svg2 = d3.select("#heatmapDiv")
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 1028 150")
+  .attr("viewBox", "0 0 "+(width+margin.left+15)+" 150")
   //class to make it responsive
   .classed("svg-content-responsive", true)
   .append('g')
@@ -52,7 +54,7 @@ var svg = d3.select('#heatmapDiv')
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 1028 "+(height+15))
+  .attr("viewBox", "0 0 "+(width+margin.left+15)+" "+(height+15))
   //class to make it responsive
   .classed("svg-content-responsive", true)
   .append('g')
