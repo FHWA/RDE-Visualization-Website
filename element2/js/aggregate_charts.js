@@ -24,10 +24,10 @@ function numberWithCommas(x) {
 
 /* Heatmap Chart -- A heatmap with speed on the x-axis and distance from rse om
  * the y-axis. The color of the box should be the percentage of dropped messages */
-var margin = { top: 50, right: 0, bottom: 100, left:50},
+var margin = { top: 50, right: 0, bottom: 0, left:50},
     width = document.getElementById('heatmapDiv').offsetWidth - margin.left - margin.right,
-    height = 550 - margin.top - margin.bottom,
     gridSize = Math.floor(width / 11),
+    height = gridSize * 6 + margin.top
     legendElementWidth = (width - width*.2) / 9,
     buckets = 10,
     colors = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b'],
@@ -52,22 +52,11 @@ var svg = d3.select('#heatmapDiv')
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 1028 550")
+  .attr("viewBox", "0 0 1028 "+(height+15))
   //class to make it responsive
   .classed("svg-content-responsive", true)
   .append('g')
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-
-var borderPath = svg.append("rect")
-  .attr("x", -48)
-  .attr("y", -47)
-  .attr("rx", 12)
-  .attr("ry", 12)
-  .attr("height", 545)
-  .attr("width", 975)
-  .style("stroke", "#aaa")
-  .style("fill", "none")
-  .style("stroke-width", 3);
 
 //Distance labels along the x-axis
 var distanceLabels = svg.selectAll('.distanceLabel')
@@ -78,7 +67,7 @@ var distanceLabels = svg.selectAll('.distanceLabel')
     .attr('y', 0)
     .style('text-anchor', 'middle')
     .attr('transform', 'translate(' + gridSize / 2 + ', -6)')
-    .attr('class', 'distanceLabel mono axis axis')
+    .attr('class', function (d, i) { return 'distanceLabel'+i+' mono axis axis'; })
 
 //Speed labels along the y-axis
 var speedLabels = svg.selectAll('.speedLabels')
@@ -89,7 +78,18 @@ var speedLabels = svg.selectAll('.speedLabels')
     .attr('y', function (d, i) { return i * gridSize; })
     .style('text-anchor', 'end')
     .attr('transform', 'translate(1,' + gridSize / 1.75 + ')')
-    .attr('class', 'speedLabel mono axis')
+    .attr('class', function (d, i) { return 'speedLabel'+i+' mono axis axis'; })
+
+var borderPath = svg.append("rect")
+  .attr("x", -48)
+  .attr("y", -47)
+  .attr("rx", 12)
+  .attr("ry", 12)
+  .attr("height", height)
+  .attr("width", width + margin.right + margin.left)
+  .style("stroke", "#aaa")
+  .style("fill", "none")
+  .style("stroke-width", 3);
 
 //Custom tooltip library
 var tip = d3.tip()
