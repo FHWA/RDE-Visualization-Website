@@ -45,3 +45,7 @@ li.home-current a svg {
 header.usa-site-header {
     z-index: 10000000;
 }
+
+aside.sidenav-mobile {
+    z-index:10000001;
+}
