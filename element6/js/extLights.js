@@ -10,38 +10,45 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
       var thisdiv = d3.select("#ExteriorLightsEvents");
       addentries(items, thisdiv);
 
-      items.filter(function(d) {
+      var filtered = items.filter(function(d) {
         return d.RxDevice == "87"
       });
 
-      items.forEach(function(d) {
+      filtered.sort(function (a, b) {
+        return a.StartTime - b.Endtime;
+      });
+
+      filtered.forEach(function(d) {
         formatStartEndTimes(d);
+      });
+
+      filtered.forEach(function (d) {
         var binary = (+d.Value).toString(2);
         var addzeros = ("00000000" + binary);
         var newd = (addzeros.slice(-8));
 
-        d.parkingLightsOn = newd[0];
-        d.fogLightOn = newd[1];
-        d.daytimeRunningLightsOn = newd[2];
-        d.automaticLghtControlOn = newd[3];
-        d.righTurnSignalOn = newd[4];
-        d.leftTurnSiganlOn = newd[5];
-        d.highBeamHeadLightsOn = newd[6];
-        d.lowBeamHeadLightsOn = newd[7];
-        d.hazardSignalOn = "";
-        d.allLightsOff = "";
+        d.ParkingLightsOn = newd[0];
+        d.FogLightOn = newd[1];
+        d.DaytimeRunningLightsOn = newd[2];
+        d.AutomaticLightControlOn = newd[3];
+        d.RightTurnSignalOn = newd[4];
+        d.LeftTurnSignalOn = newd[5];
+        d.HighBeamHeadlightsOn = newd[6];
+        d.LowBeamHeadlightsOn = newd[7];
+        d.HazardSignalOn = "";
+        d.AllLightsOff = "";
 
         if (newd[4] == "1" && newd[5] == "1") {
-          d.hazardSignalOn = "1";
-          d.righTurnSignalOn = "0";
-          d.leftTurnSiganlOn = "0";
+          d.HazardSignalOn = "1";
+          d.RightTurnSignalOn = "0";
+          d.LeftTurnSignalOn = "0";
         } else {
-          d.hazardSignalOn = "0";
+          d.HazardSignalOn = "0";
         }
         if (newd == "00000000") {
-          d.allLightsOff = "1"
+          d.AllLightsOff = "1"
         } else {
-          d.allLightsOff = "0"
+          d.AllLightsOff = "0"
         };
 
         encoded = (["AllLightsOff", "LowBeamHeadlightsOn", "HighBeamHeadlightsOn", "LeftTurnSignalOn", "RightTurnSignalOn", "HazardSignalOn", "AutomaticLightControlOn", "DaytimeRunningLightsOn", "FogLightOn", "ParkingLightsOn"]);
@@ -56,7 +63,7 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
       var lightrows = color.domain().map(function(name) {
         return {
           name: name,
-          value: items.map(function(d) {
+          value: filtered.map(function(d) {
             return d;
           })
         };
@@ -70,11 +77,11 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
       });
 
       //this is slightly diff than brake version
-      var timeBegin = d3.min(items, function(d) {
+      var timeBegin = d3.min(filtered, function(d) {
         return d.StartTime;
       });
 
-      var timeEnd = d3.max(items, function(d) {
+      var timeEnd = d3.max(filtered, function(d) {
         return d.Endtime;
       });
 

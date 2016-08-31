@@ -240,6 +240,8 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
         }
       });
 
+    $(".timelinerect[width='0']").remove();
+
     mybrush.call(steerbrush)
       .selectAll("rect")
       .attr("y", (h - h2))

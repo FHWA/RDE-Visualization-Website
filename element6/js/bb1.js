@@ -44,14 +44,14 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
       d.TCS = status;
     }); // end for loop
 
-
-
     var color = d3.scale.ordinal()
       .range(['#98abc5', '#8a89a6', '#7b6888', '#6b486b', '#a05d56', '#d0743c', '#ff8c00', '#ff8c00', '#ff8c00', '#ff8c00']);
 
     items.sort(function(a, b) {
       return a.StartTime - b.StartTime;
     });
+
+    items = items.filter(function (d) { return d.RxDevice == "10"; });
 
     //nest by vehicle to cull
     items = d3.nest().key(function(d) {
@@ -112,6 +112,7 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
       .scale(x)
       .orient("bottom")
       .tickSize((h / color.domain().length) - barPadding)
+      .ticks(7)
 
     //for brush
     var xAxis2 = d3.svg.axis()
@@ -361,6 +362,7 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
         newheight = 280;
         w = newwidth - m[1] - m[3];
         h = newheight - m[0] - m[2];
+        xAxis.ticks(7);
 
         renderingbits(newwidth, newheight);
         bb1_brush(newwidth, newheight);
@@ -385,6 +387,8 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
           newheight = 450;
           w = newwidth - m[1] - m[3];
           h = newheight - m[0] - m[2];
+          xAxis.ticks(10);
+          
           renderingbits(newwidth, newheight);
           bb1_brush(newwidth, newheight);
           bb1brush.extent([timeBegin, timeEnd]);
