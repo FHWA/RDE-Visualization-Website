@@ -35,18 +35,19 @@ var margin = { top: 50, right: 0, bottom: 0, left:50},
     distance = ['0 m', '50 m', '100 m', '150 m', '200 m', '250 m', '300 m', '350 m', '400 m', '450 m', '500 m']
     dataset = 'data/heat.csv';
 
-  console.log(width)
-  console.log(width+margin.left)
+    console.log(height)
+    console.log(gridSize)
+
 var svg2 = d3.select("#heatmapDiv")
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 "+(width+margin.left+15)+" 150")
+  .attr("viewBox", "0 0 "+(width+margin.left+15)+" "+(gridSize+margin.top+15))
   //class to make it responsive
   .classed("svg-content-responsive", true)
   .append('g')
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top/2 + ')');
 
 //Create the svg for the heatmap
 var svg = d3.select('#heatmapDiv')
@@ -58,7 +59,7 @@ var svg = d3.select('#heatmapDiv')
   //class to make it responsive
   .classed("svg-content-responsive", true)
   .append('g')
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    .attr('transform', 'translate(0' + margin.left + ',' + margin.top + ')');
 
 //Distance labels along the x-axis
 var distanceLabels = svg.selectAll('.distanceLabel')
@@ -198,42 +199,42 @@ d3.csv(dataset, function (heatCsv) {
     .data([0].concat(colorScale.quantiles()), function (d) { return d; });
   legend.enter().append("rect")
     .attr("x", function(d, i) { return legendElementWidth * i; })
-    .attr("y", gridSize/6)
+    .attr("y", sizeScale(sizeScale.domain()[1]) * gridSize / 2 - gridSize/1.75/2)
     .attr("width", legendElementWidth)
     .attr("height", gridSize/1.75)
     .style("fill", function(d, i) { return colors[i]; });
   legend.enter().append("text")
     .attr("class", "mono")
     .text(function(d, i) { return Math.round((d)*100) + " - " + Math.round((d+.11)*100) + "%"; })
-    .attr("x", function(d, i) { return (legendElementWidth * i)+legendElementWidth/4; })
-    .attr("y", 90);
+    .attr("x", function(d, i) { return (legendElementWidth * i); })
+    .attr("y", gridSize+5);
   legend.exit().remove();
 
   svg2.append("text")
     .attr("class", "mono2")
     .text("Total Messages Sent")
-    .attr("x", legendElementWidth * 9 + 25)
-    .attr("y", 0)
+    .attr("x", legendElementWidth * 9)
+    .attr("y", -3)
   svg2.append("circle")
-    .attr("cx", legendElementWidth * 9 + 25 + 20)
-    .attr("cy", 40)
-    .attr("r", 6)
+    .attr("cx", legendElementWidth * 9 + legendElementWidth/3)
+    .attr("cy", sizeScale(sizeScale.domain()[1]) * gridSize / 2)
+    .attr("r", sizeScale(sizeScale.domain()[0]) * gridSize / 2)
     .attr("class", "distance bordered")
     .style("fill", "rgb(247, 251, 255)")
   svg2.append("text")
     .attr("class", "mono")
     .text("200")
-    .attr("x", legendElementWidth * 9 + 25 + 12)
-    .attr("y", 90)
+    .attr("x", legendElementWidth * 9 + legendElementWidth/3 - sizeScale(sizeScale.domain()[0]) * gridSize / 1.5)
+    .attr("y", gridSize+5)
   svg2.append("circle")
-    .attr("cx", legendElementWidth * 10 + 25 + 20)
-    .attr("cy", 40)
-    .attr("r", 36)
+    .attr("cx", legendElementWidth * 10 + legendElementWidth/4)
+    .attr("cy", sizeScale(sizeScale.domain()[1]) * gridSize / 2)
+    .attr("r", sizeScale(sizeScale.domain()[1]) * gridSize / 2)
     .attr("class", "distance bordered")
     .style("fill", "rgb(247, 251, 255)")
   svg2.append("text")
     .attr("class", "mono")
     .text("1,200,000")
-    .attr("x", legendElementWidth * 10 + 20)
-    .attr("y", 90)
+    .attr("x", legendElementWidth * 10 + legendElementWidth/4 - sizeScale(sizeScale.domain()[1]) * gridSize / 3)
+    .attr("y", gridSize+5)
 });
