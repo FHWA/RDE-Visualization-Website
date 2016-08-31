@@ -35,9 +35,6 @@ var margin = { top: 50, right: 0, bottom: 0, left:50},
     distance = ['0 m', '50 m', '100 m', '150 m', '200 m', '250 m', '300 m', '350 m', '400 m', '450 m', '500 m']
     dataset = 'data/heat.csv';
 
-    console.log(height)
-    console.log(gridSize)
-
 var svg2 = d3.select("#heatmapDiv")
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
