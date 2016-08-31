@@ -371,12 +371,14 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
           window.setTimeout(function() {
             $('.column').not(parentColumn).toggleClass("shrunk");
             $('.filebox').not(parentFileBox).toggleClass("shrunk");
+            document.getElementById("BrakeByte1Events").scrollIntoView();
           }, 550);
         }, 950);
       } else {
         parentColumn.toggleClass("expanded");
         $('.column').not(parentColumn).toggleClass("shrunk");
         $('.filebox').not(parentFileBox).toggleClass("shrunk");
+        document.getElementById("BrakeByte1Events").scrollIntoView();
 
         window.setTimeout(function() {
           newwidth = $("#bb1field").width();

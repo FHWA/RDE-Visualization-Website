@@ -437,6 +437,7 @@ d3.csv("csv/culled/bsm_p1.csv", function(error, data) {
                 parentColumn.toggleClass("expanded");
                 $('.column').not(parentColumn).toggleClass("shrunk");
                 $('.filebox').not(parentFileBox).toggleClass("shrunk");
+                document.getElementById("BsmP1").scrollIntoView();
               }, 950);
             } else {
               newheight = 700;
@@ -447,6 +448,7 @@ d3.csv("csv/culled/bsm_p1.csv", function(error, data) {
               parentColumn.toggleClass("expanded");
               $('.column').not(parentColumn).toggleClass("shrunk");
               $('.filebox').not(parentFileBox).toggleClass("shrunk");
+              document.getElementById("BsmP1").scrollIntoView();
 
               window.setTimeout(function() {
                 newwidth = $("#BsmPfield").width();

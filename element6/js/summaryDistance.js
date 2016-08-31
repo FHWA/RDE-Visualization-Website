@@ -377,11 +377,13 @@ d3.csv("csv/BSM_Trip_Summary_File_04_11_13.csv", function(error, data) {
           parentColumn.toggleClass("expanded");
           $('.column').not(parentColumn).toggleClass("shrunk");
           $('.filebox').not(parentFileBox).toggleClass("shrunk");
+          document.getElementById("BSM_Trip_Summary_File").scrollIntoView();
         }, 950);
       } else {
         parentColumn.toggleClass("expanded");
         $('.column').not(parentColumn).toggleClass("shrunk");
         $('.filebox').not(parentFileBox).toggleClass("shrunk");
+        document.getElementById("BSM_Trip_Summary_File").scrollIntoView();
 
         window.setTimeout(function() {
           newwidth = $("#tripSumfield").width();

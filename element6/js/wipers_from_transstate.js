@@ -295,7 +295,8 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
           parentColumn.toggleClass("expanded");
           window.setTimeout(function () {
             $('.column').not(parentColumn).toggleClass("shrunk");
-            $('.filebox').not(parentFileBox).toggleClass("shrunk");            
+            $('.filebox').not(parentFileBox).toggleClass("shrunk"); 
+            document.getElementById("WiperStatusFrontEvents").scrollIntoView();     
           }, 550);
         }, 950);             
       }
@@ -303,6 +304,7 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
         parentColumn.toggleClass("expanded");
         $('.column').not(parentColumn).toggleClass("shrunk");
         $('.filebox').not(parentFileBox).toggleClass("shrunk");  
+        document.getElementById("WiperStatusFrontEvents").scrollIntoView();
         
         window.setTimeout(function () {
           newwidth = $("#wipersfield").width();
@@ -313,7 +315,7 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
           wipers_brushed(newwidth, newheight);
           wipersbrush.extent([timeBegin, timeEnd]);        
         }, 550);    
-      }    
+      }     
     });
   } //end wipersstate
   wipersstate(data);

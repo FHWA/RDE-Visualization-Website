@@ -354,13 +354,14 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
             window.setTimeout(function() {
               $('.column').not(parentColumn).toggleClass("shrunk");
               $('.filebox').not(parentFileBox).toggleClass("shrunk");
+              document.getElementById("ExteriorLightsEvents").scrollIntoView();
             }, 550);
           }, 950);
         } else {
           parentColumn.toggleClass("expanded");
           $('.column').not(parentColumn).toggleClass("shrunk");
           $('.filebox').not(parentFileBox).toggleClass("shrunk");
-
+          document.getElementById("ExteriorLightsEvents").scrollIntoView();
           window.setTimeout(function() {
             newwidth = $("#lightsfield").width();
             newheight = 450

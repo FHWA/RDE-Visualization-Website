@@ -292,12 +292,14 @@ d3.csv("csv/TransStateEvents_04_11_13.csv", function (error, data) {
           window.setTimeout(function() {
             $('.column').not(parentColumn).toggleClass("shrunk");
             $('.filebox').not(parentFileBox).toggleClass("shrunk");
+            document.getElementById("TransStateEvents").scrollIntoView();
           }, 550);
         }, 950);
       } else {
         parentColumn.toggleClass("expanded");
         $('.column').not(parentColumn).toggleClass("shrunk");
         $('.filebox').not(parentFileBox).toggleClass("shrunk");
+        document.getElementById("TransStateEvents").scrollIntoView();
 
         window.setTimeout(function() {
           newwidth = $("#transfield").width();
