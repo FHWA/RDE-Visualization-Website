@@ -38,7 +38,7 @@ var App = (function () {
     this.minnesota;
     this.timestamp = App.START_TIME
     this.plowIcon = new L.Icon({
-      iconUrl: 'images/snowplow.png',
+      iconUrl: '../img/snowplow.png',
       iconSize: [20, 20],
     });
     this.stationIcon = new L.Icon({
@@ -590,9 +590,9 @@ var App = (function () {
       scrollWheelZoom: false,
     });
     var interesting_views = {
-      '<img src="images/snowplow.png" height="18" width="18" style="margin-right:3px">Road Condition': this.road_condition,
-      '<img src="images/snowplow.png" height="18" width="18" style="margin-right:3px">Road Temperature': this.road_temperature,
-      '<img src="images/snowplow.png" height="18" width="18" style="margin-right:3px">Plow Truck Locations': this.plow_locations,
+      '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:3px">Road Condition': this.road_condition,
+      '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:3px">Road Temperature': this.road_temperature,
+      '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:3px">Plow Truck Locations': this.plow_locations,
       '<img src="images/radar.svg" height="18" width="18">Weather Tower Locations': this.tower_locations
     }
     L.control.layers({}, interesting_views,{collapsed:false}).addTo(this.map);
@@ -673,13 +673,13 @@ legend.onAdd = function () {
   div.innerHTML += '<img src="images/radar.svg" height="18" width="18" style="margin-right:6px">Surface Status:<br>';
   div.innerHTML += '<i style="background:#FFEDC2"></i><i style="background:#FFC0A2"></i><i style="background:#FF7E83"></i><i style="background:#E8666B"></i><br>';
   div.innerHTML += 'Dry<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Damp<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Wet<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Icy<br><br>';
-  div.innerHTML += '<img src="images/snowplow.png" height="18" width="18" style="margin-right:10px">Road Condition Markers:<br>';
+  div.innerHTML += '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:10px">Road Condition Markers:<br>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-checkmark icon-white" style="float:none"></i><br><br>Dry</div>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-waterdrop icon-white" style="float:none"></i><br><br>Wet</div>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-snowy icon-white" style="float:none"></i><br><br>Snow</div>';
     div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-alert-circled icon-white" style="float:none"></i><br><br>Icy</div><br><br><br><br>';
   //div.innerHTML += '<div class="extra-marker-circle-cadetblue extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-help icon-white" style="float:none"></i><br><br>N/A</div><br><br><br><br>';
-  div.innerHTML += '<img src="images/snowplow.png" height="18" width="18" style="margin-right:10px">Road Temperature Markers:<br>';
+  div.innerHTML += '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:10px">Road Temperature Markers:<br>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-sunny icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">60-80&deg;F</p></div>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-partlysunny icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">32-60&deg;F</p></div>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-cloud icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">0-32&deg;F</p></div>';
