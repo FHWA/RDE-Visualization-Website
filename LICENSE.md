@@ -12,7 +12,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `crossfilter2`: [crossfilter](https://github.com/crossfilter/crossfilter), Apache 2.0 license, copyright Square, Inc, and [crossfilter contributors](https://github.com/crossfilter/crossfilter/blob/master/AUTHORS).
 - `d3`/`d3_v3`: [d3](https://github.com/d3/d3), BSD license, copyright Mike Bostock.
 - `d3-plugins`: [d3-plugins](https://github.com/d3/d3-plugins), BSD license, copyright Mike Bostock.
-- `d3-tip`: [d3-tip, d3.js v4 without ES6](https://github.com/VACLab/d3-tip), MIT license, copyright  Justin Palmer, ES6 / D3 v4 Adaption copyright Constantin Gavrilete, Removal of ES6 for D3 v4 Adaption copyright David Gotz.
+- `d3-tip`: [d3-tip, d3.js v4 without ES6](https://github.com/VACLab/d3-tip), MIT license, copyright  Justin Palmer, ES6 / D3 v4 Adaptation copyright Constantin Gavrilete, Removal of ES6 for D3 v4 Adaptation copyright David Gotz.
 - `datatables`: [datatables](https://github.com/DataTables/DataTables), MIT license, copyright SpryMedia Limited.
 - `dc-addons`: [dc-addons](https://github.com/Intellipharm/dc-addons), MIT license, copyright Intellipharm.
 - `dc.js`/`dcIntervalTreeGroup`: [dc.js](https://github.com/dc-js/dc.js), Apache 2.0 license, copyright Nick Zhu & [the dc.js developers](https://github.com/dc-js/dc.js/blob/master/AUTHORS).
