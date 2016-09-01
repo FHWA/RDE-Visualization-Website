@@ -29,6 +29,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `papaparse`: [PapaParse](https://github.com/mholt/PapaParse), MIT license, copyright Matthew Holt.
 - `requirejs`: [requirejs](https://github.com/requirejs/requirejs), MIT license, copyright [jQuery Foundation](https://jquery.org).
 - `simple-statistics`: [simple-statistics](https://github.com/simple-statistics/simple-statistics), ISC license, copyright Tom MacWright.
+- `MercatorProjection`/`PapaPromise`/`XHRGet`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 Style guidelines were provided by the [Draft US Web Design Standards](https://github.com/18F/web-design-standards), which are partially in the public domain.  Parts that aren't include:
 
@@ -36,6 +37,7 @@ Style guidelines were provided by the [Draft US Web Design Standards](https://gi
  - Source Sans Pro font files in `fonts`; customized subset of [Source Sans Pro](https://github.com/adobe-fonts/source-sans-pro), licensed under the [SIL Open Font License](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL), and copyright [Adobe Systems Incorporated](http://www.adobe.com/), with Reserved Font Name 'Source'. All Rights Reserved. Source is a trademark of Adobe Systems Incorporated in the United States and/or other countries.
  - Merriweather font files in `fonts`; [Google Web Fonts](https://www.google.com/fonts#UsePlace:use/Collection:Merriweather:400,300,400italic,700,700italic), licensed under the [SIL Open Font License](http://scripts.sil.org/cms/scripts/page.php?item_id=OFL), and copyright [Sorkin Type Co](https://github.com/18F/web-design-standards/blob/staging/www.sorkintype.com) with Reserved Font Name 'Merriweather'.
  - `css/styleguide.css` contains components from [Normalize.css](https://github.com/necolas/normalize.css), copyright Nicolas Gallagher and Jonathan Neal, under the [MIT license](https://github.com/necolas/normalize.css/blob/master/LICENSE.md).
+
 
 ## The rest of this project is in the public domain
 
