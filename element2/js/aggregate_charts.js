@@ -1,27 +1,3 @@
-/* From http://stackoverflow.com/questions/9461621/how-to-format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900-in-javascrip */
-function nFormatter(num, digits) {
-  var si = [
-    { value: 1E18, symbol: "E" },
-    { value: 1E15, symbol: "P" },
-    { value: 1E12, symbol: "T" },
-    { value: 1E9,  symbol: "G" },
-    { value: 1E6,  symbol: "M" },
-    { value: 1E3,  symbol: "k" }
-  ], rx = /\.0+$|(\.[0-9]*[1-9])0+$/, i;
-  for (i = 0; i < si.length; i++) {
-    if (num >= si[i].value) {
-      return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
-    }
-  }
-  return num.toFixed(digits).replace(rx, "$1");
-}
-
-function numberWithCommas(x) {
-    var parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return parts.join(".");
-}
-
 /* Heatmap Chart -- A heatmap with speed on the y-axis and distance from rse om
  * the x-axis. The color of the box should be the percentage of dropped messages */
 var margin = { top: 50, right: 0, bottom: 0, left:50},
@@ -29,8 +5,9 @@ var margin = { top: 50, right: 0, bottom: 0, left:50},
     gridSize = Math.floor(width / 11),
     height = gridSize * 6 + margin.top
     legendElementWidth = (width - width*.2) / 9,
+    numCommaFormat = d3.format(","),
+    numShortFormat = d3.format(".3s")
     colors = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b']; //From colorbrewer2
-
 
 //Add the svg for the legend to the div
 var legendSvg = d3.select("#heatmapDiv")
@@ -97,8 +74,8 @@ var tip = d3.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function (d) {
-    var string = '#Messages Sent: ' + numberWithCommas(d.p1Count);
-    string += '<br>#Messages Received: ' + numberWithCommas(d.rseCount);
+    var string = '#Messages Sent: ' + numCommaFormat(d.p1Count);
+    string += '<br>#Messages Received: ' + numCommaFormat(d.rseCount);
     string += '<br>%Messages Received: ' + (d.rseCount / d.p1Count).toFixed(2)*100 + '%';
     return string;
   });
