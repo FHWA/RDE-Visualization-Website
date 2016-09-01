@@ -15,7 +15,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `d3-tip`: [d3-tip, d3.js v4 without ES6](https://github.com/VACLab/d3-tip), MIT license, copyright  Justin Palmer, ES6 / D3 v4 Adaption copyright Constantin Gavrilete, Removal of ES6 for D3 v4 Adaption copyright David Gotz.
 - `datatables`: [datatables](https://github.com/DataTables/DataTables), MIT license, copyright SpryMedia Limited.
 - `dc-addons`: [dc-addons](https://github.com/Intellipharm/dc-addons), MIT license, copyright Intellipharm.
-- `dc.js`: [dc.js](https://github.com/dc-js/dc.js), Apache 2.0 license, copyright Nick Zhu & [the dc.js developers](https://github.com/dc-js/dc.js/blob/master/AUTHORS).
+- `dc.js`/`dcIntervalTreeGroup`: [dc.js](https://github.com/dc-js/dc.js), Apache 2.0 license, copyright Nick Zhu & [the dc.js developers](https://github.com/dc-js/dc.js/blob/master/AUTHORS).
 - `es6-promise`: [es6-promise](https://github.com/stefanpenner/es6-promise), MIT license, copyright Yehuda Katz, Tom Dale, Stefan Penner, and contributors.
 - `font-awesome`: [font-awesome](https://github.com/FortAwesome/Font-Awesome), fonts under SIL OFL 1.1, code under MIT license, copyright Dave Gandy.
 - `fontfaceobserver`: [fontfaceobserver](https://github.com/bramstein/fontfaceobserver), BSD license, copyright Bram Stein.
@@ -29,7 +29,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `papaparse`: [PapaParse](https://github.com/mholt/PapaParse), MIT license, copyright Matthew Holt.
 - `requirejs`: [requirejs](https://github.com/requirejs/requirejs), MIT license, copyright [jQuery Foundation](https://jquery.org).
 - `simple-statistics`: [simple-statistics](https://github.com/simple-statistics/simple-statistics), ISC license, copyright Tom MacWright.
-- `MercatorProjection`/`PapaPromise`/`XHRGet`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+- `MercatorProjection`/`PapaPromise`/`XHRGet`/`dcTagCategoryUtil`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 Style guidelines were provided by the [Draft US Web Design Standards](https://github.com/18F/web-design-standards), which are partially in the public domain.  Parts that aren't include:
 
