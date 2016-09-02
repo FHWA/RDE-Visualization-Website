@@ -1,114 +1,72 @@
-
-.container{
+.container {
     background: #eaf5f5;
     position: relative;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
     font-size: 14px;
-    
 }
-
 .innercontainer {
--webkit-box-shadow: inset 0px 0px 0px 9px rgba(255,255,255,1);
--moz-box-shadow: inset 0px 0px 0px 9px rgba(255,255,255,1);
-box-shadow: inset 0px 0px 0px 9px rgba(255,255,255,1);
+    -webkit-box-shadow: inset 0px 0px 0px 9px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0px 0px 0px 9px rgba(255, 255, 255, 1);
+    box-shadow: inset 0px 0px 0px 9px rgba(255, 255, 255, 1);
 }
-
-/*don't know if allowed*/
 .styleguide-content {
- 
-   max-width:""; 
+    max-width: "";
 }
-
-.row{ 
-  background: #eaf5f5;
+.row {
+    background: #eaf5f5;
     margin-right: 0;
     margin-left: 0;
     display: flex;
     border: 9px solid #fff;
     margin-bottom: 5em;
-
 }
-
 div.dc-chart {
     float: left;
     clear: both;
     z-index: 500;
-/*   margins should be zero just for sparklines*/
-/*
-    margin: 1em .5em;
-
-*/
-
 }
-.dc-chart svg{ 
-/*    usa style guide but opaicty altered*/
-   background: rgba(148, 191, 162, 0.24)
-/*
-    background: #cfe2e2;;
-       
-*/
+.dc-chart svg {
+    background: rgba(148, 191, 162, 0.24);
 }
-
 .explain_img {
     width: 0%;
- float: left;
+    float: left;
     clear: both;
- -webkit-transition: all 500ms ease-out;
+    -webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
-    
 }
-
-.explain_img img{ 
+.explain_img img {
     width: 100%;
 }
-
 .expanded .explain_img {
-     width: 40%;
+    width: 40%;
     float: none;
     margin-left: 0px;
     margin-top: 1em;
-    
 }
-
-
-
 path.area {
     fill: #E39300;
-    stroke: none;  
+    stroke: none;
     fill-opacity: .6;
-    
 }
-
 path.area {
     fill: #E39300;
-    stroke: none;  
+    stroke: none;
     fill-opacity: .6;
-    
 }
-
 path.line {
     fill: #E39300;
-    stroke: none;  
+    stroke: none;
     fill-opacity: .6;
-    
 }
-
 .avgspd {
-     fill: #E39300;
-    
+    fill: #E39300;
 }
-
-.maxspd{
-    
+.maxspd {
     fill: #569590
 }
-
-
-
-
-
 .axis text {
     font: inherit;
     font-weight: 200;
@@ -116,459 +74,280 @@ path.line {
     color: #07948F;
     fill: #07948F;
 }
-
 text.y-axis-label.y-label {
-     color: #07948F;
+    color: #07948F;
     fill: #07948F;
     font-size: .85em;
-     font-weight: 200;
+    font-weight: 200;
 }
-
-.y-axis-label.ylabel{
+.y-axis-label.ylabel {
     font-size: .85em;
-  font-weight:bold;
-
+    font-weight: bold;
 }
-
-.y.axis .ylabel{
+.y.axis .ylabel {
     font-size: .85em;
-  font-weight:500;
-
+    font-weight: 500;
 }
-
-
-.axis .ylabeltext{
-font-weight:500;
-
+.axis .ylabeltext {
+    font-weight: 500;
 }
-
-
-..axis path, .axis line {
+..axis path,
+.axis line {
     fill: none;
-    stroke:none;
+    stroke: none;
     shape-rendering: crispEdges;
 }
-
-
 .x.axis .tick line {
     fill: none;
-    stroke:#fff;
+    stroke: #fff;
     shape-rendering: crispEdges;
 }
-
-.y.axis line{
-
-    stroke:#569590;
+.y.axis line {
+    stroke: #569590;
     opacity: .3;
 }
-
-
-.spark{
+.spark {
     float: right;
     clear: both;
-    
-    
 }
-
-.bgrect{
+.bgrect {
     fill: #E39300;
     stroke: none;
-    
 }
-
-.toptext{
+.toptext {
     width: 100%;
     color: #8a8a8a;
     font-size: .85em;
     position: relative;
     font-weight: 200;
-     padding-bottom: .5em;
+    padding-bottom: .5em;
     padding-right: .5em;
 }
-
-
-#Bsmp1 .toptext{
-      /*    us primary darkest*/
- color: #112e51;
+#Bsmp1 .toptext {
+    color: #112e51;
     font-weight: 400;
     line-height: 1em;
-/*   text-align: right;*/
-
 }
-
-.descriptor{
+#bb2.toptext {
+    margin-top: 1em;
+    padding-left: 4em;
+}
+.descriptor {
     width: 100%;
     color: #555;
     font-size: .97em;
     position: relative;
     line-height: 1.15em;
     font-weight: 200;
-    padding-bottom: 1em;    
+    padding-bottom: 1em;
 }
-
-#Bsmp1 .valtext.valentry{
+#Bsmp1 .valtext.valentry {
     color: #569590;
     margin-top: .5em;
-/*    border-top: 2px solid #fff;*/
     width: 90%;
-  font-weight: 200;
-        line-height: 1.2em;
+    font-weight: 200;
+    line-height: 1.2em;
     background: #fff;
     padding-right: .6em;
-        
 }
-
-.valtext.valentry{
+.valtext.valentry {
     color: #569590;
     margin-top: 0;
-/*    border-top: 2px solid #fff;*/
     width: 100%;
-/*    float: right;*/
-    /* white-space: nowrap; */
     text-align: left;
-        line-height: 1.2em;
+    line-height: 1.2em;
     background: #fff;
     padding-right: .6em;
     padding-left: .4em;
-        
 }
-
-.valtext.valentry.sm{
-   
+.valtext.valentry.sm {
     width: 1.5em;
-/*    float: right;*/
-    /* white-space: nowrap; */
     text-align: left;
-        line-height: 1.2em;
+    line-height: 1.2em;
     background: #fff;
     padding-right: .6em;
     padding-left: .4em;
     float: left;
     clear: none;
     margin right: .7em;
-    
-    
-        
 }
-
-.valtext.valentry text {
-/*    border-top: 2px solid #fff;*/
+.valtext .instruct {
+    font-weight: 200;
+    padding-left: 0;
 }
-
-.valtext .instruct{
-  font-weight: 200;
-    padding-left:0;
-}
-
-
-
 .toptext .nochart {
     width: 25%;
     display: block;
     margin-bottom: .8em;
     padding-right: .7em;
 }
-
 .nochart {
     float: left;
-    
-    
 }
-
-
 .toptext:after {
-  content: '';
-  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
-  display: inline-block;
+    content: '';
+    width: 100%;
+    display: inline-block;
 }
-
-.instruct{
+.instruct {
     font-size: 12px;
     padding-left: .5em;
     font-weight: normal;
     font-style: italic;
-        color: #8a8a8a;
-   
+    color: #8a8a8a;
 }
-
-
-
-
-
-
-
 .nochart:last-of-type {
     float: right;
     clear: right;
-/*    text-align: right;*/
 }
-    
-  
-
-
-
-/* END specific to traffic 
-/////////////////////*/
-
-
-
-
-
-
-/*
-li  {
-    padding: 4px 2px;
-    border: 1px solid rgba(49, 130, 189, 0);
-}
-*/
-
-
-.filters .dc-chart .axis path{
+.filters .dc-chart .axis path {
     stroke: none;
 }
-
-.filters .dc-chart .axis .tick line{
+.filters .dc-chart .axis .tick line {
     stroke: none;
 }
-
-.dc-chart .axis .tick line.grid-line{
+.dc-chart .axis .tick line.grid-line {
     stroke: #b4b3b3;
 }
-
-
-#range_chart{
+#range_chart {
     width: 100%;
-/*     background: #cfe2e2;*/
-    margin:0;
+    margin: 0;
     padding: 0;
-    
 }
-
 #range_chart .axis.y {
     display: none;
 }
-
-g.grid-line.vertical{
-
-fill: none;
-/*stroke: #125064;*/
-stroke: #fff; !important
-opacity: .7;
-shape-rendering: crispEdges;
+g.grid-line.vertical {
+    fill: none;
+    stroke: #fff;
+    !important opacity: .7;
+    shape-rendering: crispEdges;
 }
-
-/**************brush stuff*/
-.dc-chart .brush rect {
-       
-}
-
-.dc-chart .brush rect.extent {
+.dc-chart .brush rect {} .dc-chart .brush rect.extent {
     visibility: visible !important;
-/*    fill: hsl(21, 87%, 47%);*/
     fill: #E39300;
     fill-opacity: .2;
 }
-
 .brush rect.extent {
     visibility: visible !important;
-/*    fill: hsl(21, 87%, 47%);*/
-/*
-    fill: #E39300;
-    fill-opacity: .2;
-*/
 }
-
-/* right brush handle*/
- .dc-chart g.resize.e {
-         display: block !important;
+.dc-chart g.resize.e {
+    display: block !important;
 }
-
 .dc-chart .brush .resize path {
     fill: #E39300;
     stroke: none;
 }
-
-/* left brush handle*/
- .dc-chart g.resize.w {
-        display: block !important;
+.dc-chart g.resize.w {
+    display: block !important;
 }
-
-
-
- .axis line {
+.axis line {
     shape-rendering: crispEdges;
 }
-
-
-
-.x.brush .background{
-/*    fill: #cfe2e2;*/
-/*    this is new burgundy for coloring ui elements*/
+.x.brush .background {
     fill: #651a1c;
-  /*    or this is new orange for coloring ui elements*/  
     fill: #c15206;
-  /*    or this is new green for coloring ui elements*/    
-     fill: #7da7a7;
+    fill: #7da7a7;
     visibility: visible !important;
 }
-
-
-
-#timeStart{
-    float:left;
+#timeStart {
+    float: left;
     width: auto;
     display: inline;
 }
-
-
-#timeEnd{
-    float:right;
-     width: auto;
+#timeEnd {
+    float: right;
+    width: auto;
     display: inline;
 }
-
 width: auto;
-    display: inline;
-/*General page styles*/
-
-
-
-.container{
+display: inline;
+.container {
     position: relative;
     height: 900px;
     width: 95%;
     top: 12em;
-  background: #fff;
-  color: #346363;
+    background: #fff;
+    color: #346363;
 }
-
-h3{
+h3.h3InViz {
     margin-top: 1em;
     font-weight: 400;
     font-size: 1.45em;
     color: #346363;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-    /* text-transform: uppercase; */
     letter-spacing: .02em;
     border-bottom: 2px solid #fff;
     margin-bottom: 1em;
 }
-
-h3 span{
- 
-text-transform:none;
-   
+h3.h3InViz span {
+    text-transform: none;
 }
-
-h4{
+h4.h4InViz {
     margin-top: 1em;
     padding-bottom: .4em;
     display: inline-block;
     font-size: 1.1em;
     color: #346363;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
-
     letter-spacing: .02em;
-        border-bottom: 2px solid #fff;
+    border-bottom: 2px solid #fff;
 }
-
-h4 span{
-/*
-   float: left;
-    clear:both;
-*/
+a:hover {
+    text-decoration: none;
 }
-
-
-a:hover{
- text-decoration: none;
-    
-}
-
 #range_chart .axis.y {
     display: none;
-    
 }
-
-
 .filebox {
     position: relative;
     background: #eaf5f5;
-/*    Usa style guide color below*/
-/*    background:#e7f4e4;*/
-
-        border-top: 9px solid #fff;
+    border-top: 9px solid #fff;
     outline-offset: -9px;
     line-height: 1.2em;
     padding: 1.5em 2em;
-    font-weight:400;
+    font-weight: 400;
     color: #569590;
-   -webkit-transition: all 500ms ease-out;
+    -webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
     opacity: 1;
-    display:block;
-      width: 100%;  
-    
-    
+    display: block;
+    width: 100%;
 }
-
 .filebox:first-of-type {
     border-top: none;
-   
 }
-
-.filebox span {
-    
-  
+.filebox span {} .chartcol {
+    padding-top: 5px;
+    margin-bottom: 5px;
 }
-
-
-
-
-
-.chartcol{
-    
-/*    background: #d1e8e8;*/
-    
-/*    border to see what im doing- not for final pres*/
-/*border: 1px solid #fff;*/
-padding-top: 5px;
-margin-bottom: 5px;
-    
-}
-
-.lil_legend{
+.lil_legend {
     font-size: .85em;
     text-align: right;
     float: right;
-      color: #333;
-      white-space: nowrap;
-        margin-top: .5em;
-    }
-
-.lil_legend .bull{
-display: inline-block; 
-font-size: 3em;
-line-height: 0;
-color: hsla(42, 64%, 60%, 1.00);
-margin-top: -.5em;
-position: relative;
-bottom: -.18em;
-vertical-align: baseline;
-    padding-left:.5em;
-    padding-right:.07em;
-    }
-   
-/*Initiatives styles*/
-
-ul{    
+    color: #333;
+    white-space: nowrap;
+    margin-top: .5em;
+}
+.lil_legend .bull {
+    display: inline-block;
+    font-size: 3em;
+    line-height: 0;
+    color: hsla(42, 64%, 60%, 1.00);
+    margin-top: -.5em;
+    position: relative;
+    bottom: -.18em;
+    vertical-align: baseline;
+    padding-left: .5em;
+    padding-right: .07em;
+}
+ul {
     -webkit-padding-start: 0px;
     padding-left: 15px;
 }
-
-.initiative{
+.initiative {
     font-size: .9em;
     list-style: none;
     padding: 0 2em 1em 0em;
@@ -576,21 +355,11 @@ ul{
     margin: 0 10 0 0;
     display: block;
 }
-
-
-.initiative hr{
-    margin-top:0;
-margin-bottom: 6px;
+.initiative hr {
+    margin-top: 0;
+    margin-bottom: 6px;
 }
-
-li:before {  
-/*
-    content: "■";
-margin-left -2em;
-*/
-}
-
-.reveal{
+.reveal {
     position: absolute;
     display: block;
     opacity: 0;
@@ -602,54 +371,27 @@ margin-left -2em;
     pointer-events: none;
     font-weight: 200;
     width: 300px;
-    
 }
-
-#backgroundInfo li:hover .reveal{
-/*     visibility:visible;*/
-   
-    opacity:1;
+#backgroundInfo li:hover .reveal {
+    opacity: 1;
 }
-
-#backgroundInfo li:last-of-type .reveal{
-    right:0;
-    
+#backgroundInfo li:last-of-type .reveal {
+    right: 0;
 }
-
-
-/*  Data table styles  */
-
-#data_panel{
+#data_panel {
     border: none;
 }
-
 #data_panel.panel-default>.panel-heading {
     background: none;
 }
-
-/*
-.row{
-border-bottom: 1px solid #eee;
-padding-bottom: 10px;
-top: -10px;
-}
-*/
-
-
-
-
 g.row text {
     letter-spacing: .017em;
 }
-
-
 .panel-default>.panel-heading {
-    
-   background-color: none;
-   
+    background-color: none;
 }
-
-select, input[type="color" i][list] {
+select,
+input[type="color" i][list] {
     background-color: rgb(248, 248, 248);
     border-image-source: "";
     border-image-slice: "";
@@ -659,43 +401,25 @@ select, input[type="color" i][list] {
     border-width: 1px;
     border-style: solid;
     border-color: rgb(166, 166, 166);
-
     -webkit-appearance: "";
     -moz-appearance: "";
-
 }
-input{
+input {
     border-style: solid;
     border: 1px solid #b4b3b3;
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
-
-/*filter styles*/
-
-.reset{
-/*    color: #428bca;*/
-/*
-    text-decoration: none;
-    float: right;
-
-    font-size: 14px;
-    display: block;
-*/
+.reset {
     float: right;
     font-size: .8em;
     color: #5a9bca;
     font-weight: bold;
-/*    clear:  both;*/
-    /* width: 100%; */
-/*    background: #f1f1f1;*/
     text-align: right;
     line-height: 1.2em;
 }
-
-.clearall{
+.clearall {
     font-size: .7em;
 }
-
 .resetter {
     float: left;
     font-size: .8em;
@@ -705,93 +429,66 @@ input{
     height: 3em;
     line-height: 1.2em;
 }
-
 .filter {
-/*    float: right;*/
-    /* font-size: .8em; */
     color: #5a9bca;
     font-weight: bold;
-    clear:  both;
-    /* width: 100%; */
-/*    background: #f1f1f1;*/
-/*    text-align: right;*/
+    clear: both;
 }
-
-.filterTitle{
+.filterTitle {
     margin-left: 30px;
     font-size: 1.1em;
-    /* padding: .3em; */
     font-weight: 700;
 }
-
-
-.col-md-8, col-xs-4{
-   
-}
-
-
-.col-xs-4 {  
+.col-md-8,
+col-xs-4 {} .col-xs-4 {
     position: relative;
     padding: 0;
     background-color: none;
     background: none;
     border: none;
 }
-
-.column {  
+.column {
     position: relative;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     padding: 0;
     background-color: none;
     background: none;
     border: none;
-      -webkit-transition: all 500ms ease-out;
+    -webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
 }
-
-.column:first-of-type{  
-border-right: 9px solid #fff;
+.column:first-of-type {
+    border-right: 9px solid #fff;
 }
-
-
-.expandHolder{
+.expandHolder {
     position: relative;
     float: right;
     top: 0;
     width: 7em;
     font-size: .85em;
     padding: 0em;
-    margin:0px;
-    text-align: right;    
+    margin: 0px;
+    text-align: right;
     margin-bottom: -8em;
-   }
-
-
-.expandToggle{
- position: relative;
-     float: right;
+}
+.expandToggle {
+    position: relative;
+    float: right;
     top: -.7em;
     width: 3.5em;
     height: 3.5em;
     font-size: .85em;
-/*    border: 1px solid #aeb0b5;*/
-    margin-left:1em;
+    margin-left: 1em;
     transform: scale(.85);
-/*    usa color usa color*/
-/*    background: #e4e2e0;*/    
     background: #2c5252;
-    /* background: #651a1c; */
     cursor: pointer;
-    box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.17);
-    /* box-shadow: 0 0 9px rgba(0, 0, 0, 0.37); */
+    box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.17);
 }
-    
-
-.expandToggle .tr{
- position: absolute;
+.expandToggle .tr {
+    position: absolute;
     right: 0;
     top: 0;
     margin: .7em;
@@ -799,10 +496,9 @@ border-right: 9px solid #fff;
     height: 2em;
     font-size: .85em;
     border: 1px solid #aeb0b5;
-    }
-
-.expandToggle .br{
- position: absolute;
+}
+.expandToggle .br {
+    position: absolute;
     left: 0;
     bottom: 0;
     margin: .7em;
@@ -810,408 +506,332 @@ border-right: 9px solid #fff;
     height: 1.2em;
     font-size: .85em;
     border: 1px solid #aeb0b5;
-    }
-
-
-
-.expanded{
-/*    position: absolute;*/
-    width:100%;
-    right:0;
+}
+.expanded {
+    width: 100%;
+    right: 0;
     z-index: 2;
     -webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
-/*
-    background: red;
-   border:3px solid red !important;
-*/
 }
-
-.expanded .filebox{
-   border-top: 9px solid #fff;
+.expanded .filebox {
+    border-top: 9px solid #fff;
     outline: none;
 }
-.expanded #BsmP1 .y.axis text{
-   display: block; 
+.expanded #BsmP1 .y.axis text {
+    display: block;
     font-size: .9em;
 }
-
-#BsmP1 .x.axis{
-   display: block;
+#BsmP1 .x.axis {
+    display: block;
 }
-
-
-.expanded #BsmP1 .x.axis{
-   display: block;
+.expanded #BsmP1 .x.axis {
+    display: block;
 }
-
-.expanded #BsmP1 .x.axis text{
-   display: block;
-     
+.expanded #BsmP1 .x.axis text {
+    display: block;
 }
-
-.expanded #BsmP1  img{
-   display: none;
+.expanded #BsmP1 img {
+    display: none;
 }
-
 .expanded #ExteriorLightsEvents .tick text {
     display: none;
 }
-
 .expanded #ExteriorLightsEvents .minilanes:last-of-type .x.axis text {
     display: block;
 }
-
-
 #BSM_Trip_Summary_File .nochart {
     margin-bottom: .4em;
 }
-
-#BSM_Trip_Summary_File .timelinerect.total{
+#BSM_Trip_Summary_File .timelinerect.total {
     stroke: #346363;
 }
-
-#TransStateEvents .minilanes .x.axis .tick text{ 
+#TransStateEvents .minilanes .x.axis .tick text {
     display: block
 }
-
-.steerchart .x.axis .tick text{ 
+.steerchart .x.axis .tick text {
     display: block
 }
-
-#WiperStatusFrontEvents .minilanes .x.axis .tick text{ 
+#WiperStatusFrontEvents .minilanes .x.axis .tick text {
     display: block
 }
-
-   
-
-.shrunk{
-   
-    width:0;
-    height:0;
-   --webkit-transition: all 500ms ease-out;
+.shrunk {
+    width: 0;
+    height: 0;
+    --webkit-transition: all 500ms ease-out;
     -moz-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
     opacity: 0;
     display: none;
-    
 }
-   
-
-
-/*timeline styles*/
-
 #bb1field {
     position: relative;
-    right:0;
+    right: 0;
     float: right;
-/*    removed for now since not using images*/
-  width: 100%;
+    width: 100%;
 }
-
 #BrakeByte2Events .lil_legend {
     float: none;
     text-align: left;
     width: auto;
     line-height: 1.8em;
-    
 }
-
-.emptyvalrow{border-bottom: 1px solid #cfe2e2;}
-
-#BsmP1 .updatedfield{
+.emptyvalrow {
+    border-bottom: 1px solid #cfe2e2;
+}
+#BsmP1 .updatedfield {
     font-size: .85em;
     font-weight: 200;
 }
-
-
-.y.axis .ylabel{
-  font-weight: 400;
+.y.axis .ylabel {
+    font-weight: 400;
 }
-
-.x.axis .xlabel{
-  font-weight: 400;
-  font-size: .85em;
+.x.axis .xlabel {
+    font-weight: 400;
+    font-size: .85em;
 }
-
-#PosAccurByte1Events .x.axis text, #PosAccurByte1Events .y.axis text{
-     display: block;
-    
+#PosAccurByte1Events .x.axis text,
+#PosAccurByte1Events .y.axis text {
+    display: block;
 }
-
-#PosAccurByte1Events h4{ 
-margin-top: 1.73em;
+#PosAccurByte1Events h4.h4InViz {
+    margin-top: 1.73em;
 }
-
-#PosAccurByte1Events h4:first-of-type{ 
-margin-top: "";
+#PosAccurByte1Events h4.h4InViz:first-of-type {
+    margin-top: "";
 }
-
-#Throttle .x.axis text{
-     display: block;
-    
+#Throttle .x.axis text {
+    display: block;
 }
-
-
-
 #BsmP1 .y.axis text.ylabel {
-   display: block;
+    display: block;
 }
-
-
-
-#bsm_others{
+#bsm_others {
     width: 45%;
     float: left;
 }
-
-.minilanes text{
-   fill: #569590;
+.minilanes text {
+    fill: #569590;
 }
-
-
-.timelinerect{
-    fill:#E39300;
-/*    usa style guide below*/
-/*      fill:#fdb81e;*/
+.timelinerect {
+    fill: #E39300;
 }
-
-
-.timelinerect.unavailable, .bull.unavailable{
-  fill:  #a5a3a3;
-  background:  #a5a3a3;
+.timelinerect.unavailable,
+.bull.unavailable {
+    fill: #a5a3a3;
+    background: #a5a3a3;
     color: #a5a3a3;
 }
-
-.timelinerect.off, .bull.off{
-  fill: #e0cca7;
-  background: #e0cca7;
-      color: #e0cca7;
+.timelinerect.off,
+.bull.off {
+    fill: #e0cca7;
+    background: #e0cca7;
+    color: #e0cca7;
 }
-
-.timelinerect.on, .bull.on{
-  fill: #E39300;
-  background: #E39300;
-    color: #E39300;
-  background: #E39300;
-}
-
-.timelinerect.engaged, .bull.engaged{
-fill: #e31c3d;
-background: #e31c3d;
-    color:#e31c3d;
-}
-
-/*for trip cummary*/
-.timelinerect.total, .bull.total {
+.timelinerect.on,
+.bull.on {
     fill: #E39300;
-     color: #E39300;
-    /* fill: #fdb81e; */
+    background: #E39300;
+    color: #E39300;
+    background: #E39300;
+}
+.timelinerect.engaged,
+.bull.engaged {
+    fill: #e31c3d;
+    background: #e31c3d;
+    color: #e31c3d;
+}
+.timelinerect.total,
+.bull.total {
+    fill: #E39300;
+    color: #E39300;
     fill-opacity: .6;
 }
-
-.timelinerect.over25, .bull.over25{
- fill: #569590;
-   color: #569590;
+.timelinerect.over25,
+.bull.over25 {
+    fill: #569590;
+    color: #569590;
 }
-
-.timelinerect.over55, .bull.over55{
- fill: #d90223;
-     color: #d90223;
-}
-
-/*for wipers*/
-.timelinerect.low, .bull.low{
-  fill: #87cec8;
-  background: #569590;
-    color: #87cec8;
-}
-
-.timelinerect.high, .bull.high{
-  fill: #346363;
-  background: #569590;
-    color: #346363;
-}
-
-.timelinerect.intermittent, .bull.intermittent {
-  fill: #E39300;
-  background: #569590;
-    color: #E39300;
-}
-
-.timelinerect.washer, .bull.washer{
-     fill:#d90223;
-     background:#d90223;
+.timelinerect.over55,
+.bull.over55 {
+    fill: #d90223;
     color: #d90223;
 }
-
-.timelinerect.automatic, .bull.automatic{
-     fill:#afacd0;
-     background:#afacd0;
+.timelinerect.low,
+.bull.low {
+    fill: #87cec8;
+    background: #569590;
+    color: #87cec8;
+}
+.timelinerect.high,
+.bull.high {
+    fill: #346363;
+    background: #569590;
+    color: #346363;
+}
+.timelinerect.intermittent,
+.bull.intermittent {
+    fill: #E39300;
+    background: #569590;
+    color: #E39300;
+}
+.timelinerect.washer,
+.bull.washer {
+    fill: #d90223;
+    background: #d90223;
+    color: #d90223;
+}
+.timelinerect.automatic,
+.bull.automatic {
+    fill: #afacd0;
+    background: #afacd0;
     color: #afacd0;
 }
-
-
-/*for trans state*/
-.neutral{
+.neutral {
     color: #806432 !important;
 }
-
-.park{
+.park {
     color: #569590 !important;
 }
-
-.forward{
-   
-   color: #E39300 !important;
+.forward {
+    color: #E39300 !important;
 }
-
-.reverse{
-     color: #d90223 !important;
+.reverse {
+    color: #d90223 !important;
 }
-
-
-
-
 .tick text {
-  display: none;
-
+    display: none;
 }
-
-
 .y.axis text {
-  display: none;
-
+    display: none;
 }
-
-.context .x.axis text, .expanded .context .x.axis text{
-      display: none;
+.context .x.axis text,
+.expanded .context .x.axis text {
+    display: none;
 }
-
-#throttle .y.axis text, #throttle .x.axis text {
-  display: block;
-
+#throttle .y.axis text,
+#throttle .x.axis text {
+    display: block;
 }
-
-#Throttle .timelinerect{
-
+#Throttle .timelinerect {
     stroke: #ce8501;
 }
-
 #steerfield .y.axis text {
-  display: block;
-
-}
-.summarychart .y.axis text{
-    display: block;
-    
-}
-
-
-.summarychart .x.axis text{
     display: block;
 }
-
-#tripSumfield .y.axis text{
-     display: block;
-    
-}
-
-#tripSumfield .tripsumchart .x.axis text{
-     display: block;
-    
-}
-
-#PosAccurByte1Events .x.axis text{
-     display: block;
-}
-
-
-.throttlechart text{
-   fill: #569590;
-}
-
-
-
-.throttlechart .x.axis text{
+.summarychart .y.axis text {
     display: block;
 }
-
-
-.bgrect{
-  fill:#cfe2e2;
-    
+.summarychart .x.axis text {
+    display: block;
 }
-
-
+#tripSumfield .y.axis text {
+    display: block;
+}
+#tripSumfield .tripsumchart .x.axis text {
+    display: block;
+}
+#PosAccurByte1Events .x.axis text {
+    display: block;
+}
+.throttlechart text {
+    fill: #569590;
+}
+.throttlechart .x.axis text {
+    display: block;
+}
+.bgrect {
+    fill: #cfe2e2;
+}
 .toptext .updatedField {
     display: none;
 }
-
 .expanded .toptext .updatedField {
     display: block;
 }
-
 .expanded .tick text {
-  display: block;
-  
+    display: block;
 }
-
-
 .expanded .x.axis text {
-  display: block;
-  
+    display: block;
 }
-
 .minilanes:last-of-type .x.axis text {
     display: block;
 }
-
-.svgholder{
-    width:100%;
-    
+.svgholder {
+    width: 100%;
 }
-
-.extent{
+.extent {
     fill: #346363;
     fill-opacity: 1;
 }
-
-
-.resize.e rect{
+.resize.e rect {
     visibility: visible !important;
     transform: scale(1.5, 1);
-    
 }
-
-.resize.w rect{
+.resize.w rect {
     visibility: visible !important;
-      transform: scale(1.5, 1);
-    
+    transform: scale(1.5, 1);
 }
-
-
-
 g.resize.e {
     display: block !important;
 }
-/*linechart styles*/
-
-
-path.domain{
+path.domain {
     fill: none;
 }
-
-.g-aiPstyle5{
+.g-aiPstyle5 {
     transform: rotate(-90deg);
     transform-origin: top right;
     text-align: right;
     position: absolute;
     top: 0;
-    
-    
-    
+}
+.expand_text {
+    display: block;
+    text-align: right;
+    line-height: 1.1em
+}
+#BsmPfield.chartcol.clearfix {
+    width: 100%;
+    float: right;
+    clear: both;
+}
+.time_span_text {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: .85em;
+    margin-top: -8px;
+    float: right;
+    width: 90%;
+}
+.time_span_text2 {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: .85em;
+    margin-top: -8px;
+    width: 90%;
+}
+.float_left {
+    float: left;
+}
+.paeInstruct {
+    padding-left: 0;
+    display: inline-block;
+    width: 85%
+}
+#BsmMd {
+    align-self: flex-end;
+}
+.extra1 {
+    margin-left: -.5%;
+    margin-top: 1em;
+}
+.extra2 {
+    width: 35%;
+    float: left;
 }
