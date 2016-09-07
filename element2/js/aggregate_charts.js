@@ -35,7 +35,7 @@ var margin = { top: 50, right: 0, bottom: 100, left:50},
     distance = ['0 m', '50 m', '100 m', '150 m', '200 m', '250 m', '300 m', '350 m', '400 m', '450 m', '500 m']
     dataset = 'data/heat.csv';
 
-var svg2 = d3.select("#heatmapDiv")
+var svg2 = d3v4.select("#heatmapDiv")
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
@@ -47,7 +47,7 @@ var svg2 = d3.select("#heatmapDiv")
     .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
 //Create the svg for the heatmap
-var svg = d3.select('#heatmapDiv')
+var svg = d3v4.select('#heatmapDiv')
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
@@ -92,7 +92,7 @@ var speedLabels = svg.selectAll('.speedLabels')
     .attr('class', 'speedLabel mono axis')
 
 //Custom tooltip library
-var tip = d3.tip()
+var tip = d3v4.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function (d) {
@@ -104,7 +104,7 @@ var tip = d3.tip()
 svg.call(tip);
 
 //Load the data and populate the heatmap
-d3.csv(dataset, function (heatCsv) {
+d3v4.csv(dataset, function (heatCsv) {
   var data = [];
   //Get the data for p1 with speeds 0-45
   for (var i = 0; i < 55; i++) {
@@ -160,13 +160,13 @@ d3.csv(dataset, function (heatCsv) {
   }
 
   //Create the color scale. Color is based on % of messages received
-  var colorScale = d3.scaleQuantile()
-    .domain([0, d3.max(data, function (d) { return d.difference; })])
+  var colorScale = d3v4.scaleQuantile()
+    .domain([0, d3v4.max(data, function (d) { return d.difference; })])
     .range(colors);
 
   //Create the size scale. Size is based on total number of messages sent
-  var sizeScale = d3.scaleLinear()
-    .domain([d3.min(data, function (d) { return d.p1Count; }), d3.max(data, function (d) { return d.p1Count})])
+  var sizeScale = d3v4.scaleLinear()
+    .domain([d3v4.min(data, function (d) { return d.p1Count; }), d3v4.max(data, function (d) { return d.p1Count})])
     .range([0.15,0.9]);
 
   //Create the circles for each speed/distance bin
