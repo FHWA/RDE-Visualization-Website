@@ -677,14 +677,12 @@ legend.onAdd = function () {
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-checkmark icon-white" style="float:none"></i><br><br>Dry</div>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-waterdrop icon-white" style="float:none"></i><br><br>Wet</div>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-snowy icon-white" style="float:none"></i><br><br>Snow</div>';
-    div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-alert-circled icon-white" style="float:none"></i><br><br>Icy</div><br><br><br><br>';
-  //div.innerHTML += '<div class="extra-marker-circle-cadetblue extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-help icon-white" style="float:none"></i><br><br>N/A</div><br><br><br><br>';
+  div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-alert-circled icon-white" style="float:none"></i><br><br>Icy</div><br><br><br><br>';
   div.innerHTML += '<img src="images/snowplow.png" height="18" width="18" style="margin-right:10px">Road Temperature Markers:<br>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-sunny icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">60-80&deg;F</p></div>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-partlysunny icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">32-60&deg;F</p></div>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-cloud icon-white" style="float:none"></i><br><br><p style="margin:0px;width:50px;text-align:left">0-32&deg;F</p></div>';
   div.innerHTML += '<div class="extra-marker-square-black extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-ios-snowy icon-white" style="float:none"></i><br><br>&lt;0&deg;F</p></div><br><br><br><br>';
-  //div.innerHTML += '<div class="extra-marker-square-cadetblue extra-marker" style="position:static;float:left;margin-right:15px"><i class="icon ion-help icon-white" style="float:none"></i><br><br>N/A</div><br><br><br><br>';
   div.style.visibility = "visible";
   return div;
 }

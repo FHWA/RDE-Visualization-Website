@@ -125,7 +125,7 @@ var App = (function () {
           .style("fill", "white")
           .style("stroke", "black")
           .style("stroke-width", "3")
-          .text(function (d) { return d.value <= 0 ? "" : nFormatter(d.value,1); });
+          .text(function (d) { return d.value <= 0 ? "" : numShortFormat(d.value); });
         g.append("path")
           .attr("d", border)
           .attr("fill", "black");
