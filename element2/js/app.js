@@ -31,40 +31,12 @@ var App = (function () {
     this.initLeaflet();
 
     //Load the data then allow using map
-    this.loadData().then(function () {
-      //Function that hexlayer needs to set the style of the hexbins
-      function hexbinStyle(hexagons) {
-        hexagons
-          .attr("stroke", "black")
-          .attr("fill", function (d) {
-            //Get the total count of messages per group
-            //zero = rsm, one = p1
-            var zerocount = 0;
-            var onecount = 0;
-            for (var i = 0, len = d.length; i < len; i++){
-              if (d[i][2].group === 0) zerocount += d[i][2].count;
-              else onecount += d[i][2].count;
-            }
-            //Set the color to the ratio of received/sent
-            //Account for both more received than sent and
-            //zero sent.
-            var color;
-            if (onecount !== 0) {
-              color = (zerocount / onecount);
-              if (color > 1) return 'red';
-            }
-            else {
-              color = 0;
-            }
-            return cscale(color);
-          });
-      }      
-
-      //Function that hexlayer needs to create the mouseover tooltip
-      function makePie(data) {
+    this.loadData().then(function () { 
+      //Function that hexlayer needs to create the popup
+      function createPopup(data) {
         //Remove old tooltips
-        d3.select("#tooltip").selectAll(".arc").remove()
-        d3.select("#tooltip").selectAll(".pie").remove()
+        d3.select("#popup").selectAll(".arc").remove()
+        d3.select("#popup").selectAll(".pie").remove()
         /* Sort the data so larger value is drawn first, also create new data
          * array so that we can keep track of which data value corresponds to
          * sent vs received */
@@ -76,15 +48,15 @@ var App = (function () {
         }
 
         //d3 variables for the pie chart and each pie section
-        var arc = d3.arc()
+        var arc = d3v4.arc()
           .outerRadius(45)
           .innerRadius(10);
-        var border = d3.arc()
+        var border = d3v4.arc()
           .outerRadius(45+1)
           .innerRadius(45);
-        var pie = d3.pie()
+        var pie = d3v4.pie()
           .value(function(d) { return d[0]; });
-        var svg = d3.select("#tooltip").select("svg")
+        var svg = d3v4.select("#popup").select("svg")
           .append("g")
             .attr("class", "pie")
             .attr("transform", "translate(50,50)");
@@ -135,6 +107,26 @@ var App = (function () {
       _this.hexLayer = L.hexbinLayer({
         opacity: 1,
         colorRange: ["#dce4ef","#205493"],
+        onmouseover: function (d) {
+          var msg_received=0, msg_sent=0;
+          d.map(function(e){
+            if (e.properties.group === 1){
+              msg_sent += e.properties.count;
+            }
+            else {
+              msg_received += e.properties.count;
+            }
+          });
+          createPopup([msg_received,msg_sent-msg_received]);
+          d3.select("#popup")
+            .style("visibility", "visible")
+            .style("top", function () { return (d3.event.pageY-305)+"px"})
+            .style("left", function () { return (d3.event.pageX-105)+"px";})
+        },
+        onmouseout: function (d) {
+          d3.select("#popup")
+            .style("visibility", "hidden");
+        },
       }).data(_this.geoData).addTo(_this.hexbin_group)
     })
   }

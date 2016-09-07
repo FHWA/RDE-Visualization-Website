@@ -16,9 +16,6 @@
 			lat: function(d){
 				return d[1];
 			},
-			value: function(d){
-				return d[2]-d[3];
-			},
 			colorRange: ['#f7fbff', '#08306b'],
 
 			onmouseover: undefined,
@@ -207,7 +204,6 @@
 			var join = g.selectAll('path.hexbin-hexagon')
 				.data(bins, function(d){ return d.i + ':' + d.j; });
 	
-			console.time('draw')
 			// Enter - establish the path, the fill, and the initial opacity
 			join.enter().append('path').attr('class', 'hexbin-hexagon')
 				.attr('d', function(d){ 
@@ -223,6 +219,7 @@
           }
 					return that._colorScale(color); })
 				.attr('stroke', 'black')
+				.style('cursor', 'pointer')
 				.on('mouseover', function(d, i) {
 					if(null != that.options.onmouseover) {
 						that.options.onmouseover(d, this, that);
@@ -239,7 +236,6 @@
 					}
 				})
 			join.exit().remove();
-			console.timeEnd('draw')
 		},
 
 		_project : function(coord) {
@@ -299,19 +295,6 @@
 			}
 
 			this._colorScale = colorScale;
-			this._redraw();
-			return this;
-		},
-
-		/*
-		 * Getter/Setter for the value function
-		 */
-		value: function(valueFn) {
-			if(undefined === valueFn){
-				return this.options.value;
-			}
-
-			this.options.value = valueFn;
 			this._redraw();
 			return this;
 		},

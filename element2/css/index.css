@@ -19,7 +19,7 @@ body, html, #loading-bg {
   max-height: 600;
 }
 
-#tooltip {
+#popup {
   padding: 5px;
   position: absolute;
   z-index: 10;
