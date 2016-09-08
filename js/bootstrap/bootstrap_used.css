@@ -1,0 +1,101 @@
+/*!
+ * Bootstrap v3.2.0 (http://getbootstrap.com)
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+
+img {
+  vertical-align: middle;
+}
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-xs-4, .col-md-4, .col-md-5, .col-md-7 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-xs-4 {
+  float: left;
+}
+.col-xs-4 {
+  width: 33.33333333%;
+}
+
+@media (min-width: 992px) {
+  .col-md-4, .col-md-5, .col-md-7 {
+    float: left;
+  }
+  .col-md-7 {
+    width: 58.33333333%;
+  }
+  .col-md-5 {
+    width: 41.66666667%;
+  }
+  .col-md-4 {
+    width: 33.33333333%;
+  }
+}
+
+
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.row:before,
+.row:after {
+  display: table;
+  content: " ";
+}
+.clearfix:after,
+.container:after,
+.row:after {
+  clear: both;
+}
