@@ -31,40 +31,12 @@ var App = (function () {
     this.initLeaflet();
 
     //Load the data then allow using map
-    this.loadData().then(function () {
-      //Function that hexlayer needs to set the style of the hexbins
-      function hexbinStyle(hexagons) {
-        hexagons
-          .attr("stroke", "black")
-          .attr("fill", function (d) {
-            //Get the total count of messages per group
-            //zero = rsm, one = p1
-            var zerocount = 0;
-            var onecount = 0;
-            for (var i = 0, len = d.length; i < len; i++){
-              if (d[i][2].group === 0) zerocount += d[i][2].count;
-              else onecount += d[i][2].count;
-            }
-            //Set the color to the ratio of received/sent
-            //Account for both more received than sent and
-            //zero sent.
-            var color;
-            if (onecount !== 0) {
-              color = (zerocount / onecount);
-              if (color > 1) return 'red';
-            }
-            else {
-              color = 0;
-            }
-            return cscale(color);
-          });
-      }      
-
-      //Function that hexlayer needs to create the mouseover tooltip
-      function makePie(data) {
+    this.loadData().then(function () { 
+      //Function that hexlayer needs to create the popup on mouseover
+      function createPopup(data) {
         //Remove old tooltips
-        d3.select("#tooltip").selectAll(".arc").remove()
-        d3.select("#tooltip").selectAll(".pie").remove()
+        d3.select("#popup").selectAll(".arc").remove()
+        d3.select("#popup").selectAll(".pie").remove()
         /* Sort the data so larger value is drawn first, also create new data
          * array so that we can keep track of which data value corresponds to
          * sent vs received */
@@ -76,15 +48,15 @@ var App = (function () {
         }
 
         //d3 variables for the pie chart and each pie section
-        var arc = d3.arc()
+        var arc = d3v4.arc()
           .outerRadius(45)
           .innerRadius(10);
-        var border = d3.arc()
+        var border = d3v4.arc()
           .outerRadius(45+1)
           .innerRadius(45);
-        var pie = d3.pie()
+        var pie = d3v4.pie()
           .value(function(d) { return d[0]; });
-        var svg = d3.select("#tooltip").select("svg")
+        var svg = d3v4.select("#popup").select("svg")
           .append("g")
             .attr("class", "pie")
             .attr("transform", "translate(50,50)");
@@ -132,10 +104,30 @@ var App = (function () {
       }
 
       //Create the hexlayer
-      _this.hexLayer = L.hexbinLayer(_this.geoData, {
-        style: hexbinStyle,
-        mouse: makePie
-      }).addTo(_this.hexbin_group)
+      _this.hexLayer = L.hexbinLayer({
+        opacity: 1,
+        colorRange: ["#dce4ef","#205493"],
+        onmouseover: function (d) {
+          var msg_received=0, msg_sent=0;
+          d.map(function(e){
+            if (e.properties.group === 1){
+              msg_sent += e.properties.count;
+            }
+            else {
+              msg_received += e.properties.count;
+            }
+          });
+          createPopup([msg_received,msg_sent-msg_received]);
+          d3.select("#popup")
+            .style("visibility", "visible")
+            .style("top", function () { return (d3.event.pageY-305)+"px"})
+            .style("left", function () { return (d3.event.pageX-105)+"px";})
+        },
+        onmouseout: function (d) {
+          d3.select("#popup")
+            .style("visibility", "hidden");
+        },
+      }).data(_this.geoData).addTo(_this.hexbin_group)
     })
   }
 
@@ -312,212 +304,6 @@ var App = (function () {
   return App;
 }());
 my_app = new App();
-
-//******************HEXBIN LEAFLET FROM ***************************************
-//****http://www.delimited.io/blog/2013/12/1/hexbins-with-d3-and-leaflet-maps**
-//****Updated for d3.js v4 and for our purposes********************************
-//*****************************************************************************
-
-//**********************************************************************************
-//********  LEAFLET HEXBIN LAYER CLASS *********************************************
-//**********************************************************************************
-L.HexbinLayer = L.Class.extend({
-  includes: L.Mixin.Events,
-  initialize: function (rawData, options) {
-    this.levels = {};
-    this.layout = d3.hexbin().radius(10);
-    this.rscale = d3.scaleLog().range([2, 11]).clamp(true);
-    this.rwData = rawData;
-    this.config = options;
-  },
-  project: function(x) {
-    var point = this.map.latLngToLayerPoint([x[1], x[0]]);
-    return [point.x, point.y];
-  },
-  getBounds: function(d) {
-    var b = d3.geoBounds(d)
-    return L.bounds(this.project([b[0][0], b[1][1]]), this.project([b[1][0], b[0][1]]));
-  },
-  update: function () {
-    var pad = 100, xy = this.getBounds(this.rwData), zoom = this.map.getZoom();
-
-    this.container
-      .attr("width", xy.getSize().x + (2 * pad))
-      .attr("height", xy.getSize().y + (2 * pad))
-      .style("margin-left", (xy.min.x - pad) + "px")
-      .style("margin-top", (xy.min.y - pad) + "px");
-
-    if (!(zoom in this.levels)) {
-        this.levels[zoom] = this.container.append("g").attr("class", "zoom-" + zoom);
-        /* genHexagons uses setTimeouts and uses promises to say when it is done
-         * Want to hide the loading div once the hexagons are generated. So after the
-         * hexagons are generated get the loading elements and check if they are visible
-         * if they are visibile than hide them.  Every other time genHexagons is called
-         * the loading elments should already be hidden so nothing will happen after the
-         * genHexagons promise is returned */
-        this.genHexagons(this.levels[zoom]).then(function () {
-          var loadEles = document.getElementsByClassName('loading');
-          if(loadEles[0].style.visibility === ''){
-            loadEles[0].style.visibility = 'hidden';
-            loadEles[0].style.opacity = '0';
-            loadEles[1].style.visibility = 'hidden';
-            loadEles[1].style.opacity = '0';
-          }
-        })
-        this.levels[zoom].attr("transform", "translate(" + -(xy.min.x - pad) + "," + -(xy.min.y - pad) + ")");
-    }
-    if (this.curLevel) {
-      this.curLevel.style("display", "none");
-    }
-    this.curLevel = this.levels[zoom];
-    this.curLevel.style("display", "inline");
-
-    /* When updating the zoom have to check if the hexLayer is 'active'
-     * If the hexlayer is active make sure it is visible and pointerEvents
-     * enabled */
-    if (this.active) {
-      this.container.style('opacity', 1);
-      this.container.style('pointer-events', 'auto');
-    }
-  },
-  /* Heavy lifting function that generates the hexagons and addes their mouse
-   * events.  This function uses setTimeouts and Promises to keep the browser 
-   * responsive.  It also returns a promise when all the setTimeouts are finished
-   * This promise it returns is used to hide the loading elmenets if they are 
-   * visible. */
-  genHexagons: function (container) {
-    var data = []
-    /* setTimeout function that chunks the data loop to keep the browser responsive.
-     * returns a promise when it is finished so the rest of the genHexagons function
-     * can use the data array */
-    function processArray(mythis) {
-      var d = jQuery.Deferred();
-      var array = mythis.rwData.features;
-      var chunk = 25000;
-      var index = 0;
-
-      //Process the current chunk of data
-      var doChunk = function() {
-        var cnt = chunk;
-        while (cnt-- && index < array.length) {
-          var coords = mythis.project(array[index].geometry.coordinates)
-          data.push([coords[0],coords[1], array[index].properties]);
-          ++index;
-        }
-        if (index < array.length) {
-          //set Timeout for async iteration
-          setTimeout(doChunk, 100);
-        }
-        else {
-          //Resolve the promise so the next part of genHexagons can continute
-          d.resolve(mythis);
-        }
-      }
-      doChunk();
-      return d.promise();
-    }
-    /* Call the data chunking function once it resolves.  The function that
-     * is called also returns a promise because setTimeout is used within this
-     * function. */
-    var done = processArray(this).then(function (mythis) {
-      var c = jQuery.Deferred();
-      var bins = mythis.layout(data);
-      var hexagons = container.selectAll(".hexagon").data(bins);
-
-      var counts = [];
-      bins.map(function (elem) { 
-        var tot_count = 0;
-        //instead of count of unique points get count of actual points
-        for(var i = 0; i < elem.length; i++){
-          tot_count += elem[i][2].count;
-        }
-        counts.push(tot_count)
-      });
-      mythis.rscale.domain([(ss.min(counts)), (ss.max(counts))]);
-
-      /* Create each hexagon one at a time using setTimeout.  This will keep the
-       * browser responsive.  The setTimeout resolves the promise that will be
-       * returned by genHexagons.  This promise says that all the hexagons are
-       * generated */
-      that = mythis
-      hexagons.enter().each(function(d, i) {
-        var temp = this;
-        setTimeout(function () {
-          var p = d3.select(temp).append("path")
-            .attr("class", "hexagon")
-            .attr("d", function(d) { 
-              var tot_count = 0;
-              for(var i = 0, len = d.length; i < len; i++){
-                tot_count += d[i][2].count
-              }
-              return that.layout.hexagon(that.rscale(tot_count)); 
-            })
-            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-            .style('cursor', 'pointer')
-            .on("mouseover", function (d) { 
-              var msg_received=0, msg_sent=0;
-              d.map(function(e){
-                if (e[2].group === 1){
-                  msg_sent += e[2].count;
-                }
-                else {
-                  msg_received += e[2].count;
-                }
-              });
-              that.config.mouse.call(this, [msg_received,msg_sent-msg_received]);
-              d3.select("#tooltip")
-                .style("visibility", "visible")
-                .style("top", function () { return (d3.event.pageY-305)+"px"})
-                .style("left", function () { return (d3.event.pageX-105)+"px";})
-            })
-            .on("mouseout", function (d) { d3.select("#tooltip").style("visibility", "hidden") });  
-          that.config.style.call(that,p);
-          return c.resolve();
-          }, 0)
-      })      
-    })
-    //Return the promise saying all the hexagons are generated
-    return done;
-  },
-  addTo: function (map) {
-    map.addLayer(this);
-    this.active = true;
-    return this;
-  },
-  onAdd: function (map) {
-    this.map = map;
-    var overlayPane = this.map.getPanes().overlayPane;
-
-    if (!this.container || overlayPane.empty) {
-        this.container = d3.select(overlayPane)
-            .append('svg')
-                .attr("id", "hex-svg")
-                .attr('class', 'leaflet-layer leaflet-zoom-hide');
-    }
-    map.on({ 'moveend': this.update }, this);
-    //Add extra variable that says if the hexLayer is active on the map
-    this.active = true;
-    this.update();
-  },
-  onRemove: function (map) {
-    /* If the hexLayer is currently active on the map set it to not-active
-     * hide the layer, and turn off the pointerEvents so the tooltip does not 
-     * show when the layer is hidden */
-    if (this.active) {
-      this.container.style('opacity', 0);
-      this.container.style('pointer-events', 'none');
-      this.active = false;
-    }
-  },
-});
-
-//Function to create leaflet hexbin layer
-L.hexbinLayer = function (data, styleFunction) {
-  return new L.HexbinLayer(data, styleFunction);
-};
-
-//The scale of color determined between by value between 0-1
-var cscale = d3.scaleLinear().domain([0,1]).range(["#dce4ef","#205493"]);
 
 //Funciton to center the map to the initial load position
 function goToCenter () {

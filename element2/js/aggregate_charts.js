@@ -5,12 +5,12 @@ var margin = { top: 50, right: 0, bottom: 0, left:50},
     gridSize = Math.floor(width / 11),
     height = gridSize * 6 + margin.top
     legendElementWidth = (width - width*.2) / 9,
-    numCommaFormat = d3.format(","),
-    numShortFormat = d3.format(".3s")
+    numCommaFormat = d3v4.format(","),
+    numShortFormat = d3v4.format(".3s")
     colors = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#08306b']; //From colorbrewer2
 
 //Add the svg for the legend to the div
-var legendSvg = d3.select("#heatmapDiv")
+var legendSvg = d3v4.select("#heatmapDiv")
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
@@ -22,7 +22,7 @@ var legendSvg = d3.select("#heatmapDiv")
     .attr('transform', 'translate(' + margin.left + ',' + margin.top/2 + ')');
 
 //Add the svg for the chart to the div
-var chartSvg = d3.select('#heatmapDiv')
+var chartSvg = d3v4.select('#heatmapDiv')
   .classed("svg-container", true) //container class to make it responsive
   .append("svg")
   //responsive SVG needs these 2 attributes and no width and height attr
@@ -70,7 +70,7 @@ var borderPath = chartSvg.append("rect")
   .style("stroke-width", 3);
 
 //Custom tooltip library
-var tip = d3.tip()
+var tip = d3v4.tip()
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function (d) {
@@ -82,7 +82,7 @@ var tip = d3.tip()
 chartSvg.call(tip);
 
 //Load the data and populate the heatmap
-d3.csv('data/heat.csv', function (heatCsv) {
+d3v4.csv('data/heat.csv', function (heatCsv) {
   var data = [];
   //Get the data for p1 with speeds 0-45
   for (var i = 0; i < 55; i++) {
@@ -138,13 +138,13 @@ d3.csv('data/heat.csv', function (heatCsv) {
   }
 
   //Create the color scale. Color is based on % of messages received
-  var colorScale = d3.scaleQuantile()
-    .domain([0, d3.max(data, function (d) { return d.difference; })])
+  var colorScale = d3v4.scaleQuantile()
+    .domain([0, d3v4.max(data, function (d) { return d.difference; })])
     .range(colors);
 
   //Create the size scale. Size is based on total number of messages sent
-  var sizeScale = d3.scaleLinear()
-    .domain([d3.min(data, function (d) { return d.p1Count; }), d3.max(data, function (d) { return d.p1Count})])
+  var sizeScale = d3v4.scaleLinear()
+    .domain([d3v4.min(data, function (d) { return d.p1Count; }), d3v4.max(data, function (d) { return d.p1Count})])
     .range([0.15,0.9]);
 
   //Create the circles for each speed/distance bin
