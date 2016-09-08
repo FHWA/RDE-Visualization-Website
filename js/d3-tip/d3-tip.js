@@ -1,9 +1,9 @@
-// d3v4.tip
+// d3.tip
 // Copyright (c) 2013 Justin Palmer
-// ES6 / d3v4 v4 Adaption Copyright (c) 2016 Constantin Gavrilete
-// Removal of ES6 for d3v4 v4 Adaption Copyright (c) 2016 David Gotz
+// ES6 / d3 v4 Adaption Copyright (c) 2016 Constantin Gavrilete
+// Removal of ES6 for d3 v4 Adaption Copyright (c) 2016 David Gotz
 //
-// Tooltips for d3v4.js SVG visualizations
+// Tooltips for d3.js SVG visualizations
 
 d3v4.functor = function functor(v) {
   return typeof v === "function" ? v : function() {
@@ -68,7 +68,7 @@ d3v4.tip = function() {
     return tip
   }
 
-  // Public: Proxy attr calls to the d3v4 tip container.  Sets or gets attribute value.
+  // Public: Proxy attr calls to the d3 tip container.  Sets or gets attribute value.
   //
   // n - name of the attribute
   // v - value of the attribute
