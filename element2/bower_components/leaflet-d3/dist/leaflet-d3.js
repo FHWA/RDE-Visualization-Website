@@ -185,6 +185,7 @@
 		_createHexagons : function(g, data) {
 			var that = this;
 
+			console.time('count')
 			var counts = [];
 			// Create the bins using the hexbin layout
 			var bins = that._hexLayout(data);
@@ -197,45 +198,50 @@
 				bins[i].totCount = bins[i].oneCount + bins[i].zeroCount
 				counts.push(bins[i].totCount);
 			}
+			console.timeEnd('count')
 
 			that._sizeScale.domain([Math.min.apply(null, counts), Math.max.apply(null, counts)])
 
 			// Join - Join the Hexagons to the data
 			var join = g.selectAll('path.hexbin-hexagon')
 				.data(bins, function(d){ return d.i + ':' + d.j; });
-	
+
 			// Enter - establish the path, the fill, and the initial opacity
-			join.enter().append('path').attr('class', 'hexbin-hexagon')
-				.attr('d', function(d){ 
-					return 'M' + d.x + ',' + d.y + that._hexLayout.hexagon(that._sizeScale(d.totCount)); })
-				.attr('fill', function(d){ 
-          var color;
-          if (d.oneCount !== 0) {
-            color = (d.zeroCount / d.oneCount);
-            if (color > 1) return 'red';
-          }
-          else {
-            color = 0;
-          }
-					return that._colorScale(color); })
-				.attr('stroke', 'black')
-				.style('cursor', 'pointer')
-				.on('mouseover', function(d, i) {
-					if(null != that.options.onmouseover) {
-						that.options.onmouseover(d, this, that);
-					}
-				})
-				.on('mouseout', function(d, i) {
-					if(null != that.options.onmouseout) {
-						that.options.onmouseout(d, this, that);
-					}
-				})
-				.on('click', function(d, i) {
-					if(null != that.options.onclick) {
-						that.options.onclick(d, this, that);
-					}
-				})
-			join.exit().remove();
+			join.enter().append('path').each(function (d, i) {
+				var temp = this;
+				setTimeout(function () {
+					var p = d3.select(temp).attr('class', 'hexbin-hexagon')
+						.attr('d', function(d){ 
+							return 'M' + d.x + ',' + d.y + that._hexLayout.hexagon(that._sizeScale(d.totCount)); })
+						.attr('fill', function(d){ 
+		          var color;
+		          if (d.oneCount !== 0) {
+		            color = (d.zeroCount / d.oneCount);
+		            if (color > 1) return 'red';
+		          }
+		          else {
+		            color = 0;
+		          }
+							return that._colorScale(color); })
+						.attr('stroke', 'black')
+						.style('cursor', 'pointer')
+						.on('mouseover', function(d, i) {
+							if(null != that.options.onmouseover) {
+								that.options.onmouseover(d, this, that);
+							}
+						})
+						.on('mouseout', function(d, i) {
+							if(null != that.options.onmouseout) {
+								that.options.onmouseout(d, this, that);
+							}
+						})
+						.on('click', function(d, i) {
+							if(null != that.options.onclick) {
+								that.options.onclick(d, this, that);
+							}
+						})
+				}, 0);
+			});
 		},
 
 		_project : function(coord) {
