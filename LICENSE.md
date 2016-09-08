@@ -12,7 +12,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `crossfilter2`: [crossfilter](https://github.com/crossfilter/crossfilter), Apache 2.0 license, copyright Square, Inc, and [crossfilter contributors](https://github.com/crossfilter/crossfilter/blob/master/AUTHORS).
 - `d3`/`d3_v3`: [d3](https://github.com/d3/d3), BSD license, copyright Mike Bostock.
 - `d3-plugins`: [d3-plugins](https://github.com/d3/d3-plugins), BSD license, copyright Mike Bostock.
-- `d3-tip`: [d3-tip, d3.js v4 without ES6](https://github.com/VACLab/d3-tip), MIT license, copyright  Justin Palmer, ES6 / D3 v4 Adaptation copyright Constantin Gavrilete, Removal of ES6 for D3 v4 Adaptation copyright David Gotz.
+- `d3-tip`: [d3-tip, d3.js v4 without ES6](https://github.com/VACLab/d3-tip), MIT license, copyright  Justin Palmer, ES6 / D3 v4 Adaptation copyright Constantin Gavrilete, Removal of ES6 for D3 v4 Adaptation copyright David Gotz.  Modified for our use.
 - `datatables`: [datatables](https://github.com/DataTables/DataTables), MIT license, copyright SpryMedia Limited.
 - `dc-addons`: [dc-addons](https://github.com/Intellipharm/dc-addons), MIT license, copyright Intellipharm.
 - `dc.js`/`dcIntervalTreeGroup`: [dc.js](https://github.com/dc-js/dc.js), Apache 2.0 license, copyright Nick Zhu & [the dc.js developers](https://github.com/dc-js/dc.js/blob/master/AUTHORS).
@@ -24,11 +24,11 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `jquery.sticky`: [sticky](https://github.com/garand/sticky), MIT license, copyright [Anthony Garand](http://garand.me).
 - `leaflet`: [Leaflet](https://github.com/Leaflet/Leaflet), BSD license, copyright Vladimir Agafonkin and CloudMade.
 - `leaflet.markercluster`: [Leaflet.markercluster](https://github.com/Leaflet/Leaflet.markercluster), MIT license, copyright David Leaver.
+- `leaflet-d3`: [Leaflet D3 Plugin](https://github.com/Asymmetrik/leaflet-d3), MIT license, copyright Asymmetrik.  Modified for our use.
 - `lodash`: [lodash](https://github.com/lodash/lodash), MIT license, copyright [jQuery foundation](https://jquery.org) and other contributers.  Based on [Underscore.js](http://underscorejs.org), copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors.
 - `moment`: [moment](https://github.com/moment/moment), MIT license, copyright Tim Wood, Iskren Chernev, Moment.js contributors.
 - `papaparse`: [PapaParse](https://github.com/mholt/PapaParse), MIT license, copyright Matthew Holt.
 - `requirejs`: [requirejs](https://github.com/requirejs/requirejs), MIT license, copyright [jQuery Foundation](https://jquery.org).
-- `simple-statistics`: [simple-statistics](https://github.com/simple-statistics/simple-statistics), ISC license, copyright Tom MacWright.
 - `MercatorProjection`/`PapaPromise`/`XHRGet`/`dcTagCategoryUtil`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 Style guidelines were provided by the [Draft US Web Design Standards](https://github.com/18F/web-design-standards), which are partially in the public domain.  Parts that aren't include:
