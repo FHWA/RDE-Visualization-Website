@@ -22,20 +22,10 @@ d3.csv('csv/sampled/bsm_posaccurbyte1.csv', function (posAccByte1) {
     eventFlag: true,
     yLabel: 'm',
     yDomain: [0, 12.7],
-      
-      
- });
-  
-        var thisdiv = d3.select("#PosAccurByte1Events");
-        addentries(posAccByte1, thisdiv);               
-                     
-                    
-  pAB1.draw();   
-    
-    
-      
-    
-    
+  });
+  var thisdiv = d3.select("#PosAccurByte1Events");
+  addentries(posAccByte1, thisdiv);                       
+  pAB1.draw();
 });
 
 d3.csv('csv/sampled/bsm_posaccurbyte2.csv', function (posAccByte2) {
@@ -63,8 +53,6 @@ d3.csv('csv/sampled/bsm_posaccurbyte2.csv', function (posAccByte2) {
     yDomain: [0, 12.7],
   });
   pAB2.draw(); 
-    
-    
 });
 
 d3.csv('csv/sampled/bsm_posaccurbyte3.csv', function (posAccByte3) {

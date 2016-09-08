@@ -5,17 +5,17 @@
 //
 // Tooltips for d3.js SVG visualizations
 
-d3.functor = function functor(v) {
+d3v4.functor = function functor(v) {
   return typeof v === "function" ? v : function() {
     return v;
   };
 };
 
-d3.tip = function() {
+d3v4.tip = function() {
 
-  var direction = d3_tip_direction,
-      offset    = d3_tip_offset,
-      html      = d3_tip_html,
+  var direction = d3v4_tip_direction,
+      offset    = d3v4_tip_offset,
+      html      = d3v4_tip_html,
       node      = initNode(),
       svg       = null,
       point     = null,
@@ -79,13 +79,13 @@ d3.tip = function() {
       return getNodeEl().attr(n)
     } else {
       var args =  Array.prototype.slice.call(arguments)
-      d3.selection.prototype.attr.apply(getNodeEl(), args)
+      d3v4.selection.prototype.attr.apply(getNodeEl(), args)
     }
 
     return tip
   }
 
-  // Public: Proxy style calls to the d3 tip container.  Sets or gets a style value.
+  // Public: Proxy style calls to the d3v4 tip container.  Sets or gets a style value.
   //
   // n - name of the property
   // v - value of the property
@@ -100,7 +100,7 @@ d3.tip = function() {
       if (args.length === 1) {
         var styles = args[0];
         Object.keys(styles).forEach(function(key) {
-          return d3.selection.prototype.style.apply(getNodeEl(), [key, styles[key]]);
+          return d3v4.selection.prototype.style.apply(getNodeEl(), [key, styles[key]]);
         });
       }
     }
@@ -116,7 +116,7 @@ d3.tip = function() {
   // Returns tip or direction
   tip.direction = function(v) {
     if (!arguments.length) return direction
-    direction = v == null ? v : d3.functor(v)
+    direction = v == null ? v : d3v4.functor(v)
 
     return tip
   }
@@ -128,7 +128,7 @@ d3.tip = function() {
   // Returns offset or
   tip.offset = function(v) {
     if (!arguments.length) return offset
-    offset = v == null ? v : d3.functor(v)
+    offset = v == null ? v : d3v4.functor(v)
 
     return tip
   }
@@ -140,7 +140,7 @@ d3.tip = function() {
   // Returns html value or tip
   tip.html = function(v) {
     if (!arguments.length) return html
-    html = v == null ? v : d3.functor(v)
+    html = v == null ? v : d3v4.functor(v)
 
     return tip
   }
@@ -156,9 +156,9 @@ d3.tip = function() {
     return tip;
   }
 
-  function d3_tip_direction() { return 'n' }
-  function d3_tip_offset() { return [0, 0] }
-  function d3_tip_html() { return ' ' }
+  function d3v4_tip_direction() { return 'n' }
+  function d3v4_tip_offset() { return [0, 0] }
+  function d3v4_tip_html() { return ' ' }
 
   var direction_callbacks = {
     n:  direction_n,
@@ -238,7 +238,7 @@ d3.tip = function() {
   }
 
   function initNode() {
-    var node = d3.select(document.createElement('div'))
+    var node = d3v4.select(document.createElement('div'))
     node
       .style('position', 'absolute')
       .style('top', 0)
@@ -263,7 +263,7 @@ d3.tip = function() {
       // re-add node to DOM
       document.body.appendChild(node);
     };
-    return d3.select(node);
+    return d3v4.select(node);
   }
 
   // Private - gets the screen coordinates of a shape
@@ -280,7 +280,7 @@ d3.tip = function() {
   //
   // Returns an Object {n, s, e, w, nw, sw, ne, se}
   function getScreenBBox() {
-    var targetel   = target || d3.event.target;
+    var targetel   = target || d3v4.event.target;
 
     while ('undefined' === typeof targetel.getScreenCTM && 'undefined' === targetel.parentNode) {
         targetel = targetel.parentNode;

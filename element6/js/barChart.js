@@ -331,7 +331,8 @@ function barChart(data, chartDiv, parentDiv, userOptions) {
           window.setTimeout(function () {
             parentColumn.toggleClass("expanded");
             $('.column').not(parentColumn).toggleClass("shrunk");
-            $('.filebox').not(parentFileBox).toggleClass("shrunk");        
+            $('.filebox').not(parentFileBox).toggleClass("shrunk"); 
+            document.getElementById(chart.parentId).scrollIntoView();       
           }, 950);                  
         }
         else {
@@ -339,7 +340,8 @@ function barChart(data, chartDiv, parentDiv, userOptions) {
             parentColumn.toggleClass("expanded");
             window.setTimeout(function () {
               $('.column').not(parentColumn).toggleClass("shrunk");
-              $('.filebox').not(parentFileBox).toggleClass("shrunk");            
+              $('.filebox').not(parentFileBox).toggleClass("shrunk"); 
+              document.getElementById(chart.parentId).scrollIntoView();             
             }, 550);
           }, 950);               
         }
@@ -361,7 +363,8 @@ function barChart(data, chartDiv, parentDiv, userOptions) {
       chart.options.expandFlag = true;
       parentColumn.toggleClass("expanded");
       $('.column').not(parentColumn).toggleClass("shrunk");
-      $('.filebox').not(parentFileBox).toggleClass("shrunk");    
+      $('.filebox').not(parentFileBox).toggleClass("shrunk");
+      document.getElementById(chart.parentId).scrollIntoView();      
       window.setTimeout(function () {
         newWidth = $("#"+chart.divId).width();
         newHeight = 400;

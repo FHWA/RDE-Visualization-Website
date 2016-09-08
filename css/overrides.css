@@ -41,3 +41,11 @@ li.home-current a svg {
 .usa-footer-primary-section {
     background-color: #fdb81e;
 }
+
+header.usa-site-header {
+    z-index: 10000000;
+}
+
+aside.sidenav-mobile {
+    z-index:10000001;
+}

@@ -154,7 +154,7 @@
       <div id="loading-bg" class="loading"></div>
       <img id="loading-spinner" class="loading" src="../img/loading.svg"></img>
     </div>
-    <div id="tooltip">
+    <div id="popup">
       <svg width="100px" height="100px"></svg>
     </div>
 
@@ -234,9 +234,14 @@
   <script src="../js/leaflet/leaflet.js"></script>
   <script src="../js/papaparse/papaparse.min.js"></script>
   <script src="../js/d3/d3.min.js"></script>
+  <script>
+    window.d3v4 = window.d3;
+    window.d3 = undefined;
+  </script>
+  <script src="../js/d3_v3/d3.min.js"></script>
   <script src="../js/Leaflet.EasyButton/easy-button.js"></script>
   <script src="../js/d3-plugins/hexbin/hexbin.js"></script>
-  <script src="../js/simple-statistics/simple-statistics.min.js"></script>
+  <script src="../js/leaflet-d3/custom-leaflet-d3.js"></script>
   <script src="../js/d3-tip/d3-tip.js"></script>
   <script src="js/aggregate_charts.js"></script>
   <script data-main="js/app" type="text/javascript" src="../js/requirejs/require.js"></script>
