@@ -105,17 +105,17 @@ label {
   max-width: none;
 }
 
-rect.bordered, circle.bordered {
-  stroke: #E6E6E6;
+circle.bordered {
+  stroke: #aaa;
   stroke-width:2px;   
 }
 
-text.mono {
+.axisText {
   font-size: 9pt;
   fill: #aaa;
 }
 
-text.mono2 {
+.legendText {
   font-size: 12pt;
   fill: #aaa;
 }
