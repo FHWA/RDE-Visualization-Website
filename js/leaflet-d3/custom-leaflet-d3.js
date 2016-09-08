@@ -31,9 +31,11 @@
 				.x(function(d){ return d.point[0]; })
 				.y(function(d){ return d.point[1]; });
 			this._data = [];
+			//Custom colorScale
 			this._colorScale = d3.scale.linear()
 				.range(this.options.colorRange)
 				.domain([0,1]);
+			//Custom sizeScale
 			this._sizeScale = d3.scale.log()
 				.range([2, 11])
 				.clamp(true);
@@ -69,9 +71,6 @@
 
 			this._container = null;
 			this._map = null;
-
-			// Explicitly will leave the data array alone in case the layer will be shown again
-			//this._data = [];
 		},
 
 		addTo : function(map) {
@@ -115,7 +114,7 @@
 
 			var data = []
 			/* setTimeout function that chunks the data loop to keep the browser responsive.
-	     * returns a promise when it is finished so the rest of the genHexagons function
+	     * returns a promise when it is finished so the rest of the redraw function
 	     * can use the data array */
 	    function processArray(mythis) {
 	      var d = jQuery.Deferred();
@@ -143,7 +142,7 @@
 	      doChunk();
 	      return d.promise();
 	    }
-
+	    //Call our data chunk processing function and once its finished finish redraw
 	    processArray(this).then(function (mythis) {
 				var zoom = mythis._map.getZoom();
 
@@ -185,9 +184,9 @@
 		_createHexagons : function(g, data) {
 			var that = this;
 
-			console.time('count')
 			var counts = [];
-			// Create the bins using the hexbin layout
+			/* Loop over the data and add count of each group and total count of messages
+			 * Also create an array of all the counts used to set the size of each hexagon */
 			var bins = that._hexLayout(data);
 			for (var i = 0; i < bins.length; i++) {
 				bins[i].oneCount = 0, bins[i].zeroCount = 0, bins[i].totCount = 0;
@@ -198,8 +197,8 @@
 				bins[i].totCount = bins[i].oneCount + bins[i].zeroCount
 				counts.push(bins[i].totCount);
 			}
-			console.timeEnd('count')
 
+			//Set the domain of our custom sizeScale using the max and min of message count in each hexagon bin
 			that._sizeScale.domain([Math.min.apply(null, counts), Math.max.apply(null, counts)])
 
 			// Join - Join the Hexagons to the data
@@ -207,6 +206,8 @@
 				.data(bins, function(d){ return d.i + ':' + d.j; });
 
 			// Enter - establish the path, the fill, and the initial opacity
+			/* Use a setTimeout loop to append each hexagon to the map.  This will keep the browser
+			 * responsive as there are a large number of hexagons being drawn */
 			join.enter().append('path').each(function (d, i) {
 				var temp = this;
 				setTimeout(function () {

@@ -32,7 +32,7 @@ var App = (function () {
 
     //Load the data then allow using map
     this.loadData().then(function () { 
-      //Function that hexlayer needs to create the popup
+      //Function that hexlayer needs to create the popup on mouseover
       function createPopup(data) {
         //Remove old tooltips
         d3.select("#popup").selectAll(".arc").remove()
