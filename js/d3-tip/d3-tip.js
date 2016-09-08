@@ -1,7 +1,7 @@
 // d3.tip
 // Copyright (c) 2013 Justin Palmer
-// ES6 / d3 v4 Adaption Copyright (c) 2016 Constantin Gavrilete
-// Removal of ES6 for d3 v4 Adaption Copyright (c) 2016 David Gotz
+// ES6 / D3 v4 Adaption Copyright (c) 2016 Constantin Gavrilete
+// Removal of ES6 for D3 v4 Adaption Copyright (c) 2016 David Gotz
 //
 // Tooltips for d3.js SVG visualizations
 
