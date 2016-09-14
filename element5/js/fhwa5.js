@@ -440,8 +440,9 @@ function initViz(rde, locations) {
     // Function to handle rendering data set name/environment name with
     // hyperlinks
     var renderDataSetEnv = function (data, type) {
-        if ((type) === 'display') {
-            return '<a target="_blank" href="' + data.url + '">' + data.name
+        if (type === 'display') {
+            return '<a target="_blank" title="' + data.name
+                + '" href="' + data.url + '">' + data.name
                 + '</a>';
         }
         else {
@@ -451,8 +452,9 @@ function initViz(rde, locations) {
 
 
     dataTable = $('#data-table-chart').dataTable({
-        "lengthChange": false,
-        "pagingType": "numbers",
+        lengthChange: false,
+        pagingType: "numbers",
+        "autoWidth": false,
         dom: 'T<"clear-l"l><"clear-l"i><"clear-r"f><"clear-r"p>t',
         order: [[0, 'asc']],
         columnDefs: [{
@@ -464,16 +466,28 @@ function initViz(rde, locations) {
                 };
             },
             type: 'html',
+            width: '30%',
             render: renderDataSetEnv,
         }, {
             targets: 1,
             data: function (d) { return dataTableDateFormat(d.startDate); },
+            width: '10%',
         }, {
             targets: 2,
             data: function (d) { return dataTableDateFormat(d.endDate); },
+            width: '10%',
         }, {
             targets: 3,
             data: function (d) { return d.location; },
+            width: '10%',
+            render: function (data, type) {
+                if (type === 'display') {
+                    return '<span title="' + data + '">' + data + '</span>';
+                }
+                else {
+                    return data;
+                }
+            },
         }, {
             targets: 4,
             data: function (d) { return d.size; },
@@ -491,6 +505,7 @@ function initViz(rde, locations) {
             },
             type: 'html',
             render: renderDataSetEnv,
+            width: '30%',
         }]
     });
 
