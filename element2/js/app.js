@@ -37,15 +37,6 @@ var App = (function () {
         //Remove old tooltips
         d3.select("#popup").selectAll(".arc").remove()
         d3.select("#popup").selectAll(".pie").remove()
-        /* Sort the data so larger value is drawn first, also create new data
-         * array so that we can keep track of which data value corresponds to
-         * sent vs received */
-        if (data[0] > data[1]){
-          my_data = [[data[0], 'sent'], [data[1], 'rec']];
-        }
-        else{
-          my_data = [[data[1], 'rec'], [data[0], 'sent']];
-        }
 
         //d3 variables for the pie chart and each pie section
         var arc = d3v4.arc()
@@ -55,7 +46,8 @@ var App = (function () {
           .outerRadius(45+1)
           .innerRadius(45);
         var pie = d3v4.pie()
-          .value(function(d) { return d[0]; });
+          .value(function(d) { return d[0]; })
+          .sort(null);
         var svg = d3v4.select("#popup").select("svg")
           .append("g")
             .attr("class", "pie")
@@ -83,12 +75,12 @@ var App = (function () {
 
         //Create the pie sections, pie themselves, and text on the pies.
         var g = svg.selectAll(".arc")
-          .data(pie(my_data))
+          .data(pie(data))
           .enter().append("g")
             .attr("class", "arc");
         g.append("path")
           .attr("d", arc)
-          .style("fill", function(d, i) { return d.data[1] == 'rec' ? '#dce4ef':'#205493'; });
+          .style("fill", function(d, i) { return d.data[1] == 'rec' ? '#205493':'#dce4ef'; });
         g.append("text")
           .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
           .style("text-anchor", "middle")
@@ -101,6 +93,8 @@ var App = (function () {
         g.append("path")
           .attr("d", border)
           .attr("fill", "black");
+
+        d3v4.selectAll('g .arc > text').moveToFront();
       }
 
       //Create the hexlayer
@@ -117,7 +111,7 @@ var App = (function () {
               msg_received += e.properties.count;
             }
           });
-          createPopup([msg_received,msg_sent-msg_received]);
+          createPopup([[msg_sent-msg_received, 'not_rec'],[msg_received, 'rec']]);
           d3.select("#popup")
             .style("visibility", "visible")
             .style("top", function () { return (d3.event.pageY-305)+"px"})
@@ -418,3 +412,10 @@ d3.select(".anchorHere").append("svg")
     .style("fill", "red")
     .attr("stroke", "black")
     .attr("stroke-width", "1");
+
+//Add a d3 moveToFront function
+d3v4.selection.prototype.moveToFront = function () {
+   return this.each(function () {
+       this.parentNode.parentNode.appendChild(this);
+   });
+};
