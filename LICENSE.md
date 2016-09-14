@@ -29,7 +29,7 @@ Most vendor assets are contained in subdirectories of the `js` directory.  A lic
 - `moment`: [moment](https://github.com/moment/moment), MIT license, copyright Tim Wood, Iskren Chernev, Moment.js contributors.
 - `papaparse`: [PapaParse](https://github.com/mholt/PapaParse), MIT license, copyright Matthew Holt.
 - `requirejs`: [requirejs](https://github.com/requirejs/requirejs), MIT license, copyright [jQuery Foundation](https://jquery.org).
-- `MercatorProjection`/`PapaPromise`/`XHRGet`/`dcTagCategoryUtil`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+- `PapaPromise`/`XHRGet`/`dcTagCategoryUtil`: Modules adapted from StackExchange answers.  See LICENSE file in each directory for details.  Licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 Style guidelines were provided by the [Draft US Web Design Standards](https://github.com/18F/web-design-standards), which are partially in the public domain.  Parts that aren't include:
 
