@@ -278,6 +278,7 @@ var App = (function () {
 
     //Create marker for RSE #153 location and circle for RSE #153 range
     new L.Marker([42.289141,-83.747333], {icon:this.rseIcon}).addTo(this.rse_loc);
+    this.rse_loc.addTo(this.map);
     new L.Circle([42.289141,-83.747333], 300, {}).addTo(this.rse_range);
 
     //Add and remove th range circle so we can change its pointEvents
