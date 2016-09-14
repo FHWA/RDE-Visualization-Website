@@ -205,11 +205,14 @@ var initRoadNetwork = function (scene, map) {
                     // Intuitively, we would expect these links to go "from" ->
                     // "to", but it seems everything is backwards if we go by
                     // that assumption, so we should actually go "to" -> "from"
+                    // Also reverse the freeflow speed and numLanes
                     var uniqueLinkID = props.TONODENO + '-' + props.FROMNODENO,
                         reverseUniqueLinkID = props.FROMNODENO + '-' + props.TONODENO,
                         // Convert km/hr to mph
-                        freeflowSpeed = FHWA.Util.kmhrToMph(+props.V0PRT),
-                        reverseFreeflowSpeed = FHWA.Util.kmhrToMph(+props.R_V0PRT),
+                        reverseFreeflowSpeed = FHWA.Util.kmhrToMph(+props.V0PRT),
+                        freeflowSpeed = FHWA.Util.kmhrToMph(+props.R_V0PRT),
+                        reverseNumLanes = props.NUMLANES,
+                        numLanes = props.R_NUMLANES,
                         linkData = FHWA.Util.initProp(links, uniqueLinkID, []),
                         reverseLinkData = FHWA.Util.initProp(links, reverseUniqueLinkID, []),
                         // Accumulate all the bounding box points for the link so we can
@@ -237,11 +240,13 @@ var initRoadNetwork = function (scene, map) {
                                 linkID: uniqueLinkID,
                                 freeflowSpeed: freeflowSpeed,
                                 line: [to, from],
+                                numLanes: numLanes,
                             });
                             reverseLinkData.push({
                                 linkID: reverseUniqueLinkID,
                                 freeflowSpeed: reverseFreeflowSpeed,
                                 line: [from, to],
+                                numLanes: reverseNumLanes,
                             });
 
                             // Only draw the link in the forward direction, since it looks
@@ -259,6 +264,8 @@ var initRoadNetwork = function (scene, map) {
                         reverseUniqueLinkID: reverseUniqueLinkID,
                         freeflowSpeed: freeflowSpeed,
                         reverseFreeflowSpeed: reverseFreeflowSpeed,
+                        numLanes: numLanes,
+                        reverseNumLanes: reverseNumLanes,
                         points: boundingBoxPoints,
                     };
 

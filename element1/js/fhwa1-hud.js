@@ -223,35 +223,61 @@ function initHUD(scene, initTime) {
                 ).multiply(BABYLON.Matrix.Scaling(
                     // divide by boundLength to normalize, and multiply
                     // by fraction of link display width for viewing
-                    (selectedLinkDisplay.actualSize.width * 0.15) / boundLength,
+                    (selectedLinkDisplay.actualSize.width * 0.25) / boundLength,
                     0,
-                    (selectedLinkDisplay.actualSize.width * 0.15) / boundLength
+                    (selectedLinkDisplay.actualSize.width * 0.25) / boundLength
                 ));
 
             var points = linkData.points.map(function (point) {
-                var vec = BABYLON.Vector3.TransformCoordinates(point, transformation);
-                return new BABYLON.Vector2(vec.x, vec.z);
-            });
-            
+                    var vec = BABYLON.Vector3.TransformCoordinates(point, transformation);
+                    return new BABYLON.Vector2(vec.x, vec.z);
+                }),
+                // Copy the array before reversing, since reverse()
+                // operates in-place
+                reversePoints = points.slice().reverse();
+
             var labelOffset = 35,
-                flowLineOffset = 15,
-                // Vectors representing the initial direction of the A/B links
-                aVector = points.slice(0,2),
-                bVector = points.slice(-2).reverse();
+                flowLineOffset = 20,
+                // Points representing the initial direction of the A/B links
+                aVector = points.slice(0, 2),
+                bVector = reversePoints.slice(0, 2),
+                // Thickness of each line depends on how many lanes there are
+                // Draw at least one lane's worth of thickness
+                laneThickness = 4,
+                aThickness = laneThickness * linkData.numLanes,
+                bThickness = laneThickness * linkData.reverseNumLanes;
+
+            console.log(aThickness, bThickness);
 
             // Place the labels at a point a set distance away from each line
             labelAPosition = pointOffsetFromLine(aVector, labelOffset);
             labelBPosition = pointOffsetFromLine(bVector, labelOffset); 
 
+            var backgroundLinePoints = pathOffsetAlongNormal(points, (aThickness - bThickness)/2);
+
             // Place the flow lines a set distance away from each line
             var flowLineAPoints = lineOffsetFromLine(aVector, flowLineOffset),
                 flowLineBPoints = lineOffsetFromLine(bVector, flowLineOffset);
 
-            selectedLinkLines = new BABYLON.Lines2D(points, {
+            selectedLinkLines = new BABYLON.Group2D({
                 id: 'hud-selected-link-lines',
                 parent: selectedLinkLinesDisplay,
-                fillThickness: 5,
+            });
+            
+            var selectedLinkBackgroundLines = new BABYLON.Lines2D(backgroundLinePoints, {
+                id: 'hud-selected-link-background-lines',
+                parent: selectedLinkLines,
+                fillThickness: aThickness + bThickness,
+                fill: BABYLON.Canvas2D.GetBrushFromString('#000000FF'),
+                zOrder: 0,
+            });
+
+            var selectedLinkDividerLines = new BABYLON.Lines2D(points, {
+                id: 'hud-selected-link-divider-lines',
+                parent: selectedLinkLines,
+                fillThickness: 0.5,
                 fill: BABYLON.Canvas2D.GetBrushFromString('#FFFFFFFF'),
+                zOrder: 0,
             });
 
             var flowLinesBrush = BABYLON.Canvas2D.GetBrushFromString('#fad980FF');
@@ -259,9 +285,10 @@ function initHUD(scene, initTime) {
             selectedLinkAFlowLines = new BABYLON.Lines2D(flowLineAPoints, {
                 id: 'hud-selected-link-a-flow-lines',
                 parent: selectedLinkLinesDisplay,
-                fillThickness: 7.03,
+                fillThickness: 5.03,
                 endCap: BABYLON.Lines2D.ArrowCap,
                 fill: flowLinesBrush,
+                zOrder: 0,
             });
             selectedLinkAFlowLines.isPickable = false;
 
@@ -273,9 +300,10 @@ function initHUD(scene, initTime) {
             selectedLinkBFlowLines = new BABYLON.Lines2D(flowLineBPoints, {
                 id: 'hud-selected-link-b-flow-lines',
                 parent: selectedLinkLinesDisplay,
-                fillThickness: 7.02,
+                fillThickness: 5.02,
                 endCap: BABYLON.Lines2D.ArrowCap,
                 fill: flowLinesBrush,
+                zOrder: 0,
             });
             selectedLinkBFlowLines.isPickable = false;
 
@@ -589,6 +617,7 @@ function initHUD(scene, initTime) {
         }
     };
 
+
     /* Given an array (length 2) of points making up a line,
      * return a point along the line's normal vector in the XZ plane,
      * `offset` pixels away from the line */
@@ -597,10 +626,11 @@ function initHUD(scene, initTime) {
             normal = new BABYLON.Vector2(line.y, -line.x)
                 .normalize()
                 .scaleInPlace(offset),
-            position = points[0].add(line).add(normal);
+            position = points[1].add(normal);
 
         return position;
     };
+
 
     /* Given an array (length 2) of points making up a line,
      * return a parallel line translated `offset` pixels along
@@ -614,6 +644,23 @@ function initHUD(scene, initTime) {
             position2 = points[1].add(normal);
 
         return [position1, position2];
+    };
+
+
+    /* Given a path (array of Vector3) and an offset, return the path with each point
+     * translated `offset` pixels along the surrounding normal vector in the XZ plane */
+    var pathOffsetAlongNormal = function (path, offset) {
+        var offsetPath = [];
+
+        // Special case for the first point, since we don't have a point behind it
+        // of it to draw the normal from; reverse the offset, since we'll be going backwards
+        offsetPath.push(pointOffsetFromLine(path.slice(0, 2).reverse(), -offset));
+
+        for (var i = 0; i < path.length - 1; ++i) {
+            offsetPath.push(pointOffsetFromLine(path.slice(i, i+2), offset));
+        }
+
+        return offsetPath;
     };
 
             
@@ -845,14 +892,16 @@ function initHUD(scene, initTime) {
 
         selectedLinkAText = new BABYLON.Text2D('A', {
             id: 'hud-selected-link-a-text',
-            fontName: '20pt ' + HUD_FONT,
+            fontName: '14pt ' + HUD_FONT,
             parent: selectedLinkLinesDisplay,
+            zOrder: 0,
         });
 
         selectedLinkBText = new BABYLON.Text2D('B', {
             id: 'hud-selected-link-b-text',
-            fontName: '20pt ' + HUD_FONT,
+            fontName: '14pt ' + HUD_FONT,
             parent: selectedLinkLinesDisplay,
+            zOrder: 0,
         });
 
         selectedLinkSparklinesDisplay = new BABYLON.Group2D({
