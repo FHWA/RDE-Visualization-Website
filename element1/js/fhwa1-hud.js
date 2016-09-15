@@ -513,8 +513,10 @@ function initHUD(scene, initTime) {
                 // lane volume
                 linkData.volume
                     ? linkData.volume.map(function (d) {
-                        d.datum = d.datum * 12 / linkData.numLanes;
-                        return d;
+                        return {
+                            datum: d.datum * 12 / linkData.numLanes,
+                            timestamp: d.timestamp,
+                        };
                     })
                     : undefined,
                 // A speed
@@ -522,8 +524,10 @@ function initHUD(scene, initTime) {
                 // B Volume
                 linkData.reverseVolume
                     ? linkData.reverseVolume.map(function (d) {
-                        d.datum = d.datum * 12 / linkData.reverseNumLanes;
-                        return d;
+                        return {
+                            datum: d.datum * 12 / linkData.reverseNumLanes,
+                            timestamp: d.timestamp,
+                        };
                     })
                     : undefined,
                 // B Speed
@@ -545,10 +549,10 @@ function initHUD(scene, initTime) {
                 return max;
             };
 
-            var volumeMaxY = Math.max(safeMax(linkData.volume),
-                    safeMax(linkData.reverseVolume)),
-                speedMaxY = Math.max(safeMax(linkData.speed),
-                    safeMax(linkData.reverseSpeed));
+            var volumeMaxY = Math.max(safeMax(sparklinesData[0]),
+                    safeMax(sparklinesData[2])),
+                speedMaxY = Math.max(safeMax(sparklinesData[1]),
+                    safeMax(sparklinesData[3]));
 
             var maxYs = [
                 // A Volume
@@ -683,7 +687,7 @@ function initHUD(scene, initTime) {
         // Calculate an offset (in units of tickWidth)
         // to effectively right-justify each label based on its length
         // (assumes a monospace font)
-        var charWidth = 3,
+        var charWidth = 4,
             minYLabelOffset = minYLabelText.length * charWidth,
             maxYLabelOffset = maxYLabelText.length * charWidth,
             minYLabelPosition = new BABYLON.Vector2(-(3*tickWidth + minYLabelOffset), -labelTextHeight/2),
