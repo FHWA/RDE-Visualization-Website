@@ -173,6 +173,134 @@ function initHUD(scene, initTime) {
         }
     };
 
+    /* Draws a dashed line (made up of many smaller lines) along the
+     * given points.  Specify the parent of the resulting Group2D,
+     * length of dashes, the length of the
+     * gap between them, their thickness, and their fill. */
+    var drawDashedLine = function (points, parent, lineLength, gapLength, thickness, fill) {
+        var dashGroup = new BABYLON.Group2D({
+            id: 'hud-dashed-line',
+            parent: parent,
+        });
+
+        var i = 0,
+            // Length of our current dash segment
+            curLength = 0,
+            // Offset from the current point to the next point -- between 0 and 1
+            curOffset = 0,
+            curVector = points[i+1].subtract(points[i]),
+            curVectorLength = curVector.length(),
+            // Vector covering the rest of this interval
+            // (accounting for the curOffset)
+            remainingVector = curVector
+                .scaleInPlace(1-curOffset),
+            remainingVectorLength = remainingVector.length(),
+            // Current point to start drawing
+            curPoint = points[i+1].subtract(remainingVector),
+            // Length we have left to draw
+            remainingDrawLength = lineLength - curLength,
+            remainingGapLength = gapLength - curLength,
+            drawPoints = [];
+
+        while (true) {
+            drawPoints.push(curPoint);
+
+            // Skip past points where we're just drawing through them, adding
+            // them to our line as we go
+            while (remainingDrawLength > remainingVectorLength) {
+                curLength += remainingVectorLength;
+                curOffset = 0;
+                drawPoints.push(points[++i]);
+                if (points[i+1] === undefined) {
+                    break;
+                }
+                curVector = points[i+1].subtract(points[i]);
+                curVectorLength = curVector.length();
+                remainingVector = curVector.clone();
+                remainingVectorLength = remainingVector.length();
+                curPoint = points[i];
+                remainingDrawLength = lineLength - curLength;
+
+            }
+
+            // If we've gone past the end of the array, we're done
+            if (points[i+1] === undefined) {
+                break;
+            }
+
+            // Add the endpoint: scale the curVector
+            // such that its length is the rest of the length we
+            // need to add to curLength to get to lineLength, and add
+            // it to the current point.
+            curOffset = curOffset + (lineLength - curLength) / curVectorLength;
+            drawPoints.push(points[i].add(
+                curVector.scale(curOffset)));
+            remainingVector = curVector
+                .scale(1-curOffset);
+            remainingVectorLength = remainingVector.length();
+            curPoint = points[i+1].subtract(remainingVector),
+            curLength = 0;
+            remainingDrawLength = lineLength;
+
+            new BABYLON.Lines2D(drawPoints, {
+                id: 'hud-dashed-line-dash',
+                parent: dashGroup,
+                fillThickness: thickness,
+                fill: fill,
+                zOrder: 0,
+            });
+            drawPoints = [];
+
+            // Skip past the next gap
+            while (remainingGapLength > remainingVectorLength) {
+                curLength += remainingVectorLength;
+                curOffset = 0;
+                ++i;
+                if (points[i+1] === undefined) {
+                    break;
+                }
+                curVector = points[i+1].subtract(points[i]);
+                curVectorLength = curVector.length();
+                remainingVector = curVector.clone();
+                remainingVectorLength = remainingVector.length();
+                curPoint = points[i];
+                remainingGapLength = gapLength - curLength;
+            }
+
+            // If we've gone past the end of the array, we're done
+            if (points[i+1] === undefined) {
+                break;
+            }
+
+            // Keep the curOffset updated for our next go around
+            curOffset = curOffset + (gapLength - curLength) / curVectorLength;
+            remainingVector = curVector
+                .scale(1-curOffset);
+            remainingVectorLength = remainingVector.length();
+            curPoint = points[i+1].subtract(remainingVector),
+            curLength = 0;
+            remainingGapLength = gapLength;
+
+
+        };
+
+        // If we were in the middle of drawing a line, finish it with
+        // the end point
+        if (drawPoints.length > 0) {
+            drawPoints.push(points[points.length-1]);
+
+            new BABYLON.Lines2D(drawPoints, {
+                id: 'hud-dashed-line-dash',
+                parent: dashGroup,
+                fillThickness: thickness,
+                fill: fill,
+            });
+        }
+
+        return dashGroup;
+    };
+
+
     var updateLinkLines = function (linkData) {
         // Default if there's no link data
         var labelAPosition = BABYLON.Vector2.Zero(),
@@ -185,8 +313,12 @@ function initHUD(scene, initTime) {
             // Can't update points on a Lines2D ATM, so we have to make a new one
             // each time; dispose of the old ones
             selectedLinkLines.dispose();
-            selectedLinkAFlowLines.dispose();
-            selectedLinkBFlowLines.dispose();
+            if (selectedLinkAFlowLines) {
+                selectedLinkAFlowLines.dispose();
+            }
+            if (selectedLinkBFlowLines) {
+                selectedLinkBFlowLines.dispose();
+            }
         }
 
         // If we have link data, draw the lines/labels
@@ -223,9 +355,9 @@ function initHUD(scene, initTime) {
                 ).multiply(BABYLON.Matrix.Scaling(
                     // divide by boundLength to normalize, and multiply
                     // by fraction of link display width for viewing
-                    (selectedLinkDisplay.actualSize.width * 0.25) / boundLength,
+                    (selectedLinkDisplay.actualSize.width * 0.35) / boundLength,
                     0,
-                    (selectedLinkDisplay.actualSize.width * 0.25) / boundLength
+                    (selectedLinkDisplay.actualSize.width * 0.35) / boundLength
                 ));
 
             var points = linkData.points.map(function (point) {
@@ -236,28 +368,29 @@ function initHUD(scene, initTime) {
                 // operates in-place
                 reversePoints = points.slice().reverse();
 
-            var labelOffset = 35,
-                flowLineOffset = 20,
-                // Points representing the initial direction of the A/B links
-                aVector = points.slice(0, 2),
+            // Points representing the initial direction of the A/B links
+            var aVector = points.slice(0, 2),
                 bVector = reversePoints.slice(0, 2),
                 // Thickness of each line depends on how many lanes there are
                 // Draw at least one lane's worth of thickness
-                laneThickness = 4,
+                laneThickness = 6,
                 aThickness = laneThickness * linkData.numLanes,
                 bThickness = laneThickness * linkData.reverseNumLanes;
-
-            console.log(aThickness, bThickness);
+                aFlowLineOffset = aThickness + laneThickness,
+                bFlowLineOffset = bThickness + laneThickness,
+                aLabelOffset = aFlowLineOffset + 2*laneThickness,
+                bLabelOffset = bFlowLineOffset + 2*laneThickness;
 
             // Place the labels at a point a set distance away from each line
-            labelAPosition = pointOffsetFromLine(aVector, labelOffset);
-            labelBPosition = pointOffsetFromLine(bVector, labelOffset); 
+            labelAPosition = pointOffsetFromLine(aVector, aLabelOffset);
+            labelBPosition = pointOffsetFromLine(bVector, bLabelOffset); 
 
             var backgroundLinePoints = pathOffsetAlongNormal(points, (aThickness - bThickness)/2);
 
-            // Place the flow lines a set distance away from each line
-            var flowLineAPoints = lineOffsetFromLine(aVector, flowLineOffset),
-                flowLineBPoints = lineOffsetFromLine(bVector, flowLineOffset);
+            // Place the flow lines a distance away from each line based on how many
+            // lanes there are
+            var flowLineAPoints = lineOffsetFromLine(aVector, aFlowLineOffset),
+                flowLineBPoints = lineOffsetFromLine(bVector, bFlowLineOffset);
 
             selectedLinkLines = new BABYLON.Group2D({
                 id: 'hud-selected-link-lines',
@@ -272,40 +405,64 @@ function initHUD(scene, initTime) {
                 zOrder: 0,
             });
 
+            // Draw direction divider lines (i.e. the median)
             var selectedLinkDividerLines = new BABYLON.Lines2D(points, {
                 id: 'hud-selected-link-divider-lines',
                 parent: selectedLinkLines,
                 fillThickness: 0.5,
-                fill: BABYLON.Canvas2D.GetBrushFromString('#FFFFFFFF'),
+                fill: BABYLON.Canvas2D.GetBrushFromString('#fad980FF'),
                 zOrder: 0,
             });
+
+            var lanePoints,
+                laneDividerBrush = BABYLON.Canvas2D.GetBrushFromString('#FFFFFFFF'),
+                lineLength = 5,
+                gapLength = 5,
+                thickness = 0.75;
+
+            // Draw lane divider lines for each side
+            for (var i = 1; i < linkData.numLanes; ++i) {
+                lanePoints = pathOffsetAlongNormal(points, i*laneThickness);
+                drawDashedLine(lanePoints, selectedLinkLines,
+                    lineLength, gapLength, thickness, laneDividerBrush);
+            }
+            for (var i = 1; i < linkData.reverseNumLanes; ++i) {
+                lanePoints = pathOffsetAlongNormal(points, -i*laneThickness);
+                drawDashedLine(lanePoints, selectedLinkLines,
+                    lineLength, gapLength, thickness, laneDividerBrush);
+            }
 
             var flowLinesBrush = BABYLON.Canvas2D.GetBrushFromString('#fad980FF');
 
-            selectedLinkAFlowLines = new BABYLON.Lines2D(flowLineAPoints, {
-                id: 'hud-selected-link-a-flow-lines',
-                parent: selectedLinkLinesDisplay,
-                fillThickness: 5.03,
-                endCap: BABYLON.Lines2D.ArrowCap,
-                fill: flowLinesBrush,
-                zOrder: 0,
-            });
-            selectedLinkAFlowLines.isPickable = false;
+            // Only draw each direction's line if there are lanes in the road
+            if (linkData.numLanes > 0) {
+                selectedLinkAFlowLines = new BABYLON.Lines2D(flowLineAPoints, {
+                    id: 'hud-selected-link-a-flow-lines',
+                    parent: selectedLinkLinesDisplay,
+                    fillThickness: 5.03,
+                    endCap: BABYLON.Lines2D.ArrowCap,
+                    fill: flowLinesBrush,
+                    zOrder: 0,
+                });
+                selectedLinkAFlowLines.isPickable = false;
+            }
 
             // WEIRD BUG: for certain links (ex. 782789795), using the same fill
             // thickness for B and A prevents B from displaying.  Use a slightly
             // different fillThickness to attempt to fix this.
             //
             // TODO: try to reproduce in a playground and file as a bug?
-            selectedLinkBFlowLines = new BABYLON.Lines2D(flowLineBPoints, {
-                id: 'hud-selected-link-b-flow-lines',
-                parent: selectedLinkLinesDisplay,
-                fillThickness: 5.02,
-                endCap: BABYLON.Lines2D.ArrowCap,
-                fill: flowLinesBrush,
-                zOrder: 0,
-            });
-            selectedLinkBFlowLines.isPickable = false;
+            if (linkData.reverseNumLanes > 0) {
+                selectedLinkBFlowLines = new BABYLON.Lines2D(flowLineBPoints, {
+                    id: 'hud-selected-link-b-flow-lines',
+                    parent: selectedLinkLinesDisplay,
+                    fillThickness: 5.02,
+                    endCap: BABYLON.Lines2D.ArrowCap,
+                    fill: flowLinesBrush,
+                    zOrder: 0,
+                });
+                selectedLinkBFlowLines.isPickable = false;
+            }
 
         }
 
@@ -416,7 +573,7 @@ function initHUD(scene, initTime) {
      * emphasis point */
     var drawSparkline = function (config) {
         // Record what point we're at, for drawing an emphasis point
-        var curPointNdx = -1,
+        var curPointNdx = 0,
             curPoint;
 
         var points = config.data.map(function (d, i) {
@@ -426,10 +583,11 @@ function initHUD(scene, initTime) {
             return new BABYLON.Vector2(i, d.datum);
         });
 
-        var curPoint = points[curPointNdx],
-            // Get bounds of the line so we can scale it down to unit
-            // length/height
-            minX = 0,
+        curPoint = points[curPointNdx];
+
+        // Get bounds of the line so we can scale it down to unit
+        // length/height
+        var minX = 0,
             maxX = points.length - 1,
             minY = 0,
             maxY = config.maxY;
