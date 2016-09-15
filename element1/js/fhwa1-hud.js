@@ -509,11 +509,23 @@ function initHUD(scene, initTime) {
             // Otherwise, draw them all
             var sparklinesData = [
                 // A Volume
-                linkData.volume,
+                // Convert from 5 min link volume to hour
+                // lane volume
+                linkData.volume
+                    ? linkData.volume.map(function (d) {
+                        d.datum = d.datum * 12 / linkData.numLanes;
+                        return d;
+                    })
+                    : undefined,
                 // A speed
                 linkData.speed,
                 // B Volume
-                linkData.reverseVolume,
+                linkData.reverseVolume
+                    ? linkData.reverseVolume.map(function (d) {
+                        d.datum = d.datum * 12 / linkData.reverseNumLanes;
+                        return d;
+                    })
+                    : undefined,
                 // B Speed
                 linkData.reverseSpeed,
             ];
@@ -1083,7 +1095,7 @@ function initHUD(scene, initTime) {
             xCoeff: 0.05,
             yCoeff: 0.1,
         }, {
-            text: 'Volume (5min)',
+            text: 'Lane Volume (hr)',
             xCoeff: 0.125,
             yCoeff: 0.7,
         }, {
@@ -1096,7 +1108,7 @@ function initHUD(scene, initTime) {
             // Init with blank space for text so it's hidden
             config.obj = new BABYLON.Text2D(' ', {
                 id: 'hud-selected-link-sparklines-label-' + config.text,
-                fontName: '12pt ' + HUD_FONT,
+                fontName: '10pt ' + HUD_FONT,
                 position: new BABYLON.Vector2(
                     selectedLinkSparklinesDisplay.actualSize.width * config.xCoeff,
                     selectedLinkSparklinesDisplay.actualSize.height * config.yCoeff),
