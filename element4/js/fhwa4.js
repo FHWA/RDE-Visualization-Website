@@ -14,9 +14,9 @@ var charts = {
             curTimeInterval: 5,
             // Function to filter out vehicles based on one or more characteristics
             curFilterFunc: _.stubTrue,
-            // Colorbrewer sequential blue
             colors: ['#ffffcc', '#ffeda0', '#fed976', '#feb24c',
                 '#fd8d3c', '#fc4e2a', '#e31a1c', '#bd0026', '#800026'],
+            backgroundColor: '#D1D1D1',
             // Name of the relevant intervention, for labeling
             intervention: 'Freight Signal Priority',
             // actual dualHeatChart object
@@ -30,8 +30,9 @@ var charts = {
             updateTimeInterval: null,
             curTimeInterval: 5,
             curFilterFunc: _.stubTrue,
-            colors: ['#ffffcc', '#ffeda0', '#fed976', '#feb24c',
-                '#fd8d3c', '#fc4e2a', '#e31a1c', '#bd0026', '#800026'],
+            colors: ['#f7fcf0', '#e0f3db', '#ccebc5', '#a8ddb5',
+                '#7bccc4', '#4eb3d3', '#2b8cbe', '#0868ac', '#084081'],
+            backgroundColor: '#D1D1D1',
             intervention: 'Transit Signal Priority and Freight Signal Priority',
             object: null,
             filterRadios: ['all', 'car', 'truck', 'transit', 'truck-transit'],
@@ -122,6 +123,7 @@ function initChart(chart, data, vehicles) {
         margins: chart.margins,
         timeInterval: chart.curTimeInterval,
         colors: chart.colors,
+        backgroundColor: chart.backgroundColor,
         upperLabel: 'Base Case',
         lowerLabel: chart.intervention,
         tooltipValueLabel: 'vehicle-seconds of delay',

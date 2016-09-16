@@ -13,6 +13,7 @@
  * margins: object containing "top_", "bottom", "left", and "right" properties that determine margins
  * timeInterval: interval (in minutes) width of each bar
  * colors: array of colors to be used as the color scale
+ * backgroundColor: color to fill the background (i.e. "no data")
  * transitionDuration: Base duration for transitions
  * upperLabel: Label for the upper data (ex. "Before")
  * lowerLabel: Label for the lower data (ex. "After")
@@ -44,6 +45,7 @@ function dualHeatChart(upperData, lowerData, userOptions) {
         timeInterval: 5,
         colors: ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6',
             '#2171b5', '#08519c', '#08306b'],
+        backgroundColor: '#ffffff',
         transitionDuration: 750,
         upperLabel: 'Before',
         lowerLabel: 'After',
@@ -98,6 +100,12 @@ function dualHeatChart(upperData, lowerData, userOptions) {
     chart.colors = function (colors) {
         if (!arguments.length) return this_.options.colors;
         this_.options.colors = colors;
+        return chart;
+    }
+
+    chart.backgroundColor = function (color) {
+        if (!arguments.length) return this_.options.backgroundColor;
+        this_.options.backgroundColor = color;
         return chart;
     }
 
@@ -207,7 +215,9 @@ function dualHeatChart(upperData, lowerData, userOptions) {
         var barContainer = svg.select('.bar-container');
         if (barContainer.size() === 0) {
             // Use insert instead of append here so we go behind any axes
-            barContainer = svg.insert('g', ':first-child')
+            // Insert as the 2nd child, because we still want to be in front of the
+            // background
+            barContainer = svg.insert('g', ':nth-child(2)')
                 .classed('bar-container', true);
         }
 
@@ -499,9 +509,17 @@ function dualHeatChart(upperData, lowerData, userOptions) {
 
         if (svgContainer.select('svg').size() === 0) {
             this_.svg = svgContainer.append('svg')
-              .attr('width', this_.options.width)
-              .attr('height', this_.options.height)
-              .classed('dual-heat-chart', true);
+                .attr('width', this_.options.width)
+                .attr('height', this_.options.height)
+                .classed('dual-heat-chart', true);
+
+            // Draw the background
+            this_.svg.append('rect')
+                .attr('x', 0)
+                .attr('y', this_.getChartBodyTop())
+                .attr('width', this_.svg.attr('width'))
+                .attr('height', this_.getChartBodyHeight())
+                .style('fill', this_.options.backgroundColor);
         }
 
         this_.xScale = this_.getXScale();
