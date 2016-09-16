@@ -19,6 +19,10 @@ var App = (function () {
     var _this = this;
     this.geoData = { type: "FeatureCollection", features: []};
     this.hexLayer;
+    this.rseIcon = new L.Icon({
+      iconUrl: 'images/radar.svg',
+      iconSize: [50,50],
+    });
     this.rse_loc = new L.LayerGroup();
     this.rse_range = new L.LayerGroup();
     this.hexbin_group = new L.LayerGroup();
@@ -267,7 +271,7 @@ var App = (function () {
     this.hexbin_group.addTo(this.map);
 
     //Create marker for RSE #153 location and circle for RSE #153 range
-    new L.Marker([42.289141,-83.747333], {clickable: false, keyboard:false}).addTo(this.rse_loc);
+    new L.Marker([42.289141,-83.747333], {icon:this.rseIcon}).addTo(this.rse_loc);
     this.rse_loc.addTo(this.map);
     new L.Circle([42.289141,-83.747333], 300, {}).addTo(this.rse_range);
 
@@ -281,8 +285,8 @@ var App = (function () {
 
     //Add the layer controls
     L.control.layers({}, {
-      '<height="18" width="18"> RSE #153 Location': this.rse_loc, 
-      '<height="18" width="18"> RSE #153 Range':this.rse_range,
+      '<img src="images/radar.svg" height="18" width="18"> RSE #153 Location': this.rse_loc, 
+      '<img src="images/radar.svg" height="18" width="18"> RSE #153 Range':this.rse_range,
       'Hexbin Layer':this.hexbin_group,
     },{collapsed:false}).addTo(this.map);
 
