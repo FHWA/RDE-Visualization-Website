@@ -25,11 +25,15 @@
  *   while preserving the view of the full time frame.
  **/
 
+dualHeatChartID = 0;
 
 // TODO: Switch this from constructor to factory function
 function dualHeatChart(upperData, lowerData, userOptions) {
     var chart = {},
         this_ = this;
+
+    /* Autoincrementing ID for generating DOM IDs */
+    this_.id = dualHeatChartID++;
 
     /* Options + combo getter/setters */
 
@@ -403,7 +407,7 @@ function dualHeatChart(upperData, lowerData, userOptions) {
             .classed('heat-chart-legend', true);
 
         legend.append('linearGradient')
-            .attr('id', 'heat-chart-legend-gradient')
+            .attr('id', 'heat-chart-legend-gradient' + this_.id)
           .selectAll('stop')
             .data(_.map(this_.options.colors, function (color, i) {
                 return {
@@ -420,7 +424,7 @@ function dualHeatChart(upperData, lowerData, userOptions) {
             .attr('y', rectYOffset)
             .attr('width', rectWidth)
             .attr('height', rectHeight)
-            .style('fill', 'url(#heat-chart-legend-gradient)');
+            .style('fill', 'url(#heat-chart-legend-gradient' + this_.id + ')');
 
         legend.append('text')
             .attr('x', this_.options.width - rectWidth - textWidth - textPadding)
