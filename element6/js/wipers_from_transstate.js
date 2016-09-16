@@ -317,6 +317,19 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
         }, 550);    
       }     
     });
+      
+            $(window).resize(function () {
+
+                width = $("#wipersfield").width();
+                w = width - m[1] - m[3];
+                w2 = w;
+
+
+                renderingbits(width, height);
+                wipers_brushed(width, height);
+                wipersbrush.extent([timeBegin, timeEnd]);
+
+            });
   } //end wipersstate
   wipersstate(data);
 }); //end csv

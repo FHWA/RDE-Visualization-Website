@@ -383,6 +383,16 @@ function barChart(data, chartDiv, parentDiv, userOptions) {
       }, 950);         
     }
   });
+    
+      $(window).resize(function () {
+           newHeight= $("#"+chartDiv).height();
+                
+                   newWidth = $("#"+chartDiv).width();
+         
+ chart.renderChart(newWidth, newHeight);
+                  
+
+                });
 
   //Return the chart to the function call
   return chart;   

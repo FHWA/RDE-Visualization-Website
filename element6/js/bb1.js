@@ -125,6 +125,8 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
         var bb1brush = d3.svg.brush()
             .x(x2)
             .on("brush", bb1_brush);
+        
+       
 
         //initial definitions of things that will get resized
         var bb1svg = d3.select("#bb1field")
@@ -173,6 +175,9 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
 
         var bb1context = bb1svg.append("g")
             .attr("class", "context");
+        
+          var actualBrush = bb1context.append("g")
+                    .attr("class", "x brush");
 
         var showStart = d3.select("#BrakeByte1Events .showStart")
             .append("div")
@@ -309,10 +314,14 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             if (bb1context.selectAll(".x.axis")[0].length > 0) {
                 bb1context.selectAll(".x.axis").remove()
             }
-
-            bb1context.append("g")
-                .attr("class", "x brush")
-                .call(bb1brush)
+            
+            
+//            d3.selectAll(".x.brush").remove();
+//           
+//            
+//            bb1context.append("g")
+//                .attr("class", "x brush")
+          actualBrush.call(bb1brush)
                 .selectAll("rect")
                 .attr("y", (h - h2))
                 .attr("height", h2);
@@ -411,6 +420,20 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
                 }, 550);
             }
         }); //end expand
+        
+              $(window).resize(function () {
+                
+                    width = $("#bb1field").width();
+
+                    w2 = width - m[1] - m[3],
+                    w = width - m[1] - m[3];
+
+                    renderingbits(width, height);
+                     bb1_brush(width, height);
+                    bb1brush.extent([timeBegin, timeEnd]);
+                   
+
+                });
     } //end bb1funct
     bb1();
 }); //endcsv

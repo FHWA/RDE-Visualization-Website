@@ -382,6 +382,19 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
           }, 550);
         }
       });
+      
+           $(window).resize(function () {
+
+                width =$("#lightsfield").width();
+                w = width - m[1] - m[3];
+                w2 = w;
+
+
+                renderingbits(width, height);
+                lights_brushed(width, height);
+                lightsbrush.extent([timeBegin, timeEnd]);
+
+            });
     } //end lights
   extLights();
 }); //end csv
