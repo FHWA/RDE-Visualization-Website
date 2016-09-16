@@ -875,6 +875,7 @@ function initHUD(scene, initTime) {
             width: canvas.engine.getRenderWidth() - selectedLinkDisplay.actualSize.width,
             height: 40,
             parent: canvas,
+            marginBottom: '80px',
         });
         timeSlider.isPickable = true;
 
@@ -1004,7 +1005,7 @@ function initHUD(scene, initTime) {
         var dateLabel = new BABYLON.Text2D('October 1st, 2011', {
             id: 'hud-date-label',
             fontName: '14pt ' + HUD_FONT,
-            marginBottom: '85px',
+            marginBottom: '165px',
             marginLeft: '10px',
             parent: canvas,
         });
@@ -1012,7 +1013,7 @@ function initHUD(scene, initTime) {
         clock = new BABYLON.Text2D(formatCurTime(), {
             id: 'hud-clock',
             fontName: '34pt ' + CLOCK_FONT,
-            marginBottom: '40px',
+            marginBottom: '120px',
             marginLeft: '10px',
             parent: canvas,
         });
@@ -1026,6 +1027,14 @@ function initHUD(scene, initTime) {
             // Start hidden
             position: linkDisplayHiddenPosition,
         });
+
+        // Make the legend visible and move it up, setting
+        // its length according to the width of the rendering canvas
+        var legendDiv = document.getElementById('babylon-legend-div');
+        legendDiv.style.visibility = 'visible';
+        legendDiv.style.opacity = 1;
+        legendDiv.style.width = canvas.engine.getRenderWidth() -
+            selectedLinkDisplay.actualSize.width;
 
         selectedLinkDisplay.pointerEventObservable.add(function (event, state) {
             FHWA.Broadcaster.publish(FHWA.Event.HUDEnter, {});
