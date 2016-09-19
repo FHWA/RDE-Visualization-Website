@@ -2,7 +2,7 @@
 
 
 
-d3.csv("csv/TripSummaryNew.csv", function (error, data) {
+d3.csv("csv/culled/TripSummaryNew.csv", function (error, data) {
         function tripsumfunct() {
             var firstTransition = true;
             var items = data;
@@ -61,7 +61,7 @@ d3.csv("csv/TripSummaryNew.csv", function (error, data) {
                 //height of brush is bottom margin 
                 // h2 = m[2];
                 h2 = 20
-                //console.log(w);
+           
 
             var x = d3.time.scale()
                 .range([0, w])
@@ -343,7 +343,7 @@ d3.csv("csv/TripSummaryNew.csv", function (error, data) {
                 tripsumchart.selectAll(".y.axis").call(yAxis);
 
 
-                console.log(tripsumbrush.extent());
+               
                 //move the group of bars
                 tripsumchart.selectAll(".totalg")
                     .attr("transform", function (d) {
@@ -383,7 +383,7 @@ d3.csv("csv/TripSummaryNew.csv", function (error, data) {
                         $('.filebox').not(parentFileBox).toggleClass("shrunk");
                         document.getElementById("BSM_Trip_Summary_File").scrollIntoView();
 
-                        console.log("finished shrinking")
+                      
                     }, 950);
                 } else {
                     parentColumn.toggleClass("expanded");
@@ -405,7 +405,7 @@ d3.csv("csv/TripSummaryNew.csv", function (error, data) {
                         tripsum_brushed(newwidth, newheight);
 
 
-                        console.log("finished expanding")
+                     
                     }, 550);
                 }
 

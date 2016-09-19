@@ -1,4 +1,4 @@
-d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
+d3.csv("csv/culled/ExteriorLightsEvents.csv", function(error, lightsdata) {
 
   function extLights() {
       var barPadding = 22;
@@ -10,9 +10,7 @@ d3.csv("csv/ExteriorLightsEvents_04_11_13.csv", function(error, lightsdata) {
       var thisdiv = d3.select("#ExteriorLightsEvents");
       addentries(items, thisdiv);
 
-      var filtered = items.filter(function(d) {
-        return d.RxDevice == "87"
-      });
+      var filtered = items;
 
       filtered.sort(function (a, b) {
         return a.StartTime - b.Endtime;

@@ -1,4 +1,4 @@
-d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
+d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
 
     function bb1() {
         var barPadding = 25;
@@ -51,9 +51,9 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function (error, data) {
             return a.StartTime - b.StartTime;
         });
 
-        items = items.filter(function (d) {
-            return d.RxDevice == "10";
-        });
+//        items = items.filter(function (d) {
+//            return d.RxDevice == "10";
+//        });
 
         //nest by vehicle to cull
         items = d3.nest().key(function (d) {

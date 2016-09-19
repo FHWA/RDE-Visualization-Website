@@ -1,4 +1,4 @@
-d3.csv("csv/TransStateEvents_04_11_13.csv", function (error, data) {
+d3.csv("csv/culled/TransStateEvents.csv", function (error, data) {
 
     var transstate = function (data) {
             var firstTransition = true;
@@ -32,9 +32,9 @@ d3.csv("csv/TransStateEvents_04_11_13.csv", function (error, data) {
 
             color.domain(encoded);
 
-            items = items.filter(function (d) {
-                return d.RxDevice == 87
-            });
+//            items = items.filter(function (d) {
+//                return d.RxDevice == 87
+//            });
 
             items.sort(function (a, b) {
                 return a.StartTime - b.Endtime;

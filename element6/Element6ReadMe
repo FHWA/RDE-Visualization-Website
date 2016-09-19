@@ -1,0 +1,29 @@
+
+culled/bsm_p1.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #1566) and a representative time span (in this particular file, from GenTime 291864241884364 to GenTime 292766657344748)
+
+culled/TripSummaryNew.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #11) and covers a limited, representative time span (in this particular file, from EpochStartTime 1364842106 to EpochEndTime 1367368552)
+
+sampled/bsm_posaccurbyte1.csv,
+sampled/bsm_posaccurbyte2.csv,
+sampled/bsm_posaccurbyte3.csv,
+sampled/bsm_posaccurbyte4.csv:
+
+culled/BrakeByte1:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #11) and covers a limited, representative time span  (in this particular file, from StartTime 292784986346466 to EndTime 292790448511562)
+
+culled/TransStateEvents.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #87) and covers a limited, representative time span  (in this particular file, from StartTime 292763301284190to EndTime 292803629978980)
+
+culled/ThrottlePositionEvents.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #82) and covers a limited, representative time span  (in this particular file, from StartTime 292762913370720 to EndTime 292763056610625)
+
+culled/bsm_steerangle.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #10) and covers a limited, representative time span  (in this particular file, from StartTime 276176189642801 to EndTime 276177186343373)
+
+culled/ExteriorLightsEvents.csv
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #87) and covers a limited, representative time span  (in this particular file, from StartTime 292780035494795 to EndTime 292806339899799)
+
+culled/WiperStatus.csv:
+Data has been culled to a single RxDevice (in this particular file, to RxDevice #62) and covers a limited, representative time span  (in this particular file, from StartTime 292736266384845 to EndTime 292766657344748)
