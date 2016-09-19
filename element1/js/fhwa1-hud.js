@@ -376,10 +376,10 @@ function initHUD(scene, initTime) {
                 laneThickness = 6,
                 aThickness = laneThickness * linkData.numLanes,
                 bThickness = laneThickness * linkData.reverseNumLanes;
-                aFlowLineOffset = aThickness + laneThickness,
-                bFlowLineOffset = bThickness + laneThickness,
-                aLabelOffset = aFlowLineOffset + 2*laneThickness,
-                bLabelOffset = bFlowLineOffset + 2*laneThickness;
+                aFlowLineOffset = aThickness + 1.25*laneThickness,
+                bFlowLineOffset = bThickness + 1.25*laneThickness,
+                aLabelOffset = aFlowLineOffset + 2.5*laneThickness,
+                bLabelOffset = bFlowLineOffset + 2.5*laneThickness;
 
             // Place the labels at a point a set distance away from each line
             labelAPosition = pointOffsetFromLine(aVector, aLabelOffset);
@@ -409,8 +409,8 @@ function initHUD(scene, initTime) {
             var selectedLinkDividerLines = new BABYLON.Lines2D(points, {
                 id: 'hud-selected-link-divider-lines',
                 parent: selectedLinkLines,
-                fillThickness: 0.5,
-                fill: BABYLON.Canvas2D.GetBrushFromString('#fad980FF'),
+                fillThickness: 1.5,
+                fill: BABYLON.Canvas2D.GetBrushFromString('#FFFFFFFF'),
                 zOrder: 0,
             });
 
@@ -445,6 +445,16 @@ function initHUD(scene, initTime) {
                     zOrder: 0,
                 });
                 selectedLinkAFlowLines.isPickable = false;
+
+                selectedLinkAText.text = 'A';
+                // Label positions are relative to the base link position
+                // Also account for the offset needed to get the position in
+                // the center of the text
+                selectedLinkAText.position = labelAPosition
+                    .add(labelTextOffset);
+            }
+            else {
+                selectedLinkAText.text = ' ';
             }
 
             // WEIRD BUG: for certain links (ex. 782789795), using the same fill
@@ -462,17 +472,17 @@ function initHUD(scene, initTime) {
                     zOrder: 0,
                 });
                 selectedLinkBFlowLines.isPickable = false;
+
+                selectedLinkBText.text = 'B';
+                selectedLinkBText.position = labelBPosition
+                    .add(labelTextOffset);
+            }
+            else {
+                selectedLinkBText.text = ' ';
             }
 
         }
 
-        // Label positions are relative to the base link position
-        // Also account for the offset needed to get the position in
-        // the center of the text
-        selectedLinkAText.position = labelAPosition
-            .add(labelTextOffset);
-        selectedLinkBText.position = labelBPosition
-            .add(labelTextOffset);
     };
 
     /* Given the link data, draw some sparklines: one for each combination
@@ -1022,7 +1032,7 @@ function initHUD(scene, initTime) {
             id: 'hud-selected-link',
             marginAlignment: 'h:right, v:bottom',
             width: 300,
-            height: 350,
+            height: 400,
             parent: canvas,
             // Start hidden
             position: linkDisplayHiddenPosition,
