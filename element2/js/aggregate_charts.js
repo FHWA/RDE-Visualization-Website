@@ -65,7 +65,7 @@ var borderPath = chartSvg.append("rect")
   .attr("ry", 12)
   .attr("height", height)
   .attr("width", width + margin.right + margin.left)
-  .style("stroke", "#aaa")
+  .style("stroke", "#999")
   .style("fill", "none")
   .style("stroke-width", 3);
 

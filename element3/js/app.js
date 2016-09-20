@@ -13,7 +13,7 @@ var PapaPromise = (function () {
 
 //Handy global variables
 var isRunning = false;
-var weatherDataChosen = 'No Overlay';
+var weatherDataChosen = 'Precipitation';
 
 var App = (function () {
   function App() {
@@ -983,7 +983,7 @@ L.Control.TimeDimensionCustom = L.Control.extend({
   //Drop down to switch between canvas overlay style
   _createDropDown: function (title, container) {
     var link = L.DomUtil.create('div', this.options.styleNS + ' timecontrol-' + title.toLowerCase(), container);
-    link.innerHTML = '<select><option selected disabled>Choose Overlay</option><option>No Overlay</option><option>Precipitation</option><option>Surface Status</option></select>';
+    link.innerHTML = '<select><option disabled>Choose Overlay</option><option>No Overlay</option><option selected>Precipitation</option><option>Surface Status</option></select>';
     link.firstChild.onmousedown = link.firstChild.ondblclick = link.firstChild.onclick = L.DomEvent.stopPropagation;
 
     L.DomEvent
