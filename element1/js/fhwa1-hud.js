@@ -521,25 +521,11 @@ function initHUD(scene, initTime) {
                 // A Volume
                 // Convert from 5 min link volume to hour
                 // lane volume
-                linkData.volume
-                    ? linkData.volume.map(function (d) {
-                        return {
-                            datum: d.datum * 12 / linkData.numLanes,
-                            timestamp: d.timestamp,
-                        };
-                    })
-                    : undefined,
+                linkData.volume,
                 // A speed
                 linkData.speed,
                 // B Volume
-                linkData.reverseVolume
-                    ? linkData.reverseVolume.map(function (d) {
-                        return {
-                            datum: d.datum * 12 / linkData.reverseNumLanes,
-                            timestamp: d.timestamp,
-                        };
-                    })
-                    : undefined,
+                linkData.reverseVolume,
                 // B Speed
                 linkData.reverseSpeed,
             ];
