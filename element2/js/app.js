@@ -268,26 +268,37 @@ var App = (function () {
 
     //Create marker for RSE #153 location and circle for RSE #153 range
     var rsemarker = L.ExtraMarkers.icon({
-      markerColor: 'green-light'
+      markerColor: 'orange'
     });
-    new L.Marker([42.289141,-83.747333], {icon: rsemarker}).bindPopup('RSE #153').addTo(this.rse_loc);
+    new L.Marker([42.289141,-83.747333], {icon: rsemarker})
+      .bindPopup('RSE #153')
+      .addTo(this.rse_loc);
     this.rse_loc.addTo(this.map);
-    new L.Circle([42.289141,-83.747333], 300, {}).addTo(this.rse_range);
+    new L.Circle([42.289141,-83.747333], 300, {color:'#ebb02b', fillColor:'#eb9c2b'}).addTo(this.rse_range);
 
-    //Add and remove th range circle so we can change its pointEvents
+    //Add and remove the range circle so we can change its pointEvents
     this.rse_range.addTo(this.map);
     this.map.removeLayer(this.rse_range);
 
     //Change the pointerEvents for rseRange and rseLocation so that it does not interfere with tooltips
-    document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none';
-    document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none'
+    document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none';
+    document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none'; 
+    document.getElementsByClassName('leaflet-shadow-pane')[0].style.pointerEvents = 'none'; 
 
     //Add the layer controls
     L.control.layers({}, {
-      '<height="18" width="18"> RSE #153 Location': this.rse_loc, 
-      '<height="18" width="18"> RSE #153 Range':this.rse_range,
+      'RSE #153 Location': this.rse_loc, 
+      'RSE #153 Range':this.rse_range,
       'Hexbin Layer':this.hexbin_group,
     },{collapsed:false}).addTo(this.map);
+
+    /* Change the pointerEvents for rseRange and rseLocation so that it does not interfere with tooltips
+     * whenever the layer is toggled */
+    this.map.on('overlayadd', function () {
+      document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none';
+      document.getElementsByClassName('leaflet-shadow-pane')[0].style.pointerEvents = 'none';
+      document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none';
+    });
 
     // Add the Carto attribution to the attribution control
     L.control.attribution({ position: 'bottomleft' })
