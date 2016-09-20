@@ -342,6 +342,19 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
       }, 550);
     }
   });
+    
+     $(window).resize(function () {
+
+                width = $("#steerfield").width();
+                w = width - m[1] - m[3];
+                w2 = w;
+
+
+                renderingbits(width, height);
+                steer_brush(width, height);
+                steerbrush.extent([timeBegin, timeEnd]);
+
+            });
 
 
 

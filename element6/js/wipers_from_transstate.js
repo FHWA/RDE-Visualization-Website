@@ -1,4 +1,4 @@
-d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
+d3.csv("csv/culled/WiperStatus.csv", function (error, data) {
   var wipersstate = function (data) {
     var items = data;
     var color = d3.scale.ordinal();
@@ -38,9 +38,6 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
 
     color.domain(encoded);
 
-    items = items.filter(function (d) {
-      return d.RxDevice == 62
-    });
 
     items.sort(function (a, b) {
       return a.StartTime - b.Endtime;
@@ -317,6 +314,19 @@ d3.csv("csv/WiperStatusFrontEvents_04_11_13.csv", function (error, data) {
         }, 550);    
       }     
     });
+      
+            $(window).resize(function () {
+
+                width = $("#wipersfield").width();
+                w = width - m[1] - m[3];
+                w2 = w;
+
+
+                renderingbits(width, height);
+                wipers_brushed(width, height);
+                wipersbrush.extent([timeBegin, timeEnd]);
+
+            });
   } //end wipersstate
   wipersstate(data);
 }); //end csv

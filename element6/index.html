@@ -100,7 +100,7 @@
           <h1 id="getting-started">Breadth of Basic Safety Message Data</h1>
         </header>
 
-        <p class="usa-font-lead">Vehicles equipped to record Basic Safety Message (BSM) data collect vast amounts of data across a wide number of variables. This visualization element presents an overview of those variables, conveying the bredth of data in the BSM protocol.</p>
+        <p class="usa-font-lead">Vehicles equipped to record Basic Safety Message (BSM) data collect vast amounts of data across a wide number of variables. This visualization element presents an overview of those variables. For each file, representative samples of varying durations display data associated with a vehicle, conveying the breadth of data in the BSM protocol. </p>
 
 
         <!-- BEGINNING OF VISUALIZATION ELEMENT -->
@@ -164,7 +164,8 @@
                                 <span class="instruct"></span>
                             </div>
 
-                            <h3 class="h3InViz">BSM_Trip_Summary_File<br /></h3>
+                            <h3 class="h3InViz">BSM_Trip_Summary_File<br />
+                            <span class="instruct">(details such as trip start and end times, total trip distance, and distance driven at speed over 25 mph)</span></h3>
 
                             <div class="toptext clearfix">
                                 <div class="nochart" name="DeviceID">
@@ -201,7 +202,7 @@
                             <div class="chartcol" id="tripSumfield">
                                 <!--                    svg goes here-->
                             </div>
-                            <div class="time_span_text">full time span &asymp; 35min
+                            <div class="time_span_text">full time span &asymp; one month
                             </div>
                             <span class="lil_legend">
                                 <span class="bull">&bull;</span> Total Distance 
@@ -327,7 +328,7 @@
                             </div>
 
                             <h3 class="h3InViz">BrakeByte1Events
-                                <span class="instruct"></span>
+                                <span class="instruct">(overall brake system status of a vehicle)</span>
                             </h3>
 
                             <div class="toptext clearfix">
@@ -372,7 +373,7 @@
                                 </div>
 
                                 <span class="lil_legend">
-                                    <span class="bull unavailable">&bull;</span> unavailable 
+                                    <span class="instruct">Traction Control:</span> <span class="bull unavailable">&bull;</span> unavailable 
                                     <span class="bull off">&bull;</span>available but off
                                     <span class="bull on ">&bull;</span>on but not engaged<br />
                                     <span class="bull engaged">&bull;</span>on and engaged
@@ -381,7 +382,12 @@
                         </div>
 
                         <div class="filebox clearfix" id="BrakeByte2Events">
-                            <h3 class="h3InViz">BrakeByte2Events</h3>
+                            <h3 class="h3InViz">BrakeByte2Events
+                             <span class="instruct">(additional brake system components)</span>
+                            </h3>
+                          
+                            
+                            
                             <div class="toptext clearfix">
                                 <div class="nochart">
                                     RxDevice
@@ -433,7 +439,7 @@
                                 <br/>
                             </div>
                             <div>
-                                <div class="emptyvalrow">ABS:
+                                <div class="emptyvalrow">Antilock Brake System:
                                     <span class="lil_legend">
                                         <span class="bull off">&bull;</span> off
                                         <span class="bull on ">&bull;</span> on
@@ -442,7 +448,7 @@
                                     <br/>
                                 </div>
 
-                                <div class="emptyvalrow">SCU:
+                                <div class="emptyvalrow">Stability Control Unit:
                                     <span class="lil_legend">
                                         <span class="bull unavailable">&bull;</span> unavailable 
                                         <span class="bull off">&bull;</span>off
@@ -451,7 +457,7 @@
                                     <br/>
                                 </div>
 
-                                <div class="emptyvalrow"> BB: 
+                                <div class="emptyvalrow"> Brake Boost: 
                                     <span class="lil_legend">
                                         <span class="bull unavailable">&bull;</span> unavailable 
                                         <span class="bull off">&bull;</span>off
@@ -460,7 +466,7 @@
                                     <br/>
                                 </div>
 
-                                <div class="emptyvalrow"> AuxB: 
+                                <div class="emptyvalrow"> Auxiliary Brake: 
                                     <span class="lil_legend">
                                         <span class="bull unavailable">&bull;</span> unavailable 
                                         <span class="bull off">&bull;</span>off
