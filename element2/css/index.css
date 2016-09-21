@@ -106,18 +106,18 @@ label {
 }
 
 circle.bordered {
-  stroke: #aaa;
+  stroke: #999;
   stroke-width:2px;   
 }
 
 .axisText {
   font-size: 9pt;
-  fill: #aaa;
+  fill: #999;
 }
 
 .legendText {
   font-size: 12pt;
-  fill: #aaa;
+  fill: #999;
 }
 
 .d3-tip {

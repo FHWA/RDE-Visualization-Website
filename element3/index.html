@@ -99,36 +99,36 @@
       //Set the color based on the measurement... Different for each metric
       if (uMetric == 1.0) {
         if (measurement == 0.0) { //No reading
-          vOutColor = vec4(0.420, 0.682, 0.839, 0.6);
+           vOutColor = vec4(0.94, 0.51, 0.45, 0.6);
         }
         else if (measurement == 1.0 || measurement == 2.0 || measurement == 3.0) { //Other, unkown, none
-          vOutColor = vec4(0.420, 0.682, 0.839, 0.6);
+          vOutColor = vec4(0.45, 0.56, 0.78, 0.6);
         }
         else if (measurement == 4.0) { //light
-          vOutColor = vec4(0.192, 0.510, 0.741, 0.6);
+          vOutColor = vec4(0.30, 0.43, 0.651, 0.6);
         }
         else if (measurement == 5.0) { //moderate
-          vOutColor = vec4(0.031, 0.318, 0.611, 0.6);
+          vOutColor = vec4(0.15, 0.30, 0.52, 0.6);
         }
         else { //heavy
-          vOutColor = vec4(0.0, 0.235, 0.471, 0.6);
+          vOutColor = vec4(0.0, 0.18, 0.40, 0.6);
         }
       }
       else if (uMetric == 2.0) {
         if (measurement == 0.0) { //no reading
-          vOutColor = vec4(0.988, 0.530, 0.361, 0.6);
+          vOutColor = vec4(0.94, 0.51, 0.45, 0.6);
         }
         else if (measurement == 1.0 || measurement == 3.0 || measurement == 4.0) { //Other, dry, damp
-          vOutColor = vec4(0.988, 0.530, 0.361, 0.6);
+          vOutColor = vec4(0.52, 0.7, 0.4, 0.6);
         }
         else if (measurement == 6.0) { //wet
-          vOutColor = vec4(0.921, 0.353, 0.235, 0.6);
+          vOutColor = vec4(0.36, 0.54, 0.32, 0.6);
         }
         else if (measurement == 9.0 || measurement== 10.0) { //Snow Watch, snow warning
-          vOutColor = vec4(0.796, 0.094, 0.114, 0.6);
+          vOutColor = vec4(0.21, 0.39, 0.24, 0.6);
         }
         else { //frost, ice
-          vOutColor = vec4(0.510, 0.0, 0.020, 0.6);
+          vOutColor = vec4(0.06, 0.239, 0.173, 0.6);
         }
       }
       else { //Displaying no overlay

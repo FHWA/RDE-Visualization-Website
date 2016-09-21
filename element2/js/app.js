@@ -19,10 +19,6 @@ var App = (function () {
     var _this = this;
     this.geoData = { type: "FeatureCollection", features: []};
     this.hexLayer;
-    this.rseIcon = new L.Icon({
-      iconUrl: 'images/radar.svg',
-      iconSize: [50,50],
-    });
     this.rse_loc = new L.LayerGroup();
     this.rse_range = new L.LayerGroup();
     this.hexbin_group = new L.LayerGroup();
@@ -37,15 +33,6 @@ var App = (function () {
         //Remove old tooltips
         d3.select("#popup").selectAll(".arc").remove()
         d3.select("#popup").selectAll(".pie").remove()
-        /* Sort the data so larger value is drawn first, also create new data
-         * array so that we can keep track of which data value corresponds to
-         * sent vs received */
-        if (data[0] > data[1]){
-          my_data = [[data[0], 'sent'], [data[1], 'rec']];
-        }
-        else{
-          my_data = [[data[1], 'rec'], [data[0], 'sent']];
-        }
 
         //d3 variables for the pie chart and each pie section
         var arc = d3v4.arc()
@@ -55,7 +42,8 @@ var App = (function () {
           .outerRadius(45+1)
           .innerRadius(45);
         var pie = d3v4.pie()
-          .value(function(d) { return d[0]; });
+          .value(function(d) { return d[0]; })
+          .sort(null);
         var svg = d3v4.select("#popup").select("svg")
           .append("g")
             .attr("class", "pie")
@@ -83,12 +71,12 @@ var App = (function () {
 
         //Create the pie sections, pie themselves, and text on the pies.
         var g = svg.selectAll(".arc")
-          .data(pie(my_data))
+          .data(pie(data))
           .enter().append("g")
             .attr("class", "arc");
         g.append("path")
           .attr("d", arc)
-          .style("fill", function(d, i) { return d.data[1] == 'rec' ? '#dce4ef':'#205493'; });
+          .style("fill", function(d, i) { return d.data[1] == 'rec' ? '#205493':'#dce4ef'; });
         g.append("text")
           .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
           .style("text-anchor", "middle")
@@ -101,6 +89,8 @@ var App = (function () {
         g.append("path")
           .attr("d", border)
           .attr("fill", "black");
+
+        d3v4.selectAll('g .arc > text').moveToFront();
       }
 
       //Create the hexlayer
@@ -117,7 +107,7 @@ var App = (function () {
               msg_received += e.properties.count;
             }
           });
-          createPopup([msg_received,msg_sent-msg_received]);
+          createPopup([[msg_sent-msg_received, 'not_rec'],[msg_received, 'rec']]);
           d3.select("#popup")
             .style("visibility", "visible")
             .style("top", function () { return (d3.event.pageY-305)+"px"})
@@ -277,23 +267,38 @@ var App = (function () {
     this.hexbin_group.addTo(this.map);
 
     //Create marker for RSE #153 location and circle for RSE #153 range
-    new L.Marker([42.289141,-83.747333], {icon:this.rseIcon}).addTo(this.rse_loc);
-    new L.Circle([42.289141,-83.747333], 300, {}).addTo(this.rse_range);
+    var rsemarker = L.ExtraMarkers.icon({
+      markerColor: 'orange'
+    });
+    new L.Marker([42.289141,-83.747333], {icon: rsemarker})
+      .bindPopup('RSE #153')
+      .addTo(this.rse_loc);
+    this.rse_loc.addTo(this.map);
+    new L.Circle([42.289141,-83.747333], 300, {color:'#ebb02b', fillColor:'#eb9c2b'}).addTo(this.rse_range);
 
-    //Add and remove th range circle so we can change its pointEvents
+    //Add and remove the range circle so we can change its pointEvents
     this.rse_range.addTo(this.map);
     this.map.removeLayer(this.rse_range);
 
     //Change the pointerEvents for rseRange and rseLocation so that it does not interfere with tooltips
-    document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none';
-    document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none'
+    document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none';
+    document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none'; 
+    document.getElementsByClassName('leaflet-shadow-pane')[0].style.pointerEvents = 'none'; 
 
     //Add the layer controls
     L.control.layers({}, {
-      '<img src="images/radar.svg" height="18" width="18"> RSE #153 Location': this.rse_loc, 
-      '<img src="images/radar.svg" height="18" width="18"> RSE #153 Range':this.rse_range,
+      'RSE #153 Location': this.rse_loc, 
+      'RSE #153 Range':this.rse_range,
       'Hexbin Layer':this.hexbin_group,
     },{collapsed:false}).addTo(this.map);
+
+    /* Change the pointerEvents for rseRange and rseLocation so that it does not interfere with tooltips
+     * whenever the layer is toggled */
+    this.map.on('overlayadd', function () {
+      document.getElementsByClassName('leaflet-marker-pane')[0].style.pointerEvents = 'none';
+      document.getElementsByClassName('leaflet-shadow-pane')[0].style.pointerEvents = 'none';
+      document.getElementsByClassName('leaflet-zoom-animated')[0].style.pointerEvents = 'none';
+    });
 
     // Add the Carto attribution to the attribution control
     L.control.attribution({ position: 'bottomleft' })
@@ -417,3 +422,10 @@ d3.select(".anchorHere").append("svg")
     .style("fill", "red")
     .attr("stroke", "black")
     .attr("stroke-width", "1");
+
+//Add a d3 moveToFront function
+d3v4.selection.prototype.moveToFront = function () {
+   return this.each(function () {
+       this.parentNode.parentNode.appendChild(this);
+   });
+};

@@ -61,11 +61,9 @@ var speedLabels = chartSvg.selectAll('.speedLabels')
 var borderPath = chartSvg.append("rect")
   .attr("x", -48)
   .attr("y", -47)
-  .attr("rx", 12)
-  .attr("ry", 12)
   .attr("height", height)
   .attr("width", width + margin.right + margin.left)
-  .style("stroke", "#aaa")
+  .style("stroke", "#999")
   .style("fill", "none")
   .style("stroke-width", 3);
 
