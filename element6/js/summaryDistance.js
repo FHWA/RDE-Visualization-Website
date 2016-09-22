@@ -2,7 +2,7 @@
 
 
 
-d3.csv("csv/culled/TripSummaryNew.csv", function (error, data) {
+d3.csv("element6_data/TripSummaryNew.csv", function (error, data) {
         function tripsumfunct() {
             var firstTransition = true;
             var items = data;
@@ -42,6 +42,24 @@ d3.csv("csv/culled/TripSummaryNew.csv", function (error, data) {
             var timeEnd = d3.max(items, function (d) {
                 return d.EpochEndTime;
             });
+            
+             var duration= timeEnd - timeBegin;
+
+    
+  d3.selectAll("#BSM_Trip_Summary_File .time_span_text").html(function(){
+      
+         if (duration > 86400000) {
+                return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+            } else if (duration > 3600000) {
+                return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+            } else if (duration > 60000) {
+                return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+            } else {
+                return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+            }
+
+      
+         })
 
             items.sort(function (a, b) {
                 return a.EpochStartTime - b.EpochStartTime

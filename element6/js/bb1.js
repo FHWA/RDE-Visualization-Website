@@ -1,4 +1,4 @@
-d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
+d3.csv("element6_data/BrakeByte1.csv", function (error, data) {
 
     function bb1() {
         var barPadding = 25;
@@ -51,9 +51,9 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
             return a.StartTime - b.StartTime;
         });
 
-//        items = items.filter(function (d) {
-//            return d.RxDevice == "10";
-//        });
+        //        items = items.filter(function (d) {
+        //            return d.RxDevice == "10";
+        //        });
 
         //nest by vehicle to cull
         items = d3.nest().key(function (d) {
@@ -84,6 +84,21 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
         var timeEnd = d3.max(vehicle, function (d) {
             return d.StartTime;
         });
+
+        var duration = timeEnd - timeBegin;
+
+        d3.select("#BrakeByte1Events .time_span_text").html(function () {
+            if (duration > 86400000) {
+                return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+            } else if (duration > 3600000) {
+                return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+            } else if (duration > 60000) {
+                return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+            } else {
+                return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+            }
+
+        })
 
         var width = $("#bb1field").width();
         var height = 280;
@@ -125,8 +140,8 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
         var bb1brush = d3.svg.brush()
             .x(x2)
             .on("brush", bb1_brush);
-        
-       
+
+
 
         //initial definitions of things that will get resized
         var bb1svg = d3.select("#bb1field")
@@ -164,9 +179,10 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
                     return "Traction Control System"
                 } else if (d.name == "avail") {
                     return "Brake Information Unavailable"
+                } else {
+                    return ""
                 }
-                else{ return ""}
-               
+
             })
             .attr("dy", -5);
 
@@ -175,9 +191,9 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
 
         var bb1context = bb1svg.append("g")
             .attr("class", "context");
-        
-          var actualBrush = bb1context.append("g")
-                    .attr("class", "x brush");
+
+        var actualBrush = bb1context.append("g")
+            .attr("class", "x brush");
 
         var showStart = d3.select("#BrakeByte1Events .showStart")
             .append("div")
@@ -314,14 +330,14 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
             if (bb1context.selectAll(".x.axis")[0].length > 0) {
                 bb1context.selectAll(".x.axis").remove()
             }
-            
-            
-//            d3.selectAll(".x.brush").remove();
-//           
-//            
-//            bb1context.append("g")
-//                .attr("class", "x brush")
-          actualBrush.call(bb1brush)
+
+
+            //            d3.selectAll(".x.brush").remove();
+            //           
+            //            
+            //            bb1context.append("g")
+            //                .attr("class", "x brush")
+            actualBrush.call(bb1brush)
                 .selectAll("rect")
                 .attr("y", (h - h2))
                 .attr("height", h2);
@@ -420,20 +436,20 @@ d3.csv("csv/culled/BrakeByte1.csv", function (error, data) {
                 }, 550);
             }
         }); //end expand
-        
-              $(window).resize(function () {
-                
-                    width = $("#bb1field").width();
 
-                    w2 = width - m[1] - m[3],
-                    w = width - m[1] - m[3];
+        $(window).resize(function () {
 
-                    renderingbits(width, height);
-                     bb1_brush(width, height);
-                    bb1brush.extent([timeBegin, timeEnd]);
-                   
+            width = $("#bb1field").width();
 
-                });
+            w2 = width - m[1] - m[3],
+                w = width - m[1] - m[3];
+
+            renderingbits(width, height);
+            bb1_brush(width, height);
+            bb1brush.extent([timeBegin, timeEnd]);
+
+
+        });
     } //end bb1funct
     bb1();
 }); //endcsv

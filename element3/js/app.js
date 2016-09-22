@@ -106,28 +106,28 @@ var App = (function () {
   });
   Object.defineProperty(App, "VEHICLE_FILE", {
     get: function () {
-      return location.href + 'data/vehicle_data.csv';
+      return location.href + '/data/vehicle_data.csv';
     },
     enumerable: true,
     configurable: true
   });
   Object.defineProperty(App, "WEATHER_FILE", {
     get: function () {
-      return location.href + 'data/weather_data.csv';
+      return location.href + '/data/weather_data.csv';
     },
     enumerable: true,
     configurable: true
   });
   Object.defineProperty(App, "MDTX_FILE", {
     get: function () {
-      return location.href + 'data/mdtx_data.csv';
+      return location.href + '/data/mdtx_data.csv';
     },
     enumerable: true,
     configurable: true
   });
   Object.defineProperty(App, "VAIX_FILE", {
     get: function () {
-      return location.href + 'data/vaix_data.csv';
+      return location.href + '/data/vaix_data.csv';
     },
     enumerable: true,
     configurable: true

@@ -1,4 +1,4 @@
-d3.csv('csv/sampled/bsm_posaccurbyte1.csv', function (posAccByte1) {
+d3.csv('element6_data/bsm_posaccurbyte1.csv', function (posAccByte1) {
   var items = [];
   posAccByte1.forEach(function (d) {
     var temp = {}
@@ -26,9 +26,38 @@ d3.csv('csv/sampled/bsm_posaccurbyte1.csv', function (posAccByte1) {
   var thisdiv = d3.select("#PosAccurByte1Events");
   addentries(posAccByte1, thisdiv);                       
   pAB1.draw();
+    
+    
+    
+    var timeBegin = d3.min(items, function (d) {
+                    return d.StartTime;
+                });
+    
+var timeEnd = d3.max(items, function (d) {
+                    return d.EndTime;
+                });
+  
+         var duration= timeEnd - timeBegin;
+ 
+  d3.selectAll("#PosAccurByte1Events .time_span_text2").html(function(){
+            
+             
+         if (duration > 86400000) {
+                return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+            } else if (duration > 3600000) {
+                return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+            } else if (duration > 60000) {
+                return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+            } else {
+                return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+            }
+
+
+      
+         })
 });
 
-d3.csv('csv/sampled/bsm_posaccurbyte2.csv', function (posAccByte2) {
+d3.csv('element6_data/bsm_posaccurbyte2.csv', function (posAccByte2) {
   var items = [];
   posAccByte2.forEach(function (d) {
     var temp = {}
@@ -55,7 +84,7 @@ d3.csv('csv/sampled/bsm_posaccurbyte2.csv', function (posAccByte2) {
   pAB2.draw(); 
 });
 
-d3.csv('csv/sampled/bsm_posaccurbyte3.csv', function (posAccByte3) {
+d3.csv('element6_data/bsm_posaccurbyte3.csv', function (posAccByte3) {
   var items = [];
   posAccByte3.forEach(function (d) {
     var temp = {}
@@ -82,7 +111,7 @@ d3.csv('csv/sampled/bsm_posaccurbyte3.csv', function (posAccByte3) {
   pAB3.draw();    
 });
 
-d3.csv('csv/sampled/bsm_posaccurbyte4.csv', function (posAccByte4) {
+d3.csv('element6_data/bsm_posaccurbyte4.csv', function (posAccByte4) {
   var items = [];
   posAccByte4.forEach(function (d) {
     var temp = {}

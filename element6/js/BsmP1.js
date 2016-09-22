@@ -1,4 +1,4 @@
-d3.csv("csv/culled/bsm_p1.csv", function (error, data) {
+d3.csv("element6_data/bsm_p1.csv", function (error, data) {
 
     function bsmp1() {
         var barPadding = 25;
@@ -138,7 +138,20 @@ d3.csv("csv/culled/bsm_p1.csv", function (error, data) {
                 var timeEnd = d3.max(vehicle, function (d) {
                     return d.GenTime;
                 });
-
+            
+            var duration = timeEnd - timeBegin;
+            
+      
+            d3.select("#BsmP1 .time_span_text").html(function(){
+                   if (duration > 86400000){return "full time span ≈ " + parseFloat(duration/86400000).toFixed(1)  + " days"}
+            else if (duration > 3600000){return "full time span ≈ " + parseFloat(duration/3600000).toFixed(1)  + " hours"}
+            else if (duration > 60000 ){return "full time span ≈ " + parseFloat(duration/60000).toFixed(1)  + " minutes"}
+                else {return "full time span ≈ " + parseFloat(duration/1000).toFixed(1)  + " seconds"}
+         
+  
+      
+         })   
+          
                 var width = $("#BsmPfield").width();
                 var height = 550;
 

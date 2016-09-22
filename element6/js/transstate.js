@@ -1,4 +1,4 @@
-d3.csv("csv/culled/TransStateEvents.csv", function (error, data) {
+d3.csv("element6_data/TransStateEvents.csv", function (error, data) {
 
     var transstate = function (data) {
             var firstTransition = true;
@@ -31,10 +31,6 @@ d3.csv("csv/culled/TransStateEvents.csv", function (error, data) {
             }); // end for loop
 
             color.domain(encoded);
-
-//            items = items.filter(function (d) {
-//                return d.RxDevice == 87
-//            });
 
             items.sort(function (a, b) {
                 return a.StartTime - b.Endtime;
@@ -69,6 +65,22 @@ d3.csv("csv/culled/TransStateEvents.csv", function (error, data) {
             var timeEnd = d3.max(items, function (d) {
                 return d.Endtime;
             });
+        
+                       var duration= timeEnd - timeBegin;
+    
+  d3.select("#TransStateEvents .time_span_text").html(function(){
+           
+         if (duration > 86400000) {
+                return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+            } else if (duration > 3600000) {
+                return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+            } else if (duration > 60000) {
+                return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+            } else {
+                return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+            }
+      
+         })  
 
             var width = $("#transfield").width();
             var height = 95;
