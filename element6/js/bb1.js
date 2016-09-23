@@ -51,10 +51,6 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
       return a.StartTime - b.StartTime;
     });
 
-    //        items = items.filter(function (d) {
-    //            return d.RxDevice == "10";
-    //        });
-
     //nest by vehicle to cull
     items = d3.nest().key(function(d) {
       return d.RxDevice;
@@ -108,8 +104,6 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
     //for brush
     var m2 = [0, 5, 0, 5], //top right bottom left
       w2 = width - m2[1] - m2[3],
-      //height of brush is height of bottom margin,so uses m not m2
-      // h2 = m[2];
       h2 = 20;
 
     var x = d3.time.scale()
@@ -140,8 +134,6 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
     var bb1brush = d3.svg.brush()
       .x(x2)
       .on("brush", bb1_brush);
-
-
 
     //initial definitions of things that will get resized
     var bb1svg = d3.select("#bb1field")
@@ -191,9 +183,6 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
 
     var bb1context = bb1svg.append("g")
       .attr("class", "context");
-
-    var actualBrush = bb1context.append("g")
-      .attr("class", "x brush");
 
     var showStart = d3.select("#BrakeByte1Events .showStart")
       .append("div")
@@ -331,13 +320,9 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
         bb1context.selectAll(".x.axis").remove()
       }
 
-
-      //            d3.selectAll(".x.brush").remove();
-      //           
-      //            
-      //            bb1context.append("g")
-      //                .attr("class", "x brush")
-      actualBrush.call(bb1brush)
+      bb1context.append("g")
+        .attr("class", "x brush")
+        .call(bb1brush)
         .selectAll("rect")
         .attr("y", (h - h2))
         .attr("height", h2);
@@ -357,16 +342,16 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
 
       drawBrush();
 
-      ////replace hard to use handles with big arcs        
+      var bb1contextxaxis = bb1context.append("g")
+        .attr("class", "x axis").attr("transform", "translate(" + m2[3] + "," + (h - h2) + ")")
+        .call(xAxis2);
+
+      //replace hard to use handles with big arcs      
       var handleoffset = d3.selectAll("#bb1field .context .resize.e rect").attr("y");
       d3.selectAll("#bb1field .context .resize rect").attr("opacity", 0);
       d3.selectAll("#bb1field .context .resize path").remove();
       brusharcs = bb1context.selectAll("#bb1field .resize").append("path").attr("class", "brusharc").attr("transform", "translate(0," + (h - h2 / 2) + ")").attr("d", arc);
       brushrects = bb1context.selectAll("#bb1field .resize").append("rect").attr("class", "brushrect").attr("width", 1.5).attr("height", h2 + 10).attr("y", (handleoffset - 5));
-
-      var bb1contextxaxis = bb1context.append("g")
-        .attr("class", "x axis").attr("transform", "translate(" + m2[3] + "," + (h - h2) + ")")
-        .call(xAxis2);
     }
 
     renderingbits(newwidth, newheight);
@@ -384,7 +369,6 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
             return 1;
           } else {
             return x(d.Endtime) - x(d.StartTime);
-
           }
         })
         .attr("height", (h / encoded.length) - barPadding)
@@ -438,18 +422,15 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
     }); //end expand
 
     $(window).resize(function() {
-
       width = $("#bb1field").width();
-
-      w2 = width - m[1] - m[3],
-        w = width - m[1] - m[3];
+      w2 = width - m[1] - m[3];
+      w = width - m[1] - m[3];
 
       renderingbits(width, height);
       bb1_brush(width, height);
       bb1brush.extent([timeBegin, timeEnd]);
-
-
     });
   } //end bb1funct
+
   bb1();
 }); //endcsv
