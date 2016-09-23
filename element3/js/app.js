@@ -668,10 +668,10 @@ var legend = L.control({position: 'bottomright'});
 legend.onAdd = function () {
   var div = L.DomUtil.create('div', 'info legend');
   div.innerHTML += '<img src="images/radar.svg" height="18" width="18" style="margin-right:6px">Precipitation Intensity:<br>';
-  div.innerHTML += '<i style="background:#ffe8d9"></i><i style="background:#D9F5FF"></i><i style="background:#B2D4FF"></i><i style="background:#8CB2EA"></i><i style="background:#6694CC"></i><br>';
+  div.innerHTML += '<i style="background:#FFF; border:1px solid #ccc"></i><i style="background:#C9D2ED"></i><i style="background:#ABBAD6"></i><i style="background:#8FA2C2"></i><i style="background:#728AAD"></i><br>';
   div.innerHTML += 'Unavailable<i class ="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:8px;margin-right:8px"></i>None<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:8px;margin-right:8px"></i>Light<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:8px;margin-right:8px"></i>Steady<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:8px;margin-right:8px"></i>Severe<br><br>';
   div.innerHTML += '<img src="images/radar.svg" height="18" width="18" style="margin-right:6px">Surface Status:<br>';
-  div.innerHTML += '<i style="background:#ffe8d9"></i><i style="background:#EAFFCC"></i><i style="background:#C2F0B8"></i><i style="background:#9CC9A3"></i><i style="background:#75A392"></i><br>';
+  div.innerHTML += '<i style="background:#FFF; border:1px solid #ccc"></i><i style="background:#CCF5D5"></i><i style="background:#B0D6C1"></i><i style="background:#96B6AD"></i><i style="background:#789799"></i><br>';
   div.innerHTML += 'Unavailable<i class ="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:8px;margin-right:8px"></i>Dry<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Damp<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Wet<i class="icon ion-arrow-right-c" style="width:5px;float:none;margin-left:12px;margin-right:15px"></i>Icy<br><br>';
   div.innerHTML += '<img src="../img/snowplow.png" height="18" width="18" style="margin-right:10px">Road Condition Markers:<br>';
   div.innerHTML += '<div class="extra-marker-circle-black extra-marker" style="position:static;float:left;margin-right:45px"><i class="icon ion-checkmark icon-white" style="float:none"></i><br><br>Dry</div>';

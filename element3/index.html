@@ -96,39 +96,40 @@
         }        
       }
 
+
       //Set the color based on the measurement... Different for each metric
-      if (uMetric == 1.0) {
+      if (uMetric == 1.0) { //Precipitation Intensity
         if (measurement == 0.0) { //No reading
-           vOutColor = vec4(0.94, 0.51, 0.45, 0.6);
+          vOutColor = vec4(0, 0, 0, 0);
         }
         else if (measurement == 1.0 || measurement == 2.0 || measurement == 3.0) { //Other, unkown, none
-          vOutColor = vec4(0.45, 0.56, 0.78, 0.6);
+          vOutColor = vec4(0.388, 0.423, 0.529, 0.6);
         }
         else if (measurement == 4.0) { //light
-          vOutColor = vec4(0.30, 0.43, 0.651, 0.6);
+          vOutColor = vec4(0.27, 0.329, 0.44, 0.6);
         }
         else if (measurement == 5.0) { //moderate
-          vOutColor = vec4(0.15, 0.30, 0.52, 0.6);
+          vOutColor = vec4(0.16, 0.235, 0.36, 0.6);
         }
         else { //heavy
-          vOutColor = vec4(0.0, 0.18, 0.40, 0.6);
+          vOutColor = vec4(0.047, 0.14, 0.278, 0.6);
         }
       }
-      else if (uMetric == 2.0) {
-        if (measurement == 0.0) { //no reading
-          vOutColor = vec4(0.94, 0.51, 0.45, 0.6);
+      else if (uMetric == 2.0) { //Surface Status
+        if (measurement == 0.0) { //No reading
+          vOutColor = vec4(0, 0, 0, 0);
         }
         else if (measurement == 1.0 || measurement == 3.0 || measurement == 4.0) { //Other, dry, damp
-          vOutColor = vec4(0.52, 0.7, 0.4, 0.6);
+          vOutColor = vec4(0.40, 0.560, 0.435, 0.6);
         }
         else if (measurement == 6.0) { //wet
-          vOutColor = vec4(0.36, 0.54, 0.32, 0.6);
+          vOutColor = vec4(0.29, 0.439, 0.356, 0.6);
         }
         else if (measurement == 9.0 || measurement== 10.0) { //Snow Watch, snow warning
-          vOutColor = vec4(0.21, 0.39, 0.24, 0.6);
+          vOutColor = vec4(0.188, 0.313, 0.278, 0.6);
         }
         else { //frost, ice
-          vOutColor = vec4(0.06, 0.239, 0.173, 0.6);
+          vOutColor = vec4(0.07, 0.192, 0.2, 0.6);
         }
       }
       else { //Displaying no overlay
