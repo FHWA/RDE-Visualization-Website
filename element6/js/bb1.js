@@ -1,4 +1,4 @@
-d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
+d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
 
   function bb1() {
     var barPadding = 25;
@@ -51,8 +51,6 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
       return a.StartTime - b.StartTime;
     });
 
-    items = items.filter(function (d) { return d.RxDevice == "10"; });
-
     //nest by vehicle to cull
     items = d3.nest().key(function(d) {
       return d.RxDevice;
@@ -83,6 +81,21 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
       return d.StartTime;
     });
 
+    var duration = timeEnd - timeBegin;
+
+    d3.select("#BrakeByte1Events .time_span_text").html(function() {
+      if (duration > 86400000) {
+        return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+      } else if (duration > 3600000) {
+        return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+      } else if (duration > 60000) {
+        return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+      } else {
+        return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+      }
+
+    })
+
     var width = $("#bb1field").width();
     var height = 280;
     var m = [20, 15, 30, 15], //top right bottom left
@@ -91,8 +104,6 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
     //for brush
     var m2 = [0, 5, 0, 5], //top right bottom left
       w2 = width - m2[1] - m2[3],
-      //height of brush is height of bottom margin,so uses m not m2
-      // h2 = m[2];
       h2 = 20;
 
     var x = d3.time.scale()
@@ -148,7 +159,22 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
 
     var labels = eventrows.append("text")
       .text(function(d) {
-        return d.name;
+        if (d.name == "FL") {
+          return "Front Left Brake"
+        } else if (d.name == "FR") {
+          return "Front Right Brake"
+        } else if (d.name == "RL") {
+          return "Rear Left Brake"
+        } else if (d.name == "RR") {
+          return "Rear Right Brake"
+        } else if (d.name == "TCS") {
+          return "Traction Control System"
+        } else if (d.name == "avail") {
+          return "Brake Information Unavailable"
+        } else {
+          return ""
+        }
+
       })
       .attr("dy", -5);
 
@@ -316,16 +342,16 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
 
       drawBrush();
 
-      ////replace hard to use handles with big arcs        
+      var bb1contextxaxis = bb1context.append("g")
+        .attr("class", "x axis").attr("transform", "translate(" + m2[3] + "," + (h - h2) + ")")
+        .call(xAxis2);
+
+      //replace hard to use handles with big arcs      
       var handleoffset = d3.selectAll("#bb1field .context .resize.e rect").attr("y");
       d3.selectAll("#bb1field .context .resize rect").attr("opacity", 0);
       d3.selectAll("#bb1field .context .resize path").remove();
       brusharcs = bb1context.selectAll("#bb1field .resize").append("path").attr("class", "brusharc").attr("transform", "translate(0," + (h - h2 / 2) + ")").attr("d", arc);
       brushrects = bb1context.selectAll("#bb1field .resize").append("rect").attr("class", "brushrect").attr("width", 1.5).attr("height", h2 + 10).attr("y", (handleoffset - 5));
-
-      var bb1contextxaxis = bb1context.append("g")
-        .attr("class", "x axis").attr("transform", "translate(" + m2[3] + "," + (h - h2) + ")")
-        .call(xAxis2);
     }
 
     renderingbits(newwidth, newheight);
@@ -343,7 +369,6 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
             return 1;
           } else {
             return x(d.Endtime) - x(d.StartTime);
-
           }
         })
         .attr("height", (h / encoded.length) - barPadding)
@@ -388,13 +413,24 @@ d3.csv("csv/BrakeByte1Events_04_11_13.csv", function(error, data) {
           w = newwidth - m[1] - m[3];
           h = newheight - m[0] - m[2];
           xAxis.ticks(10);
-          
+
           renderingbits(newwidth, newheight);
           bb1_brush(newwidth, newheight);
           bb1brush.extent([timeBegin, timeEnd]);
         }, 550);
       }
     }); //end expand
+
+    $(window).resize(function() {
+      width = $("#bb1field").width();
+      w2 = width - m[1] - m[3];
+      w = width - m[1] - m[3];
+
+      renderingbits(width, height);
+      bb1_brush(width, height);
+      bb1brush.extent([timeBegin, timeEnd]);
+    });
   } //end bb1funct
+
   bb1();
 }); //endcsv

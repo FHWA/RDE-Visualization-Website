@@ -1,4 +1,4 @@
-d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
+d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
   var firstTransition = true;
 
   function convertSteeringAngle(binary) {
@@ -44,6 +44,20 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
 
   var timeEnd = d3.max(items, function(d) {
     return d.Endtime;
+  });
+
+  var duration = timeEnd - timeBegin;
+
+  d3.select("#SteerAngleEvents .time_span_text").html(function() {
+    if (duration > 86400000) {
+      return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
+    } else if (duration > 3600000) {
+      return "full time span ≈ " + parseFloat(duration / 3600000).toFixed(1) + " hours"
+    } else if (duration > 60000) {
+      return "full time span ≈ " + parseFloat(duration / 60000).toFixed(1) + " minutes"
+    } else {
+      return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
+    }
   });
 
   var width = $("#steerfield").width();
@@ -206,9 +220,9 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
 
 
     function Y0() {
-        return y(0);
-      }
-      //size y proportional to data
+      return y(0);
+    }
+    //size y proportional to data
     function Y(d) {
       return y(d.Value);
     }
@@ -267,7 +281,6 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
     }
     drawBrush();
 
-
     ////replace hard to use handles with big arcs        
     var handleoffset = d3.selectAll("#SteerAngleEvents .context .resize.e rect").attr("y");
     d3.selectAll("#SteerAngleEvents .context .resize rect").attr("opacity", 0);
@@ -278,25 +291,24 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
 
   renderingbits(newwidth, newheight);
 
-
   function steer_brush(width, height) {
-      x.domain(steerbrush.empty() ? x2.domain() : steerbrush.extent());
-      steerchart.selectAll(".x.axis").call(xAxis);
-      steerchart.selectAll(".y.axis").call(yAxis);
+    x.domain(steerbrush.empty() ? x2.domain() : steerbrush.extent());
+    steerchart.selectAll(".x.axis").call(xAxis);
+    steerchart.selectAll(".y.axis").call(yAxis);
 
-      //don't forget this has inverted y scale. 
-      rects.attr("x", function(d) {
-          return x(d.StartTime)
-        })
-        .attr("width", function(d) {
-          if (x(d.Endtime) - x(d.StartTime) > 0 && x(d.Endtime) - x(d.StartTime) < 1) {
-            return 1;
-          } else {
-            //console.log(x(d.Endtime) - x(d.StartTime));
-            return x(d.Endtime) - x(d.StartTime);
-          }
-        });
-    } // end steerbrush      
+    //don't forget this has inverted y scale. 
+    rects.attr("x", function(d) {
+        return x(d.StartTime)
+      })
+      .attr("width", function(d) {
+        if (x(d.Endtime) - x(d.StartTime) > 0 && x(d.Endtime) - x(d.StartTime) < 1) {
+          return 1;
+        } else {
+          //console.log(x(d.Endtime) - x(d.StartTime));
+          return x(d.Endtime) - x(d.StartTime);
+        }
+      });
+  } // end steerbrush      
   steer_brush(newwidth, newheight);
 
   $("#SteerAngleEvents .expandToggle").click(function() {
@@ -343,6 +355,15 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
     }
   });
 
+  $(window).resize(function() {
+    width = $("#steerfield").width();
+    w = width - m[1] - m[3];
+    w2 = w;
+
+    renderingbits(width, height);
+    steer_brush(width, height);
+    steerbrush.extent([timeBegin, timeEnd]);
+  });
 
 
   // black zero y axis since pos/neg chart
@@ -351,5 +372,4 @@ d3.csv("csv/culled/bsm_steerangle.csv", function(error, data) {
       return "#000"
     }
   });
-
 })

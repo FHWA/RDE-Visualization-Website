@@ -15,7 +15,6 @@ d3.selection.prototype.moveToFront = function() {
 };
 
 var barPadding = 25;
-
 //convert number to 8bit with leading zeros
 function tobin(n) {
   var s = "";
@@ -74,20 +73,20 @@ var sizetoggle = function() {
 }
 
 function addentries(items, divid) {
-    var toprow = items[0];
-    var valfields = divid.selectAll(".toptext div");
+  var toprow = items[0];
+  var valfields = divid.selectAll(".toptext div");
 
-    valfields.each(function(d) {
-      var thiscat = d3.select(this).attr("name");
-      var thisthing = d3.select(this);
+  valfields.each(function(d) {
+    var thiscat = d3.select(this).attr("name");
+    var thisthing = d3.select(this);
 
-      if (toprow[thiscat]) {
-        thisthing.append("div")
-          .attr("class", "valtext valentry")
-          .append("text")
-          .html(function(d) {
-            return '<span class="instruct">sample entry: </span>' + toprow[thiscat]
-          });
-      }
-    });
-  } //end add entries
+    if (toprow[thiscat]) {
+      thisthing.append("div")
+        .attr("class", "valtext valentry")
+        .append("text")
+        .html(function(d) {
+          return '<span class="instruct">sample entry: </span>' + toprow[thiscat]
+        });
+    }
+  });
+} //end add entries
