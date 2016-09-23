@@ -326,22 +326,17 @@ d3.csv("element6_data/TransStateEvents.csv", function(error, data) {
       });
 
       $(window).resize(function() {
-
         width = $("#transfield").width();
         w = width - m[1] - m[3];
         w2 = w;
 
-
         renderingbits(width, height);
         trans_brushed(width, height);
         transbrush.extent([timeBegin, timeEnd]);
-
       });
 
       d3.select(".context .x.axis").moveToFront();
-
-
-
     } //end transstate
+
   transstate(data);
 }); //end csv

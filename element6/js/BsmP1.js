@@ -95,7 +95,6 @@ d3.csv("element6_data/bsm_p1.csv", function(error, data) {
         var items = data;
 
         items.forEach(function(d) {
-          // (from v4 to v3) var parseOrigin =d3.timeParse("%Y-%m-%d");
           addGenTime(d);
           convertSignalValuesToIntegers(d);
         }); // end for loop
@@ -152,9 +151,6 @@ d3.csv("element6_data/bsm_p1.csv", function(error, data) {
           } else {
             return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
           }
-
-
-
         })
 
         var width = $("#BsmPfield").width();
@@ -429,7 +425,6 @@ d3.csv("element6_data/bsm_p1.csv", function(error, data) {
         BsmP_brush(newwidth, newheight);
 
         $("#BsmP1 .expandToggle").click(function() {
-          // var width = $("#BsmPfield").width();
           var parentColumn = $(this).parents(".column");
           var parentFileBox = $(this).parents(".filebox");
           var newwidth, newheight;
@@ -482,12 +477,9 @@ d3.csv("element6_data/bsm_p1.csv", function(error, data) {
               }, 50);
             }, 550);
           }
-
         });
 
-
         $(window).resize(function() {
-
           width = $("#BsmPfield").width();
 
           w2 = width - m[1] - m[3];
@@ -501,15 +493,8 @@ d3.csv("element6_data/bsm_p1.csv", function(error, data) {
               .attr("dx", -h2 / 1.8)
               .attr("y", -10)
           }, 50);
-
         });
-
-
-
       } //end test
-
-
-
 
     testpaths(data);
   } //end bsmp1 funct

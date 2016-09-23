@@ -29,8 +29,6 @@ d3.csv('element6_data/bsm_posaccurbyte1.csv', function(posAccByte1) {
   addentries(posAccByte1, thisdiv);
   pAB1.draw();
 
-
-
   var timeBegin = d3.min(items, function(d) {
     return d.StartTime;
   });
@@ -42,8 +40,6 @@ d3.csv('element6_data/bsm_posaccurbyte1.csv', function(posAccByte1) {
   var duration = timeEnd - timeBegin;
 
   d3.selectAll("#PosAccurByte1Events .time_span_text2").html(function() {
-
-
     if (duration > 86400000) {
       return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
     } else if (duration > 3600000) {
@@ -53,10 +49,7 @@ d3.csv('element6_data/bsm_posaccurbyte1.csv', function(posAccByte1) {
     } else {
       return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
     }
-
-
-
-  })
+  });
 });
 
 d3.csv('element6_data/bsm_posaccurbyte2.csv', function(posAccByte2) {

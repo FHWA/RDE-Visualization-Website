@@ -324,7 +324,6 @@ function barChart(data, chartDiv, parentDiv, userOptions) {
         if (chart.xScale(d.EndTime) - chart.xScale(d.StartTime) > 0 && chart.xScale(d.EndTime) - chart.xScale(d.StartTime) < 1) {
           return 1
         } else {
-          // return 1;
           return chart.xScale(d.EndTime) - chart.xScale(d.StartTime);
         }
       })

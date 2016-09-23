@@ -356,8 +356,6 @@ d3.csv("element6_data/TripSummaryNew.csv", function(error, data) {
         tripsumchart.selectAll(".x.axis").call(xAxis);
         tripsumchart.selectAll(".y.axis").call(yAxis);
 
-
-
         //move the group of bars
         tripsumchart.selectAll(".totalg")
           .attr("transform", function(d) {
@@ -396,10 +394,9 @@ d3.csv("element6_data/TripSummaryNew.csv", function(error, data) {
             $('.column').not(parentColumn).toggleClass("shrunk");
             $('.filebox').not(parentFileBox).toggleClass("shrunk");
             document.getElementById("BSM_Trip_Summary_File").scrollIntoView();
-
-
           }, 950);
-        } else {
+        } 
+        else {
           parentColumn.toggleClass("expanded");
           $('.column').not(parentColumn).toggleClass("shrunk");
           $('.filebox').not(parentFileBox).toggleClass("shrunk");
@@ -415,31 +412,22 @@ d3.csv("element6_data/TripSummaryNew.csv", function(error, data) {
             tripsum_brushed(newwidth, newheight);
             renderingbits(newwidth, newheight);
 
-
             tripsum_brushed(newwidth, newheight);
-
-
-
           }, 550);
         }
-
-
       });
 
       $(window).resize(function() {
-
         width = $("#tripSumfield").width();
 
-        w2 = width - m[1] - m[3],
-          w = width - m[1] - m[3];
+        w2 = width - m[1] - m[3];
+        w = width - m[1] - m[3];
 
         renderingbits(width, height);
         tripsum_brushed(width, height);
         tripsumbrush.extent([timeBegin, timeEnd]);
-
-
       });
-
     } // endtripsumfunt
+    
     tripsumfunct();
   }) //end csv

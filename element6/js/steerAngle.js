@@ -46,13 +46,9 @@ d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
     return d.Endtime;
   });
 
-
-
   var duration = timeEnd - timeBegin;
 
-
   d3.select("#SteerAngleEvents .time_span_text").html(function() {
-
     if (duration > 86400000) {
       return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
     } else if (duration > 3600000) {
@@ -62,9 +58,7 @@ d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
     } else {
       return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
     }
-
-
-  })
+  });
 
   var width = $("#steerfield").width();
   var height = 170;
@@ -178,126 +172,124 @@ d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
 
   // parts that need redraw
   var renderingbits = function(width, height) {
-      var m = [10, 15, 50, 35], //top right bottom left
-        w = width - m[1] - m[3],
-        h = height - m[0] - m[2];
+    var m = [10, 15, 50, 35], //top right bottom left
+      w = width - m[1] - m[3],
+      h = height - m[0] - m[2];
 
-      //for brush
-      var m2 = [0, 0, 0, 0], //top right bottom left
-        w2 = width - m[1] - m[3],
-        //height of brush is bottom margin 
-        h2 = 20;
+    //for brush
+    var m2 = [0, 0, 0, 0], //top right bottom left
+      w2 = width - m[1] - m[3],
+      //height of brush is bottom margin 
+      h2 = 20;
 
-      x.range([0, w]);
-      x2.range([0, w]);
-      y.range([h, 0]);
+    x.range([0, w]);
+    x2.range([0, w]);
+    y.range([h, 0]);
 
-      mainxaxis.call(xAxis);
-      mainyaxis.call(yAxis);
+    mainxaxis.call(xAxis);
+    mainyaxis.call(yAxis);
 
-      yAxis.tickSize(-w)
-        .ticks(10);
-      xAxis.orient("bottom")
-        .tickSize(h);
+    yAxis.tickSize(-w)
+      .ticks(10);
+    xAxis.orient("bottom")
+      .tickSize(h);
 
-      steersvg.transition()
-        .duration(900)
-        .ease("quad-out")
-        .attr("width", w + m[1] + m[3])
-        .attr("height", h + m[0] + m[2]);
+    steersvg.transition()
+      .duration(900)
+      .ease("quad-out")
+      .attr("width", w + m[1] + m[3])
+      .attr("height", h + m[0] + m[2]);
 
-      clipper.attr("width", w)
-        .attr("height", h);
+    clipper.attr("width", w)
+      .attr("height", h);
 
-      steerchart.attr("transform", "translate(" + m[3] + "," + (m[0]) + ")");
+    steerchart.attr("transform", "translate(" + m[3] + "," + (m[0]) + ")");
 
-      bgrect.transition()
-        .duration(900)
-        .ease("quad-out")
-        .attr("width", w)
-        .attr("height", (h));
+    bgrect.transition()
+      .duration(900)
+      .ease("quad-out")
+      .attr("width", w)
+      .attr("height", (h));
 
-      ylabel.attr("transform", "rotate (-90)")
-        .attr("y", -24)
-        .attr("class", "ylabel")
-        .attr("dx", -h / 2)
-        .text("degrees")
-        .attr("text-anchor", "middle");
-
-
-      function Y0() {
-        return y(0);
-      }
-      //size y proportional to data
-      function Y(d) {
-        return y(d.Value);
-      }
-
-      rects.transition()
-        .duration(900)
-        .ease("quad-out")
-        .attr("x", function(d) {
-          return x(d.StartTime)
-        })
-        .attr("y", function(d, i) {
-          return (d.Value) < 0 ? Y0() : Y(d);
-        })
-        .attr("width", function(d) {
-          if (x(d.Endtime) - x(d.StartTime) > 0 && x(d.Endtime) - x(d.StartTime) < 1) {
-            return 1;
-          } else {
-            return x(d.Endtime) - x(d.StartTime);
-          }
-        })
-        .attr("height", function(d, i) {
-          return Math.abs(Y(d) - Y0());
-        })
-        .attr("class", function(d) {
-          if (+d.Value === 127) {
-            return ("timelinerect unavailable")
-          } else {
-            return "timelinerect"
-          }
-        });
-
-      $(".timelinerect[width='0']").remove();
-
-      mybrush.call(steerbrush)
-        .selectAll("rect")
-        .attr("y", (h - h2))
-        .attr("height", h2);
-
-      //for brush
-      context.attr("transform", "translate(" + m[3] + "," + (m[2]) + ")");
-      contextxaxis.attr("transform", "translate(0," + (h - h2) + ")")
-        .call(xAxis2);
-
-      d3.select(".context .x.axis").moveToFront();
-
-      function drawBrush() {
-        //set brush to a view that is interesting 
-        var extentFormat = d3.time.format('%Y-%m-%dT%H:%M:%S').parse;
-        var parsedExtent = extentFormat('2012-10-01T12:50:56');
-
-        steerbrush.extent([timeBegin, timeEnd]);
-        if (firstTransition) {
-          steerbrush(d3.select("#SteerAngleEvents .brush").transition().ease("quad-out").delay(2000).duration(2000));
-          firstTransition = false;
-        } else steerbrush(d3.select("#SteerAngleEvents .brush").transition().ease("quad-out").duration(900));
-      }
-      drawBrush();
+    ylabel.attr("transform", "rotate (-90)")
+      .attr("y", -24)
+      .attr("class", "ylabel")
+      .attr("dx", -h / 2)
+      .text("degrees")
+      .attr("text-anchor", "middle");
 
 
-      ////replace hard to use handles with big arcs        
-      var handleoffset = d3.selectAll("#SteerAngleEvents .context .resize.e rect").attr("y");
-      d3.selectAll("#SteerAngleEvents .context .resize rect").attr("opacity", 0);
-      d3.selectAll("#SteerAngleEvents .context .resize path").remove();
-      brusharcs = mybrush.selectAll("#SteerAngleEvents .resize").append("path").attr("class", "brusharc").attr("transform", "translate(0," + (h - h2 / 2) + ")").attr("d", arc);
-      brushrects = mybrush.selectAll("#SteerAngleEvents .resize").append("rect").attr("class", "brushrect").attr("width", 1.5).attr("height", h2 + 10).attr("y", (handleoffset - 5));
-    } //end renderingbits
+    function Y0() {
+      return y(0);
+    }
+    //size y proportional to data
+    function Y(d) {
+      return y(d.Value);
+    }
+
+    rects.transition()
+      .duration(900)
+      .ease("quad-out")
+      .attr("x", function(d) {
+        return x(d.StartTime)
+      })
+      .attr("y", function(d, i) {
+        return (d.Value) < 0 ? Y0() : Y(d);
+      })
+      .attr("width", function(d) {
+        if (x(d.Endtime) - x(d.StartTime) > 0 && x(d.Endtime) - x(d.StartTime) < 1) {
+          return 1;
+        } else {
+          return x(d.Endtime) - x(d.StartTime);
+        }
+      })
+      .attr("height", function(d, i) {
+        return Math.abs(Y(d) - Y0());
+      })
+      .attr("class", function(d) {
+        if (+d.Value === 127) {
+          return ("timelinerect unavailable")
+        } else {
+          return "timelinerect"
+        }
+      });
+
+    $(".timelinerect[width='0']").remove();
+
+    mybrush.call(steerbrush)
+      .selectAll("rect")
+      .attr("y", (h - h2))
+      .attr("height", h2);
+
+    //for brush
+    context.attr("transform", "translate(" + m[3] + "," + (m[2]) + ")");
+    contextxaxis.attr("transform", "translate(0," + (h - h2) + ")")
+      .call(xAxis2);
+
+    d3.select(".context .x.axis").moveToFront();
+
+    function drawBrush() {
+      //set brush to a view that is interesting 
+      var extentFormat = d3.time.format('%Y-%m-%dT%H:%M:%S').parse;
+      var parsedExtent = extentFormat('2012-10-01T12:50:56');
+
+      steerbrush.extent([timeBegin, timeEnd]);
+      if (firstTransition) {
+        steerbrush(d3.select("#SteerAngleEvents .brush").transition().ease("quad-out").delay(2000).duration(2000));
+        firstTransition = false;
+      } else steerbrush(d3.select("#SteerAngleEvents .brush").transition().ease("quad-out").duration(900));
+    }
+    drawBrush();
+
+    ////replace hard to use handles with big arcs        
+    var handleoffset = d3.selectAll("#SteerAngleEvents .context .resize.e rect").attr("y");
+    d3.selectAll("#SteerAngleEvents .context .resize rect").attr("opacity", 0);
+    d3.selectAll("#SteerAngleEvents .context .resize path").remove();
+    brusharcs = mybrush.selectAll("#SteerAngleEvents .resize").append("path").attr("class", "brusharc").attr("transform", "translate(0," + (h - h2 / 2) + ")").attr("d", arc);
+    brushrects = mybrush.selectAll("#SteerAngleEvents .resize").append("rect").attr("class", "brushrect").attr("width", 1.5).attr("height", h2 + 10).attr("y", (handleoffset - 5));
+  } //end renderingbits
 
   renderingbits(newwidth, newheight);
-
 
   function steer_brush(width, height) {
     x.domain(steerbrush.empty() ? x2.domain() : steerbrush.extent());
@@ -364,18 +356,14 @@ d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
   });
 
   $(window).resize(function() {
-
     width = $("#steerfield").width();
     w = width - m[1] - m[3];
     w2 = w;
 
-
     renderingbits(width, height);
     steer_brush(width, height);
     steerbrush.extent([timeBegin, timeEnd]);
-
   });
-
 
 
   // black zero y axis since pos/neg chart
@@ -384,5 +372,4 @@ d3.csv("element6_data/bsm_steerangle.csv", function(error, data) {
       return "#000"
     }
   });
-
 })

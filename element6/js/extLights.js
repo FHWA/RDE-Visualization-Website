@@ -85,7 +85,6 @@ d3.csv("element6_data/ExteriorLightsEvents.csv", function(error, lightsdata) {
 
     var duration = timeEnd - timeBegin;
 
-
     d3.select("#ExteriorLightsEvents .time_span_text").html(function() {
 
       if (duration > 86400000) {
@@ -97,10 +96,7 @@ d3.csv("element6_data/ExteriorLightsEvents.csv", function(error, lightsdata) {
       } else {
         return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
       }
-
-
     })
-
 
     var width = $("#lightsfield").width();
     var height = 380;
@@ -401,17 +397,15 @@ d3.csv("element6_data/ExteriorLightsEvents.csv", function(error, lightsdata) {
     });
 
     $(window).resize(function() {
-
       width = $("#lightsfield").width();
       w = width - m[1] - m[3];
       w2 = w;
 
-
       renderingbits(width, height);
       lights_brushed(width, height);
       lightsbrush.extent([timeBegin, timeEnd]);
-
     });
+    
   } //end lights
   extLights();
 }); //end csv

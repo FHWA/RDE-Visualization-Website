@@ -15,7 +15,6 @@ d3.selection.prototype.moveToFront = function() {
 };
 
 var barPadding = 25;
-
 //convert number to 8bit with leading zeros
 function tobin(n) {
   var s = "";

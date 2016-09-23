@@ -47,7 +47,6 @@ d3.csv('element6_data/ThrottlePositionEvents.csv', function(throttleSolo) {
   var duration = timeEnd - timeBegin;
 
   d3.select("#Throttle .time_span_text").html(function() {
-
     if (duration > 86400000) {
       return "full time span ≈ " + parseFloat(duration / 86400000).toFixed(1) + " days"
     } else if (duration > 3600000) {
@@ -57,6 +56,5 @@ d3.csv('element6_data/ThrottlePositionEvents.csv', function(throttleSolo) {
     } else {
       return "full time span ≈ " + parseFloat(duration / 1000).toFixed(1) + " seconds"
     }
-
-  })
+  });
 });
