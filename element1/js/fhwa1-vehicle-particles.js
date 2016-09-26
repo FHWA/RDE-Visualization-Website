@@ -82,7 +82,10 @@ function initVehicleParticles(scene, roadNetwork) {
         // volume measurement before being converted to a ParticleSystem's
         // emitRate
         transformVolume = function (volume) {
-            return FHWA.Util.clamp(volume, 0, 200);
+            // Clamping between 0 and 200 was reasonable for 5 min volume;
+            // since we're doing hourly volume now, divide by 12 and do
+            // the same
+            return FHWA.Util.clamp(volume/12, 0, 200);
         },
         // Same, for a speed measurement, which gets converted to a
         // ParticleSystem's emitPower (min/max)
@@ -247,25 +250,39 @@ function initVehicleParticles(scene, roadNetwork) {
         Papa.RemoteChunkSize = 1024 * 1024 * 3; // 3 MB
         // Load by chunks so we don't lock up the page
         return roadNetwork.then(function (roadNetwork) {
+            // Get the physical/geographical data for the links,
+            // so we can access things like number of lanes for each link ID
+            var networkLinks = roadNetwork.getLinks();
+
             var volumeLoad = FHWA.Util.PapaPromise.parse(volumeFile, {
                 header: true,
                 download: true,
                 chunk: function (results) {
                     results.data.forEach(function (d) {
-                        var timestamp = d.TimeStamp,
-                            // Convert from Pasadena link IDs to our link IDs
-                            linkID = roadNetwork.getLinkID(d.LinkNo, d.FromNode),
-                            volume = +d.Vol_00,
-                            timeObj = FHWA.Util.initProp(linkData, timestamp, {}),
-                            linkObj = FHWA.Util.initProp(timeObj, linkID, {}),
-                            aggLinkObj = FHWA.Util.initProp(linkAggregateData, linkID, {}),
-                            aggVol = FHWA.Util.initProp(aggLinkObj, 'volume', []);
+                        // Disregard bogus data
+                        if (d.LinkNo !== undefined) {
+                            var timestamp = d.TimeStamp,
+                                // Convert from Pasadena link IDs to our link IDs
+                                linkID = roadNetwork.getLinkID(d.LinkNo, d.FromNode),
+                                volume = +d.Vol_00,
+                                timeObj = FHWA.Util.initProp(linkData, timestamp, {}),
+                                linkObj = FHWA.Util.initProp(timeObj, linkID, {}),
+                                aggLinkObj = FHWA.Util.initProp(linkAggregateData, linkID, {}),
+                                aggVol = FHWA.Util.initProp(aggLinkObj, 'volume', []);
 
-                        linkObj.volume = volume;
-                        aggVol.push({
-                            timestamp: timestamp,
-                            datum: volume,
-                        });
+                            // Use volume per lane instead of overall link volume
+                            // Remember the networkLinks object's values are lists, since
+                            // there could be many segments for a single link, if it has
+                            // curves
+                            // All the lane data will be the same, so we'll just take
+                            // the first lane in the list
+                            var laneVolume = volume * 12 / networkLinks[linkID][0].numLanes;
+                            linkObj.volume = laneVolume;
+                            aggVol.push({
+                                timestamp: timestamp,
+                                datum: laneVolume,
+                            });
+                        }
                     });
                 },
             });
