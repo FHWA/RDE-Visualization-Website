@@ -299,7 +299,7 @@ function noWebGLErrorCatcher () {
   //Embed the video after the alert
   var video = document.createElement("div");
   video.className = "vid-embed";
-  video.innerHTML = '<iframe src="https://player.vimeo.com/video/180342694" width="100%" height="498" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+  video.innerHTML = '<iframe src="https://player.vimeo.com/video/184229812" width="100%" height="498" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
   error_div.parentNode.insertBefore(video, error_div.nextSibling);
 
   //Throw error to stop the scripts from trying to finish execution
