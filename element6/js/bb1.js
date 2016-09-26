@@ -426,6 +426,7 @@ d3.csv("element6_data/BrakeByte1.csv", function(error, data) {
       w2 = width - m[1] - m[3];
       w = width - m[1] - m[3];
 
+      d3.select("#bb1field .x.brush").remove();
       renderingbits(width, height);
       bb1_brush(width, height);
       bb1brush.extent([timeBegin, timeEnd]);
