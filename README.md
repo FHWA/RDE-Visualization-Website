@@ -1,7 +1,7 @@
 # RDE Visualization Website
 This repository contains code and other assets to render a website displaying prototype visualizations of selected data sets in the [Federal Highway Administration](https://www.fhwa.dot.gov/) (FHWA)'s [Research Data Environment](https://www.its-rde.net/) (RDE).  These visualizations are designed to give researchers and data aficionados ideas for projects using the data on the RDE; they also strive to provide concrete examples of how large, complex data sets can be distilled into useful products.
 
-## Running the Site
+## Installation and Use
 
 Clone this repository and enter the repository root; for example:
 
@@ -48,3 +48,13 @@ While visualization element 5 presents the depth of data available in the RDE, E
 
 ### Data Preparation
 See the [RDE-Visualization-Support](https://github.com/FHWA/RDE-Visualization-Support) repository for the scripts used to create the data files used for these visualizations.
+
+### Technology Stack
+Visualization libraries:
+- d3.js
+- dc.js
+- Leaflet
+- BabylonJS
+
+### Release History:
+- 0.0.1: Public release
